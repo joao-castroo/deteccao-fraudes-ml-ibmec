@@ -1,0 +1,49 @@
+{
+  "note": "Post hoc descriptive diagnostic. Frozen parameters and original final training sample. Test predictions match saved predictions. No reselection.",
+  "rows": [
+    {
+      "task": "classification",
+      "model": "ExtraTrees",
+      "split": "Ajuste final (30 mil)",
+      "accuracy": 0.9842666666666666,
+      "precision": 0.7523961661341853,
+      "recall": 0.8532608695652174,
+      "F1": 0.799660441426146,
+      "ROC_AUC": 0.9944885744679571,
+      "AP": 0.8945716709877862,
+      "Brier": 0.017278602822307892,
+      "threshold": 0.15999999999999998
+    },
+    {
+      "task": "classification",
+      "model": "ExtraTrees",
+      "split": "Teste posterior",
+      "accuracy": 0.9567075086396482,
+      "precision": 0.3719806763285024,
+      "recall": 0.4358490566037736,
+      "F1": 0.40139009556907035,
+      "ROC_AUC": 0.8592543582636849,
+      "AP": 0.3793579478464903,
+      "Brier": 0.025901972439033305,
+      "threshold": 0.15999999999999998
+    },
+    {
+      "task": "regression",
+      "model": "RandomForest",
+      "split": "Ajuste final (30 mil)",
+      "MAE": 6.223049940178524,
+      "MSE": 932.7177117675702,
+      "RMSE": 30.540427498114205,
+      "R2": 0.5903674653395767
+    },
+    {
+      "task": "regression",
+      "model": "RandomForest",
+      "split": "Teste posterior",
+      "MAE": 8.295078610936244,
+      "MSE": 1597.1016921430496,
+      "RMSE": 39.96375473029342,
+      "R2": 0.24650338222978663
+    }
+  ]
+}

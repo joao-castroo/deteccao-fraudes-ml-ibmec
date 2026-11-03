@@ -78,3 +78,11 @@ O teste tem 28 dias. Há poucos blocos temporais independentes. Não há uma cha
 - https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html
 
 O hash SHA-256 local está em results/provenance.json. O MD5 OpenML se refere ao ARFF; não foi comparado ao parquet. O uso segue as regras da competição. Espelho público não equivale a licença irrestrita de redistribuição. Os arquivos ficam locais e no pacote solicitado para uso acadêmico.
+
+## Apresentação ampliada de 15 minutos
+
+- `deliverables/apresentacao_Fraude_completa_15min.pptx`: 16 slides principais com 15 minutos planejados, incluindo demonstração, e 10 slides de apoio para perguntas. As notas contêm fala sugerida, perguntas e fontes.
+- `deliverables/roteiro_apresentacao_15min.html`: roteiro de estudo com cronograma e respostas.
+- O template do professor limita a submissão a 10 slides. A versão `apresentacao_Fraude.pptx`, com 10 slides, permanece preservada. A versão ampliada atende ao pedido de ensaio e exposição detalhada.
+- `src/diagnosticos_apresentacao.py`: refaz os dois campeões congelados, confirma as previsões de teste e compara ajuste com teste. Trata-se de diagnóstico posterior, sem alterar seleção ou política.
+- Extra Trees: AP no ajuste 0,895 e no teste 0,379. Random Forest regressor: RMSE no ajuste US$ 30,54 e no teste US$ 39,96. O ajuste é otimista e a diferença não isola sobreajuste de mudança temporal.
