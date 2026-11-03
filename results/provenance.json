@@ -1,0 +1,9 @@
+{
+  "original": "https://www.kaggle.com/competitions/ieee-fraud-detection/data",
+  "mirror": "https://data.openml.org/datasets/0004/46858/dataset_46858.pq",
+  "openml_id": 46858,
+  "loader_reference": "https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html",
+  "sha256": "c313ad335223589693e26d5808267ed6ff03d871be5d9bb63deb3b847fa4b891",
+  "bytes": 78250805,
+  "note": "Local parquet hash; OpenML MD5 refers to ARFF, not verified against parquet"
+}

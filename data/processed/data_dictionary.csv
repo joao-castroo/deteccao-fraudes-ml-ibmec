@@ -1,0 +1,78 @@
+campo,tipo,significado,uso
+TransactionAmt,numérico,Valor da transação; USD conforme documentação Empulse,entrada; disponibilidade original depende da documentação do provedor
+dist1,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+dist2,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C1,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C2,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C3,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C4,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C5,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C6,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C7,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C8,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C9,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C10,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C11,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C12,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C13,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+C14,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D1,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D2,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D3,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D4,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D5,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D6,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D7,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D8,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D9,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D10,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D11,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D12,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D13,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D14,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+D15,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V1,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V3,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V5,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V7,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V13,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V20,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V30,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V50,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V70,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V100,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V130,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V150,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V200,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V250,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+V300,numérico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+hour_sin,numérico,Ciclo horário derivado do deslocamento; sem afirmar hora civil local,entrada; disponibilidade original depende da documentação do provedor
+hour_cos,numérico,Ciclo horário derivado do deslocamento; sem afirmar hora civil local,entrada; disponibilidade original depende da documentação do provedor
+missing_count,numérico,Número de campos lidos ausentes antes da imputação,entrada; disponibilidade original depende da documentação do provedor
+ProductCD,categórico,"Código de produto, sem nomes comerciais",entrada; disponibilidade original depende da documentação do provedor
+card1,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+card2,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+card3,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+card4,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+card5,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+card6,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+addr1,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+addr2,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+P_emaildomain,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+R_emaildomain,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M1,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M2,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M3,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M4,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M5,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M6,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M7,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M8,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+M9,categórico,atributo anônimo; sem definição individual completa do provedor,entrada; disponibilidade original depende da documentação do provedor
+DeviceType,categórico,Tipo geral de dispositivo quando presente,entrada; disponibilidade original depende da documentação do provedor
+isFraud,metadado/alvo,Rótulo histórico binário,não entra em X
+exposure,metadado/alvo,TransactionAmt*isFraud; alvo contínuo derivado,não entra em X
+source_row,metadado/alvo,Identificador de linha; não entra em X,não entra em X
+TransactionDT,metadado/alvo,Deslocamento temporal em segundos; sem data civil,não entra em X
+day,metadado/alvo,Dia relativo usado na separação,não entra em X
+split,metadado/alvo,Bloco temporal autorizado,não entra em X

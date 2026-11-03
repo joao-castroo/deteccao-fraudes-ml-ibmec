@@ -1,0 +1,138 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Guia de defesa oral</title><style>body{font:16px/1.65 -apple-system,BlinkMacSystemFont,Arial,sans-serif;max-width:1100px;margin:50px auto;padding:0 30px;color:#172b45}h1{font-size:36px;line-height:1.2}h2{margin-top:65px;padding-top:28px;border-top:1px solid #dce2e8}h3{margin-top:30px}pre{font:13px/1.5 Menlo,monospace;white-space:pre-wrap;background:#f3f5f8;padding:18px;border-radius:5px}table{border-collapse:collapse;width:100%;font-size:13px;margin:20px 0}th,td{text-align:left;padding:8px;border-bottom:1px solid #ddd}th{background:#edf1f6}.tablewrap{overflow-x:auto}img{max-width:100%;height:auto}a{color:#14558d}summary{cursor:pointer;color:#14558d}strong{color:#102c50}nav{background:#f3f5f8;padding:20px}nav a{display:block;padding:3px}@media print{body{margin:0;max-width:none}h2{break-before:page}details{display:block}}</style><body><h1>Guia de defesa oral</h1><h2>21. Perguntas prováveis do professor</h2>
+<h3>Base e problema</h3>
+<p><strong>O que é a base?</strong> Transações reais de comércio eletrônico disponibilizadas por Vesta e IEEE-CIS, com rótulos históricos de fraude. Baixamos um espelho OpenML documentado e preservamos a origem.</p>
+<p><strong>Por que não usar o arquivo direto do Kaggle?</strong> O espelho é público e permite reproduzir o download. A fonte original e os direitos continuam os da competição; o arquivo não se torna de domínio público.</p>
+<p><strong>Uma linha é um cliente?</strong> Não, é uma transação. Não possuímos uma chave confiável que identifique clientes de forma completa.</p>
+<p><strong>O que significa cada V ou C?</strong> Muitas definições são ocultadas pelo provedor. Podemos explicar a família geral e o comportamento estatístico, mas não inventar uma interpretação específica.</p>
+<p><strong>Por que 456 campos no espelho?</strong> Há atributos de identidade com variantes de nomes. Lemos uma lista predefinida e auditamos o esquema recebido, sem assumir identidade perfeita com todas as versões da competição.</p>
+<p><strong>Por que uma em cada cinco linhas?</strong> Para limitar processamento sem selecionar pelo rótulo ou por resultado futuro. A amostra é sistemática e não representa automaticamente todo o fluxo de produção.</p>
+<p><strong>Por que só 30 mil linhas para treinar?</strong> É um orçamento comum a todos os algoritmos que permite comparação reproduzível. O teste usa todas as linhas de seu bloco da amostra. Mais dados é uma extensão possível, sem promessa de melhora.</p>
+<p><strong>Por que não retirar valores altos?</strong> O valor é parte do risco econômico. Apagar montantes extremos só por serem extremos poderia esconder o problema real.</p>
+<h3>Metodologia</h3>
+<p><strong>Por que separar por tempo?</strong> O uso real recebe transações futuras. Dividir aleatoriamente poderia misturar padrões posteriores no treino.</p>
+<p><strong>O teste tem clientes inéditos?</strong> Não sabemos. A avaliação mede um fluxo posterior; não comprova generalização para novos clientes.</p>
+<p><strong>Onde poderia haver vazamento?</strong> Em rótulos ou valores derivados entrando em X, agregações futuras, transformações ajustadas fora do treino e escolha retrospectiva de políticas. A origem de features ocultas também limita a auditoria.</p>
+<p><strong>Por que TransactionDT não entra diretamente?</strong> É um deslocamento temporal com origem civil desconhecida e pode incentivar extrapolações frágeis. Usamos o tempo para separar blocos e extraímos um ciclo horário, sem afirmar hora local.</p>
+<p><strong>Por que o valor entra no modelo?</strong> Ele está disponível na transação. Não revela por si só se a operação é fraude.</p>
+<p><strong>A regressão não é uma classificação disfarçada?</strong> Ela é outra formulação do mesmo risco: estima uma média monetária em vez de uma probabilidade. Não a apresentamos como problema independente ou prejuízo líquido observado.</p>
+<p><strong>Por que não usar SMOTE?</strong> Preservamos a prevalência nos dados e exploramos métricas e ranking. Amostragem sintética exigiria ocorrer apenas dentro do treino e poderia distorcer probabilidades sem correção.</p>
+<p><strong>Como foram escolhidos hiperparâmetros?</strong> Pequenas grades em três folds temporais no treino. A escolha é documentada e não é busca exaustiva.</p>
+<p><strong>O que faz a calibração Platt?</strong> Ajusta uma transformação logística do score bruto com rótulos de um bloco separado, buscando probabilidades mais consistentes. Não garante calibração futura ou por subgrupo.</p>
+<h3>Métricas e algoritmos</h3>
+<p><strong>Por que não destacar acurácia?</strong> A classe legítima domina. Um modelo que nunca detecta fraude pode ter acurácia alta e ser inútil para a decisão.</p>
+<p><strong>Qual é a diferença entre precisão e recall?</strong> Precisão mede quantas revisões selecionadas eram fraude; recall mede quantas fraudes existentes foram selecionadas.</p>
+<p><strong>O que é AP?</strong> Average precision, um resumo da curva precisão–recall. Não é percentual de fraude nem a integral trapezoidal da curva.</p>
+<p><strong>Por que o limiar F1 não é usado na fila econômica?</strong> O limiar decide uma classe; a fila precisa respeitar capacidade e priorizar valor. São objetivos distintos.</p>
+<p><strong>Por que multiplicar probabilidade por valor?</strong> Isso estima exposição esperada, se a probabilidade for adequada e o valor representar o que está em risco. A eficácia da investigação vem depois.</p>
+<p><strong>Por que um modelo com maior F1 pode identificar menos dinheiro?</strong> Ele pode reconhecer muitas fraudes pequenas e perder poucas operações de alto valor.</p>
+<p><strong>Por que R² pode ser baixo?</strong> A exposição tem muitos zeros e eventos monetários extremos. Estimar a média exata é difícil. Avaliamos ranking e decisão separadamente, sem esconder o R².</p>
+<p><strong>Por que um baseline zero pode ter bom MAE?</strong> Porque a mediana de um alvo com mais de metade de zeros é zero. Isso não o torna útil para ordenar exposição positiva.</p>
+<p><strong>Qual é a diferença entre parâmetro e hiperparâmetro?</strong> Parâmetro é aprendido no ajuste; hiperparâmetro configura o algoritmo antes do ajuste, como profundidade ou regularização.</p>
+<p><strong>Por que one-hot e escala?</strong> Códigos não têm uma ordem numérica natural, e escalas distintas podem dominar distâncias e regularização.</p>
+<p><strong>O que é regularização?</strong> Penalização de complexidade para reduzir ajustes frágeis. L1 pode zerar coeficientes; L2 os contrai; ElasticNet combina as duas.</p>
+<p><strong>Por que permutação não mostra causa?</strong> Embaralhar mede dependência preditiva no modelo. Atributos correlacionados e fatores não observados impedem interpretação causal direta.</p>
+<h3>Agrupamento e PCA</h3>
+<p><strong>Os clusters são tipos de fraude?</strong> Não. Foram construídos sem rótulo. A taxa de fraude posterior só descreve cada grupo histórico.</p>
+<p><strong>O que é ruído no DBSCAN?</strong> Ponto sem densidade suficiente segundo eps e min_samples, não necessariamente dado errado ou fraude.</p>
+<p><strong>Silhouette mais alta prova melhor grupo?</strong> Não. Pode excluir muitos pontos ou representar grupos pouco úteis. É preciso avaliar cobertura, tamanho e interpretação.</p>
+<p><strong>PCA melhora automaticamente a previsão?</strong> Não. Aqui é ferramenta de exploração e visualização, não uma etapa obrigatória do classificador.</p>
+<h3>Dinheiro e conclusão</h3>
+<p><strong>Quanto foi realmente economizado?</strong> Não observamos economia realizada. Medimos valor fraudulento rotulado identificado e calculamos benefício sob eficácia e custos assumidos. As cifras concretas estão na seção 14.</p>
+<p><strong>O valor de uma fraude é igual à perda da empresa?</strong> Não necessariamente. Pode haver recuperação, responsabilidade compartilhada, tarifas e outros mecanismos não observados.</p>
+<p><strong>Por que custo de dois dólares e eficácia de 80%?</strong> São hipóteses ilustrativas declaradas antes do teste, não dados da Vesta. Outros cenários mostram sensibilidade.</p>
+<p><strong>A referência é não investigar ninguém?</strong> Essa é uma referência secundária. A principal é a melhor regra simples na validação, com o mesmo orçamento diário de análises.</p>
+<p><strong>Maior benefício significa que devemos implantar?</strong> Não sozinho. Precisamos validar eficácia, atraso, custo, estabilidade, atrito e despesas de implantação com um piloto.</p>
+<p><strong>Revisar significa bloquear?</strong> Não. A política representa uma fila de investigação. Bloqueio automático exigiria outro desenho operacional e avaliação de consequências.</p>
+<p><strong>Como sabemos que o teste não escolheu a referência?</strong> A referência foi avaliada e congelada no bloco de validação; o arquivo baseline_selection registra seus resultados.</p>
+<p><strong>Por que comparar os dois projetos sem comparar dólares absolutos?</strong> Os recortes, escalas, períodos e premissas são diferentes. Comparamos evidência incremental, incerteza e adequação acadêmica.</p>
+<p><strong>Fraude resolve a fragilidade econômica do M5?</strong> Pode fornecer uma vantagem mais clara na triagem, mas ainda depende de eficácia da ação. A decisão deve seguir os resultados e não uma promessa anterior.</p>
+<h2>22. Glossário</h2>
+<table>
+<thead>
+<tr>
+<th>Termo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Exposição</td>
+<td>Valor monetário potencialmente associado ao evento, sem equivaler a prejuízo líquido</td>
+</tr>
+<tr>
+<td>Prevalência</td>
+<td>Fração de positivos no conjunto</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>Número usado para ordenar casos</td>
+</tr>
+<tr>
+<td>Capacidade</td>
+<td>Número máximo de casos que a equipe revisa no período</td>
+</tr>
+<tr>
+<td>Limiar</td>
+<td>Corte que transforma score em classe</td>
+</tr>
+<tr>
+<td>Brier</td>
+<td>Erro quadrático das probabilidades</td>
+</tr>
+<tr>
+<td>Logit</td>
+<td>Logaritmo da razão p/(1−p)</td>
+</tr>
+<tr>
+<td>Platt</td>
+<td>Ajuste logístico para calibrar scores</td>
+</tr>
+<tr>
+<td>Recall monetário</td>
+<td>Fração do valor rotulado de fraude presente na seleção</td>
+</tr>
+<tr>
+<td>Benefício incremental</td>
+<td>Diferença de benefício frente à referência</td>
+</tr>
+<tr>
+<td>Contrafactual</td>
+<td>Resultado que ocorreria sob uma ação alternativa, não observado aqui</td>
+</tr>
+<tr>
+<td>Bootstrap em blocos</td>
+<td>Reamostragem de trechos temporais para preservar parte da dependência</td>
+</tr>
+<tr>
+<td>Drift</td>
+<td>Mudança de distribuição ao longo do tempo</td>
+</tr>
+<tr>
+<td>One-hot</td>
+<td>Indicadores binários para categorias</td>
+</tr>
+<tr>
+<td>Imputação</td>
+<td>Tratamento de ausências com regra aprendida no treino</td>
+</tr>
+<tr>
+<td>Hiperparâmetro</td>
+<td>Configuração externa ao ajuste do modelo</td>
+</tr>
+<tr>
+<td>Centroide</td>
+<td>Centro de um grupo</td>
+</tr>
+<tr>
+<td>Ward</td>
+<td>Critério hierárquico de incremento de variância</td>
+</tr>
+<tr>
+<td>Eps</td>
+<td>Raio de vizinhança no DBSCAN</td>
+</tr>
+<tr>
+<td>PCA</td>
+<td>Componentes lineares ortogonais de maior variância</td>
+</tr>
+</tbody></table>
+</body></html>

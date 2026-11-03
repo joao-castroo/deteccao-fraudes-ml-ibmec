@@ -1,0 +1,8 @@
+{
+  "candidate": "ExtraTrees",
+  "reference": "Logistic",
+  "incremental_benefit": 4785.620000000001,
+  "ci95_low": 2803.772160000001,
+  "ci95_high": 6760.3689399999985,
+  "note": "Additional diagnostic after primary evaluation; does not replace original comparator or winner"
+}

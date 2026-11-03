@@ -1,0 +1,126 @@
+[
+  {
+    "check": "Ten slides",
+    "passed": true
+  },
+  {
+    "check": "Ten speaker notes",
+    "passed": true
+  },
+  {
+    "check": "Two native charts",
+    "passed": true
+  },
+  {
+    "check": "Two embedded chart workbooks",
+    "passed": true
+  },
+  {
+    "check": "Classifier Logistic",
+    "passed": true
+  },
+  {
+    "check": "Classifier DecisionTree",
+    "passed": true
+  },
+  {
+    "check": "Classifier RandomForest",
+    "passed": true
+  },
+  {
+    "check": "Classifier ExtraTrees",
+    "passed": true
+  },
+  {
+    "check": "Classifier HistGradientBoosting",
+    "passed": true
+  },
+  {
+    "check": "Classifier KNN",
+    "passed": true
+  },
+  {
+    "check": "Classifier GaussianNB",
+    "passed": true
+  },
+  {
+    "check": "Regressor Linear",
+    "passed": true
+  },
+  {
+    "check": "Regressor Ridge",
+    "passed": true
+  },
+  {
+    "check": "Regressor Lasso",
+    "passed": true
+  },
+  {
+    "check": "Regressor ElasticNet",
+    "passed": true
+  },
+  {
+    "check": "Regressor DecisionTree",
+    "passed": true
+  },
+  {
+    "check": "Regressor RandomForest",
+    "passed": true
+  },
+  {
+    "check": "Regressor ExtraTrees",
+    "passed": true
+  },
+  {
+    "check": "Regressor HistGradientBoosting",
+    "passed": true
+  },
+  {
+    "check": "Finance Random",
+    "passed": true
+  },
+  {
+    "check": "Finance LargestAmount",
+    "passed": true
+  },
+  {
+    "check": "Finance ProductRateAmount",
+    "passed": true
+  },
+  {
+    "check": "Finance ML_Probability",
+    "passed": true
+  },
+  {
+    "check": "Finance ML_ExpectedAmount",
+    "passed": true
+  },
+  {
+    "check": "Finance RegressionExposure",
+    "passed": true
+  },
+  {
+    "check": "Twenty notebook cells executed",
+    "passed": true
+  },
+  {
+    "check": "No notebook error outputs",
+    "passed": true
+  },
+  {
+    "check": "HTML figures embedded",
+    "passed": true
+  },
+  {
+    "check": "125 model/data checks",
+    "passed": true
+  },
+  {
+    "check": "Comparison matches evaluation",
+    "passed": true
+  },
+  {
+    "check": "Cost assumptions explicit",
+    "passed": true
+  }
+]

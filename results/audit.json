@@ -1,0 +1,58 @@
+{
+  "raw_rows": 590540,
+  "raw_frauds": 20663,
+  "raw_fields": 456,
+  "raw_time_min": 86400,
+  "raw_time_max": 15811131,
+  "raw_missing_fraction": 0.31105068484534737,
+  "transaction_id_present": false,
+  "sample_rows": 116533,
+  "sample_frauds": 4046,
+  "sample_fraction": 0.19733294950384395,
+  "cut_days": [
+    108,
+    135,
+    153
+  ],
+  "sample_fraud_amount": 606965.6220000001,
+  "days": 180,
+  "duplicated_selected_feature_vectors": 0,
+  "splits": [
+    {
+      "split": "calibration",
+      "n": 9883,
+      "days": 18,
+      "start": 135,
+      "end": 152,
+      "frauds": 335,
+      "amount": 49492.762
+    },
+    {
+      "split": "test",
+      "n": 15915,
+      "days": 28,
+      "start": 153,
+      "end": 180,
+      "frauds": 530,
+      "amount": 78851.255
+    },
+    {
+      "split": "train",
+      "n": 74365,
+      "days": 107,
+      "start": 1,
+      "end": 107,
+      "frauds": 2532,
+      "amount": 362072.718
+    },
+    {
+      "split": "validation",
+      "n": 16370,
+      "days": 27,
+      "start": 108,
+      "end": 134,
+      "frauds": 649,
+      "amount": 116548.887
+    }
+  ]
+}

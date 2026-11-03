@@ -1,0 +1,11 @@
+{
+  "main_policy": "ML_ExpectedAmount",
+  "comparator": "LargestAmount",
+  "capacity": 0.02,
+  "incremental_benefit": 16352.898399999998,
+  "ci95_low": 11865.416319999998,
+  "ci95_high": 21326.989899999997,
+  "days": 28,
+  "block_days": 7,
+  "note": "Exploratory paired circular bootstrap; few independent temporal blocks; no causal claim"
+}

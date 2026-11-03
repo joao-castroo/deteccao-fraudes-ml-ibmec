@@ -1,0 +1,49 @@
+{
+  "winner": "ExtraTrees",
+  "params": {
+    "Logistic": {
+      "C": 1.0
+    },
+    "DecisionTree": {
+      "max_depth": 12,
+      "min_samples_leaf": 15
+    },
+    "RandomForest": {
+      "max_depth": 18,
+      "min_samples_leaf": 3
+    },
+    "ExtraTrees": {
+      "max_depth": 20,
+      "min_samples_leaf": 3
+    },
+    "HistGradientBoosting": {
+      "max_leaf_nodes": 31,
+      "l2_regularization": 20.0
+    },
+    "KNN": {
+      "n_neighbors": 45
+    },
+    "GaussianNB": {
+      "var_smoothing": 0.001
+    }
+  },
+  "thresholds": {
+    "Logistic": 0.19999999999999996,
+    "DecisionTree": 0.43999999999999995,
+    "RandomForest": 0.23999999999999996,
+    "ExtraTrees": 0.15999999999999998,
+    "HistGradientBoosting": 0.19999999999999996,
+    "KNN": 0.15999999999999998,
+    "GaussianNB": 0.45999999999999996
+  },
+  "validation_selection_scores": {
+    "Logistic": 56719.291,
+    "DecisionTree": 47010.932,
+    "RandomForest": 60913.58,
+    "ExtraTrees": 65183.948,
+    "HistGradientBoosting": 60822.713,
+    "KNN": 49513.148,
+    "GaussianNB": 27402.476000000002
+  },
+  "budget_final": 30000
+}

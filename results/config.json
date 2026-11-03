@@ -1,0 +1,13 @@
+{
+  "seed": 42,
+  "sample": "every fifth source row; no stratification",
+  "training_budget": 30000,
+  "timeline": "whole relative days 60% train,15% validation,10% calibration,15% test",
+  "capacity": 0.02,
+  "cost": 2.0,
+  "efficacy": 0.8,
+  "false_positive_penalty": 0.0,
+  "selection_classifier": "largest labeled fraud amount captured with 2% daily review in validation",
+  "selection_regressor": "smallest validation MSE; target TransactionAmt*isFraud",
+  "monetary_unit": "USD according to Empulse documentation; no conversion to BRL"
+}

@@ -1,0 +1,43 @@
+{
+  "winner": "RandomForest",
+  "params": {
+    "Linear": {},
+    "Ridge": {
+      "alpha": 100.0
+    },
+    "Lasso": {
+      "alpha": 0.1
+    },
+    "ElasticNet": {
+      "alpha": 0.1
+    },
+    "DecisionTree": {
+      "max_depth": 5,
+      "min_samples_leaf": 50
+    },
+    "RandomForest": {
+      "max_depth": 15,
+      "min_samples_leaf": 5
+    },
+    "ExtraTrees": {
+      "max_depth": 15,
+      "min_samples_leaf": 5
+    },
+    "HistGradientBoosting": {
+      "max_leaf_nodes": 15,
+      "l2_regularization": 50.0
+    }
+  },
+  "thresholds": {},
+  "validation_selection_scores": {
+    "Linear": -4112.466701767091,
+    "Ridge": -4113.2835200724,
+    "Lasso": -4130.666541306266,
+    "ElasticNet": -4135.393701996112,
+    "DecisionTree": -3786.7653517468198,
+    "RandomForest": -3710.084048983581,
+    "ExtraTrees": -3756.230043287658,
+    "HistGradientBoosting": -3769.342231363352
+  },
+  "budget_final": 30000
+}

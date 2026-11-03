@@ -1,0 +1,126 @@
+check,passed
+Unique source rows,True
+Targets excluded,True
+Temporal train/validation,True
+Temporal validation/calibration,True
+Temporal calibration/test,True
+Class target valid,True
+Monetary proxy identity,True
+Finite predictions,True
+Equal review budgets 0.01,True
+Capacity 0.01 day153,True
+Capacity 0.01 day154,True
+Capacity 0.01 day155,True
+Capacity 0.01 day156,True
+Capacity 0.01 day157,True
+Capacity 0.01 day158,True
+Capacity 0.01 day159,True
+Capacity 0.01 day160,True
+Capacity 0.01 day161,True
+Capacity 0.01 day162,True
+Capacity 0.01 day163,True
+Capacity 0.01 day164,True
+Capacity 0.01 day165,True
+Capacity 0.01 day166,True
+Capacity 0.01 day167,True
+Capacity 0.01 day168,True
+Capacity 0.01 day169,True
+Capacity 0.01 day170,True
+Capacity 0.01 day171,True
+Capacity 0.01 day172,True
+Capacity 0.01 day173,True
+Capacity 0.01 day174,True
+Capacity 0.01 day175,True
+Capacity 0.01 day176,True
+Capacity 0.01 day177,True
+Capacity 0.01 day178,True
+Capacity 0.01 day179,True
+Capacity 0.01 day180,True
+Equal review budgets 0.02,True
+Capacity 0.02 day153,True
+Capacity 0.02 day154,True
+Capacity 0.02 day155,True
+Capacity 0.02 day156,True
+Capacity 0.02 day157,True
+Capacity 0.02 day158,True
+Capacity 0.02 day159,True
+Capacity 0.02 day160,True
+Capacity 0.02 day161,True
+Capacity 0.02 day162,True
+Capacity 0.02 day163,True
+Capacity 0.02 day164,True
+Capacity 0.02 day165,True
+Capacity 0.02 day166,True
+Capacity 0.02 day167,True
+Capacity 0.02 day168,True
+Capacity 0.02 day169,True
+Capacity 0.02 day170,True
+Capacity 0.02 day171,True
+Capacity 0.02 day172,True
+Capacity 0.02 day173,True
+Capacity 0.02 day174,True
+Capacity 0.02 day175,True
+Capacity 0.02 day176,True
+Capacity 0.02 day177,True
+Capacity 0.02 day178,True
+Capacity 0.02 day179,True
+Capacity 0.02 day180,True
+Equal review budgets 0.05,True
+Capacity 0.05 day153,True
+Capacity 0.05 day154,True
+Capacity 0.05 day155,True
+Capacity 0.05 day156,True
+Capacity 0.05 day157,True
+Capacity 0.05 day158,True
+Capacity 0.05 day159,True
+Capacity 0.05 day160,True
+Capacity 0.05 day161,True
+Capacity 0.05 day162,True
+Capacity 0.05 day163,True
+Capacity 0.05 day164,True
+Capacity 0.05 day165,True
+Capacity 0.05 day166,True
+Capacity 0.05 day167,True
+Capacity 0.05 day168,True
+Capacity 0.05 day169,True
+Capacity 0.05 day170,True
+Capacity 0.05 day171,True
+Capacity 0.05 day172,True
+Capacity 0.05 day173,True
+Capacity 0.05 day174,True
+Capacity 0.05 day175,True
+Capacity 0.05 day176,True
+Capacity 0.05 day177,True
+Capacity 0.05 day178,True
+Capacity 0.05 day179,True
+Capacity 0.05 day180,True
+Equal review budgets 0.1,True
+Capacity 0.1 day153,True
+Capacity 0.1 day154,True
+Capacity 0.1 day155,True
+Capacity 0.1 day156,True
+Capacity 0.1 day157,True
+Capacity 0.1 day158,True
+Capacity 0.1 day159,True
+Capacity 0.1 day160,True
+Capacity 0.1 day161,True
+Capacity 0.1 day162,True
+Capacity 0.1 day163,True
+Capacity 0.1 day164,True
+Capacity 0.1 day165,True
+Capacity 0.1 day166,True
+Capacity 0.1 day167,True
+Capacity 0.1 day168,True
+Capacity 0.1 day169,True
+Capacity 0.1 day170,True
+Capacity 0.1 day171,True
+Capacity 0.1 day172,True
+Capacity 0.1 day173,True
+Capacity 0.1 day174,True
+Capacity 0.1 day175,True
+Capacity 0.1 day176,True
+Capacity 0.1 day177,True
+Capacity 0.1 day178,True
+Capacity 0.1 day179,True
+Capacity 0.1 day180,True
+Label-independent decisions,True

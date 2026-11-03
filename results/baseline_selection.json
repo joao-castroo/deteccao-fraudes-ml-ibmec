@@ -1,0 +1,47 @@
+{
+  "comparator": "LargestAmount",
+  "validation": [
+    {
+      "policy": "Random",
+      "reviewed": 342,
+      "fraud_reviewed": 12,
+      "legitimate_reviewed": 330,
+      "precision": 0.03508771929824561,
+      "recall": 0.01848998459167951,
+      "labeled_amount_captured": 632.298,
+      "amount_recall": 0.005425174073090891,
+      "review_cost": 684.0,
+      "net_benefit": -178.16159999999996,
+      "total_loss": 116727.04860000001,
+      "no_action_loss": 116548.887
+    },
+    {
+      "policy": "LargestAmount",
+      "reviewed": 342,
+      "fraud_reviewed": 37,
+      "legitimate_reviewed": 305,
+      "precision": 0.10818713450292397,
+      "recall": 0.05701078582434515,
+      "labeled_amount_captured": 39828.46,
+      "amount_recall": 0.34173179191320807,
+      "review_cost": 684.0,
+      "net_benefit": 31178.768,
+      "total_loss": 85370.119,
+      "no_action_loss": 116548.887
+    },
+    {
+      "policy": "ProductRateAmount",
+      "reviewed": 342,
+      "fraud_reviewed": 39,
+      "legitimate_reviewed": 303,
+      "precision": 0.11403508771929824,
+      "recall": 0.060092449922958396,
+      "labeled_amount_captured": 37560.792,
+      "amount_recall": 0.322274995212953,
+      "review_cost": 684.0,
+      "net_benefit": 29364.6336,
+      "total_loss": 87184.2534,
+      "no_action_loss": 116548.887
+    }
+  ]
+}
