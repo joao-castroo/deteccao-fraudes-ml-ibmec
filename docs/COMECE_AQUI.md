@@ -1,6 +1,6 @@
 # Comece aqui João e Vitor
 
-Autores: **João Pedro Castro e Vitor Neves**. O repositório é privado. Vitor usa o GitHub **vnevesl** e precisa aceitar o convite para acessar.
+Autores: **João Pedro Castro e Vitor Neves**. O repositório é privado. Vitor usa o GitHub **vnevesl**. O convite foi enviado e precisa ser aceito para liberar o acesso. Neste repositório pessoal, o GitHub oferece colaboração com permissão de edição, sem administração do repositório.
 
 ## Qual material usar
 

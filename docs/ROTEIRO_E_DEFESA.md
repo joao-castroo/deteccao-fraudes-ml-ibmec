@@ -168,7 +168,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 | RMSE | Raiz do MSE. | Ler erro quadrático na unidade original. | RF: US$ 39,96 no teste, contra US$ 30,54 no ajuste final. |
 | R² | 1 menos a razão entre erro quadrático e variação em torno da média. | Comparar regressão com referência constante no conjunto avaliado. | RF: 0,247 no teste. Pode ser negativo. Não é métrica de classificação nem cobertura de fraude. |
 | Exposição rotulada | Montante multiplicado pelo indicador de fraude. | Construir alvo contínuo e medir valor na seleção. | Zero para legítima, montante para fraude. Não é prejuízo líquido registrado. |
-| Valor esperado | Média ponderada pelos possíveis resultados. | Ligar probabilidade ao dinheiro em risco. | Para montante conhecido A, exposição esperada ideal = A × P(fraude | X). |
+| Valor esperado | Média ponderada pelos possíveis resultados. | Ligar probabilidade ao dinheiro em risco. | Para montante conhecido A, exposição esperada ideal = A × P(fraude \| X). |
 | Baseline / referência | Regra ou modelo usado para comparação. | Medir contribuição incremental. | Maiores valores é referência primária escolhida na validação. Logística é diagnóstico adicional. |
 | Capacidade | Quantidade disponível de revisões. | Comparar decisões com trabalho equivalente. | ceil(0,02 × n_dia). São 333 análises no teste pelo arredondamento diário. |
 | Recall monetário | Valor de fraude selecionado / valor de fraude total. | Medir cobertura financeira. | 44,53% no modelo principal, apesar de recall em quantidade de 18,11%. |
