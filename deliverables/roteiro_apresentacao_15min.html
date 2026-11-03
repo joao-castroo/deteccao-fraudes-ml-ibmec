@@ -574,13 +574,43 @@ Redução relativa = 16.352,8984 / 67.781,255 = 24,13%
 <th align="right">Benefício simulado (US$)</th>
 </tr>
 </thead>
-</table></div>
-<p>| Random | 11 | 881.03 | 38.82 |</p>
-<p>| LargestAmount | 17 | 14670.00 | 11070.00 |</p>
-<p>| ProductRateAmount | 16 | 10290.01 | 7566.01 |</p>
-<p>| ML_Probability | 168 | 18896.14 | 14450.92 |</p>
-<p>| ML_ExpectedAmount | 96 | 35111.12 | 27422.90 |</p>
-<p>| RegressionExposure | 105 | 36919.51 | 28869.60 |</p>
+<tbody><tr>
+<td>Random</td>
+<td align="right">11</td>
+<td align="right">881.03</td>
+<td align="right">38.82</td>
+</tr>
+<tr>
+<td>LargestAmount</td>
+<td align="right">17</td>
+<td align="right">14670.00</td>
+<td align="right">11070.00</td>
+</tr>
+<tr>
+<td>ProductRateAmount</td>
+<td align="right">16</td>
+<td align="right">10290.01</td>
+<td align="right">7566.01</td>
+</tr>
+<tr>
+<td>ML_Probability</td>
+<td align="right">168</td>
+<td align="right">18896.14</td>
+<td align="right">14450.92</td>
+</tr>
+<tr>
+<td>ML_ExpectedAmount</td>
+<td align="right">96</td>
+<td align="right">35111.12</td>
+<td align="right">27422.90</td>
+</tr>
+<tr>
+<td>RegressionExposure</td>
+<td align="right">105</td>
+<td align="right">36919.51</td>
+<td align="right">28869.60</td>
+</tr>
+</tbody></table></div>
 <p><strong>Insight:</strong> probabilidade isolada encontra 168 fraudes e US$ 18.896,14. Probabilidade × valor encontra 96 fraudes e US$ 35.111,12. A segunda política captura mais dinheiro, embora encontre menos casos. A matriz com 231 verdadeiros positivos usa outra decisão, um limiar fixo.</p>
 <p><strong>Resultado secundário:</strong> o regressor captura mais valor que a política primária neste teste. Não mudamos a política principal a partir desse resultado.</p>
 <p><strong>Sensibilidade:</strong> eficácia de 50% produz US$ 10.220,56 de incremento. Custo igual por análise se cancela na diferença de filas de tamanho igual, sem penalidade adicional. A penalidade por legítima pode mudar a diferença. O intervalo exploratório principal é US$ 11.865,42–21.326,99 e mantém as hipóteses fixas. Não anualizamos.</p>

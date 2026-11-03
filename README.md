@@ -10,6 +10,7 @@ Projeto separado do M5, criado em `ProjML/Projeto_Fraude`. O projeto anterior pe
 - [Apresentação oficial de 10 slides](deliverables/apresentacao_Fraude.pptx), com notas e demonstração, para os 15 minutos totais.
 - [Roteiro completo de estudo e defesa](docs/ROTEIRO_E_DEFESA.md), legível no GitHub: 54 termos, 19 técnicas, resultados, cálculos e perguntas.
 - [Roteiro HTML](deliverables/roteiro_apresentacao_15min.html), para baixar e abrir no navegador.
+- [Roteiro completo em Word](deliverables/roteiro_completo_apresentacao_e_defesa.docx), para baixar, editar e enviar.
 
 A versão ampliada anterior saiu dos arquivos atuais. Os detalhes ficaram na documentação, sem slides extras. O histórico do Git mantém as versões anteriores.
 

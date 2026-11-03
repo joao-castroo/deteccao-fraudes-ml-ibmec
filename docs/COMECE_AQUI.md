@@ -7,6 +7,7 @@ Autores: **João Pedro Castro e Vitor Neves**. O repositório é privado. Vitor 
 | Material | Uso |
 |---|---|
 | [Apresentação oficial](../deliverables/apresentacao_Fraude.pptx) | **Os mesmos 10 slides para apresentação e entrega**, sem apêndice adicional |
+| [Roteiro completo em Word](../deliverables/roteiro_completo_apresentacao_e_defesa.docx) | Baixar, editar e enviar o material de estudo |
 | [Roteiro completo](ROTEIRO_E_DEFESA.md) | Estudo no próprio GitHub: termos, finalidade, uso, achados, perguntas e tempos |
 | [Roteiro em HTML](../deliverables/roteiro_apresentacao_15min.html) | Baixar e abrir no navegador, com navegação e tabelas |
 | [Notebook](../notebooks/01_projeto_fraude_completo.ipynb) | Código executado, resultados e exercícios |

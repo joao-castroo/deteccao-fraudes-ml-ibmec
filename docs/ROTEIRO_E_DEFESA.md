@@ -434,17 +434,11 @@ A referência primária é maiores valores, escolhida na validação. Contra log
 
 | Política | Fraudes selecionadas | Valor identificado (US$) | Benefício simulado (US$) |
 |---|---:|---:|---:|
-
 | Random | 11 | 881.03 | 38.82 |
-
 | LargestAmount | 17 | 14670.00 | 11070.00 |
-
 | ProductRateAmount | 16 | 10290.01 | 7566.01 |
-
 | ML_Probability | 168 | 18896.14 | 14450.92 |
-
 | ML_ExpectedAmount | 96 | 35111.12 | 27422.90 |
-
 | RegressionExposure | 105 | 36919.51 | 28869.60 |
 
 
