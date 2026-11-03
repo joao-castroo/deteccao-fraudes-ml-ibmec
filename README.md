@@ -2,6 +2,17 @@
 
 Projeto separado do M5, criado em `ProjML/Projeto_Fraude`. O projeto anterior permanece na raiz de ProjML. A comparação está em `ProjML/Comparacao`.
 
+## Apresentação e entrega usam os mesmos 10 slides
+
+**Autores: João Pedro Castro e Vitor Neves.**
+
+- [Comece aqui: acesso, VS Code e estudo em dupla](docs/COMECE_AQUI.md).
+- [Apresentação oficial de 10 slides](deliverables/apresentacao_Fraude.pptx), com notas e demonstração, para os 15 minutos totais.
+- [Roteiro completo de estudo e defesa](docs/ROTEIRO_E_DEFESA.md), legível no GitHub: 54 termos, 19 técnicas, resultados, cálculos e perguntas.
+- [Roteiro HTML](deliverables/roteiro_apresentacao_15min.html), para baixar e abrir no navegador.
+
+A versão ampliada anterior saiu dos arquivos atuais. Os detalhes ficaram na documentação, sem slides extras. O histórico do Git mantém as versões anteriores.
+
 ## Repositório privado
 
 Este repositório contém o projeto de fraude, separado do M5. A base bruta é obtida pelo script de download e não integra o Git. A amostra processada e os resultados estão incluídos para facilitar a execução do notebook. A comparação com o M5 pertence ao pacote local e não é necessária para executar este projeto.
@@ -14,7 +25,7 @@ Este repositório contém o projeto de fraude, separado do M5. A base bruta é o
 4. `deliverables/apresentacao_Fraude.pptx`: dez slides com notas de fala.
 5. `deliverables/relatorio_Fraude.docx`: relatório de oito páginas.
 
-Antes da submissão, preencher os nomes completos dos autores nos materiais e adequar os nomes de arquivo à exigência do professor. A data e o prazo devem ser conferidos no sistema da instituição. Nada foi publicado ou submetido.
+Autores: João Pedro Castro e Vitor Neves. Antes da submissão, adequar os nomes de arquivo à exigência do professor. A data e o prazo devem ser conferidos no sistema da instituição. Nada foi publicado ou submetido.
 
 ## Resultado principal
 
@@ -78,11 +89,3 @@ O teste tem 28 dias. Há poucos blocos temporais independentes. Não há uma cha
 - https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html
 
 O hash SHA-256 local está em results/provenance.json. O MD5 OpenML se refere ao ARFF; não foi comparado ao parquet. O uso segue as regras da competição. Espelho público não equivale a licença irrestrita de redistribuição. Os arquivos ficam locais e no pacote solicitado para uso acadêmico.
-
-## Apresentação ampliada de 15 minutos
-
-- `deliverables/apresentacao_Fraude_completa_15min.pptx`: 16 slides principais com 15 minutos planejados, incluindo demonstração, e 10 slides de apoio para perguntas. As notas contêm fala sugerida, perguntas e fontes.
-- `deliverables/roteiro_apresentacao_15min.html`: roteiro de estudo com cronograma e respostas.
-- O template do professor limita a submissão a 10 slides. A versão `apresentacao_Fraude.pptx`, com 10 slides, permanece preservada. A versão ampliada atende ao pedido de ensaio e exposição detalhada.
-- `src/diagnosticos_apresentacao.py`: refaz os dois campeões congelados, confirma as previsões de teste e compara ajuste com teste. Trata-se de diagnóstico posterior, sem alterar seleção ou política.
-- Extra Trees: AP no ajuste 0,895 e no teste 0,379. Random Forest regressor: RMSE no ajuste US$ 30,54 e no teste US$ 39,96. O ajuste é otimista e a diferença não isola sobreajuste de mudança temporal.

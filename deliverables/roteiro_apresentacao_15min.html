@@ -1,1 +1,997 @@
-<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro de defesa do projeto de fraude</title><style>body{font:18px/1.65 system-ui,sans-serif;color:#243d4b;max-width:960px;margin:45px auto;padding:0 25px}h1{font-size:36px;color:#102f46}h2{font-size:27px;color:#102f46}h3{font-size:20px;color:#176b72}nav{background:#ebf2f1;padding:24px}section{padding-top:25px;margin-top:35px;border-top:1px solid #d5dfe0}.time{color:#176b72;font-weight:600}a{color:#176b72}summary{cursor:pointer}@media print{section{break-inside:avoid}nav{break-after:page}}</style><body><h1>Roteiro de apresentação: fraude e valor de negócio</h1><p>16 slides principais, com 15 minutos planejados, incluindo demonstração. Os slides 17–26 são apoio para perguntas. As falas são sugestões para ensaio, não um texto para leitura integral.</p><p>O professor limita o PPT de submissão a 10 slides. Esta versão ampliada atende ao pedido de estudo e apresentação. A versão anterior de 10 slides permanece disponível.</p><p><a href="apresentacao_Fraude_completa_15min.pptx">Abrir apresentação ampliada</a> · <a href="notebook_leitura.html">Notebook para demonstração</a></p><nav><h2>Sequência e tempo</h2><p><a href="#s1">01. Fraude e priorização econômica</a> <strong>00:00–00:30</strong></p><p><a href="#s2">02. A pergunta é quais transações investigar primeiro</a> <strong>00:30–01:25</strong></p><p><a href="#s3">03. A base contém transações reais e rótulos de fraude</a> <strong>01:25–02:20</strong></p><p><a href="#s4">04. Fraude é rara e o valor das transações varia</a> <strong>02:20–03:15</strong></p><p><a href="#s5">05. O pipeline aprende transformações apenas no passado</a> <strong>03:15–04:10</strong></p><p><a href="#s6">06. A cronologia separa desenvolvimento e teste</a> <strong>04:10–05:20</strong></p><p><a href="#s7">07. Dezenove técnicas respondem a três tarefas</a> <strong>05:20–06:00</strong></p><p><a href="#s8">08. Extra Trees venceu o critério definido na validação</a> <strong>06:00–07:10</strong></p><p><a href="#s9">09. A regressão estima exposição monetária média</a> <strong>07:10–08:05</strong></p><p><a href="#s10">10. Agrupamento revela perfis e exige interpretação</a> <strong>08:05–08:50</strong></p><p><a href="#s11">11. O ranking monetário muda a composição da fila</a> <strong>08:50–09:50</strong></p><p><a href="#s12">12. A contribuição incremental simulada é US$ 16,35 mil</a> <strong>09:50–11:10</strong></p><p><a href="#s13">13. Modelos simples já entregam parte do benefício</a> <strong>11:10–12:05</strong></p><p><a href="#s14">14. A conclusão depende das hipóteses e do período</a> <strong>12:05–13:05</strong></p><p><a href="#s15">15. O valor vem de priorizar melhor a mesma capacidade</a> <strong>13:05–13:50</strong></p><p><a href="#s16">16. A demonstração refaz a decisão e a conta financeira</a> <strong>13:50–15:00</strong></p></nav><section id="s1"><h2>01. Fraude e priorização econômica</h2><p class="time">Tempo planejado: 30 segundos</p><h3>Fala sugerida</h3><p>Nossa pergunta é como uma equipe limitada pode escolher melhor quais transações investigar. Estudamos dados reais rotulados, comparamos dezenove técnicas e avaliamos uma fila por valor esperado. A contribuição é ligar previsão, decisão e valor financeiro. O experimento acompanha transações futuras em relação ao desenvolvimento e mantém a mesma capacidade para todas as políticas.</p><h3>Pergunta e resposta</h3><p>O objetivo é bloquear cartões? Não. Avaliamos triagem diária para investigação, com rótulos consultados apenas para avaliar a seleção.</p><details><summary>Fontes dos números</summary><p>README.md; results/config.json</p></details></section><section id="s2"><h2>02. A pergunta é quais transações investigar primeiro</h2><p class="time">Tempo planejado: 55 segundos</p><h3>Fala sugerida</h3><p>Uma equipe não consegue examinar tudo. Nossa decisão é ordenar uma fila diária. O critério principal combina probabilidade de fraude e valor da transação. Comparamos a fila com sorteio, maiores valores e taxa histórica por produto vezes valor. A validação escolheu maiores valores como referência. Usamos capacidade nominal de dois por cento por dia. O sucesso é identificar maior valor de fraude com a mesma quantidade de análises. Isso distingue a qualidade da decisão da acurácia isolada.</p><h3>Pergunta e resposta</h3><p>Por que não escolher apenas a maior probabilidade? Porque o montante também muda o valor em risco. O exemplo é didático e não representa linhas reais.</p><details><summary>Fontes dos números</summary><p>results/baseline_selection.json; src/experiment.py: review_mask e financial</p></details></section><section id="s3"><h2>03. A base contém transações reais e rótulos de fraude</h2><p class="time">Tempo planejado: 55 segundos</p><h3>Fala sugerida</h3><p>A origem é a competição IEEE-CIS Fraud Detection com dados da Vesta. Recebemos um espelho público documentado no OpenML. Uma linha representa uma transação. O arquivo tem 590.540 registros, 20.663 fraudes e 456 campos. Selecionamos uma em cada cinco linhas e retiramos os dias extremos parciais. A amostra tem 116.533 transações, e usamos 71 atributos definidos previamente. Até trinta mil linhas entram em cada ajuste para viabilizar comparação consistente. Campos mascarados limitam a interpretação de negócio.</p><h3>Pergunta e resposta</h3><p>A amostra é aleatória simples? Não. É sistemática, independente do rótulo e do valor, mas uma periodicidade na ordenação poderia gerar viés.</p><details><summary>Fontes dos números</summary><p>results/audit.json; results/provenance.json; data/processed/data_dictionary.csv; https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html</p></details></section><section id="s4"><h2>04. Fraude é rara e o valor das transações varia</h2><p class="time">Tempo planejado: 55 segundos</p><h3>Fala sugerida</h3><p>A prevalência varia entre os blocos temporais, portanto uma única taxa não descreve todo o estudo. O teste tem 3,33 por cento de fraudes. Um classificador que sempre diz legítima acerta 96,67 por cento e não captura uma fraude. Também olhamos o valor das transações: quantidades e dólares são dimensões diferentes. A exposição rotulada de fraude no teste é 78.851 dólares. Essas distribuições justificam métricas para classe rara e um objetivo monetário.</p><h3>Pergunta e resposta</h3><p>A média de valor prova que valores altos causam fraude? Não. São descrições da amostra e não efeitos causais.</p><details><summary>Fontes dos números</summary><p>results/audit.json; data/processed/transactions.parquet; results/classification_baselines.csv</p></details></section><section id="s5"><h2>05. O pipeline aprende transformações apenas no passado</h2><p class="time">Tempo planejado: 55 segundos</p><h3>Fala sugerida</h3><p>Numéricos recebem mediana e indicadores de ausência. Categóricos recebem codificação one-hot e tratamento de categorias raras. A padronização é importante para KNN e modelos regularizados. O pipeline ajusta tudo dentro de cada fold. Não removemos montantes elevados apenas por serem extremos, pois podem ser justamente os casos relevantes. Há vetores repetidos de atributos, mas sem uma chave original de transação não os tratamos automaticamente como duplicatas indevidas. Excluímos alvos e identificadores das entradas.</p><h3>Pergunta e resposta</h3><p>Qual seria um exemplo de vazamento? Usar exposure como entrada, porque contém o rótulo. Ou calcular uma mediana com todo o período antes da validação.</p><details><summary>Fontes dos números</summary><p>src/experiment.py: NUM, CAT e preprocess; results/missing_features.csv; results/audit.json</p></details></section><section id="s6"><h2>06. A cronologia separa desenvolvimento e teste</h2><p class="time">Tempo planejado: 70 segundos</p><h3>Fala sugerida</h3><p>Primeiro, três folds temporais dentro do treino escolhem hiperparâmetros. Depois a validação escolhe o algoritmo e a regra simples. Reajustamos o campeão em uma amostra de treino mais validação. A calibração posterior ajusta as probabilidades por Platt. Finalmente o teste mede o protocolo congelado. Todas as políticas usam os mesmos dias e o mesmo orçamento. A seleção monetária da validação usa score bruto vezes valor, e a fila final usa score calibrado vezes valor. Essa sequência é uma escolha do protocolo, sem garantia de ótimo global.</p><h3>Pergunta e resposta</h3><p>Por que o teste não escolhe o vencedor? Porque fazer isso tornaria o teste parte do desenvolvimento e exigiria outro período intocado para avaliar a nova escolha.</p><details><summary>Fontes dos números</summary><p>results/classification_cv.csv; results/regression_cv.csv; results/config.json; src/experiment.py: train</p></details></section><section id="s7"><h2>07. Dezenove técnicas respondem a três tarefas</h2><p class="time">Tempo planejado: 40 segundos</p><h3>Fala sugerida</h3><p>A classificação estima a probabilidade de fraude. A regressão estima a exposição rotulada, valor vezes indicador de fraude. Agrupamento e PCA exploram estrutura sem usar o rótulo para formar grupos. São sete classificadores, oito regressores e quatro técnicas não supervisionadas. Modelos simples permitem julgar se a complexidade acrescenta algo. Baselines e configurações não contam como técnicas extras.</p><h3>Pergunta e resposta</h3><p>Por que incluir regressão? Para estimar diretamente a exposição média em moeda e comparar com probabilidade vezes valor. É outra formulação do mesmo risco.</p><details><summary>Fontes dos números</summary><p>src/experiment.py: specs e unsupervised; results/classification_selection.json; results/regression_selection.json</p></details></section><section id="s8"><h2>08. Extra Trees venceu o critério definido na validação</h2><p class="time">Tempo planejado: 70 segundos</p><h3>Fala sugerida</h3><p>Extra Trees capturou mais valor de fraude na validação e permaneceu como campeão. No teste, HistGradientBoosting teve AP maior e Random Forest teve F1 maior. Nós mostramos esses resultados sem trocar retroativamente a escolha. A matriz do Extra Trees usa o limiar de 0,16 escolhido por F1 na validação. Ela tem 231 verdadeiros positivos e 390 falsos positivos. Esse diagnóstico usa limiar fixo e não é a seleção da fila financeira. O desempenho cai da amostra de ajuste para o teste, sinal de otimismo no ajuste e possível mudança temporal.</p><h3>Pergunta e resposta</h3><p>Se outro algoritmo ganha no teste, por que não trocar? Podemos recomendar nova investigação, mas uma nova escolha precisaria de nova validação e novo teste.</p><details><summary>Fontes dos números</summary><p>results/classification_metrics.csv; results/classification_selection.json; results/confusion_matrix.csv; diagnóstico adicional training_diagnostics.json</p></details></section><section id="s9"><h2>09. A regressão estima exposição monetária média</h2><p class="time">Tempo planejado: 55 segundos</p><h3>Fala sugerida</h3><p>Definimos o alvo como valor vezes indicador de fraude. Isso gera muitos zeros e uma cauda de valores altos. O zero constante tem MAE pequeno, mas RMSE maior, pois ignora todas as fraudes. Selecionamos Random Forest pelo MSE da validação. No teste, seu RMSE é 39,96 dólares e R quadrado 0,247. O gráfico de resíduos no apoio mostra erros relevantes na cauda. Essa regressão não tenta prever o montante conhecido nem o prejuízo líquido realizado.</p><h3>Pergunta e resposta</h3><p>Por que o R quadrado não é alto? O evento é raro, o alvo tem cauda e a informação é parcial. Relatamos honestamente o erro e medimos a utilidade da fila separadamente.</p><details><summary>Fontes dos números</summary><p>results/regression_metrics.csv; results/regression_baselines.csv; results/regression_selection.json; data/processed/transactions.parquet</p></details></section><section id="s10"><h2>10. Agrupamento revela perfis e exige interpretação</h2><p class="time">Tempo planejado: 45 segundos</p><h3>Fala sugerida</h3><p>Usamos duas mil transações de treino e nove indicadores transformados e escalonados. Comparamos K-means e hierárquico de dois a seis grupos e quatro configurações de DBSCAN. O hierárquico com dois grupos teve silhouette 0,580. No K-means com dois grupos, há 1.880 e 120 transações. Calculamos taxas de fraude só depois de formar os grupos. Duas componentes de PCA preservam 56,53 por cento da variância e cinco preservam 89,02. Os grupos são exploratórios e não tipos comprovados de fraude.</p><h3>Pergunta e resposta</h3><p>Pontos de ruído do DBSCAN são fraudadores? Não. Ruído descreve baixa densidade nas variáveis e na escala escolhidas.</p><details><summary>Fontes dos números</summary><p>results/clustering_metrics.csv; results/cluster_profiles.csv; results/pca_variance.csv; results/pca_coefficients.csv</p></details></section><section id="s11"><h2>11. O ranking monetário muda a composição da fila</h2><p class="time">Tempo planejado: 60 segundos</p><h3>Fala sugerida</h3><p>Calibramos a probabilidade e multiplicamos pelo valor conhecido. A cada dia, selecionamos o teto de dois por cento das transações. O arredondamento diário gera 333 revisões no teste. Probabilidade isolada encontra 168 fraudes, mas 18,90 mil dólares. Probabilidade vezes valor encontra 96 fraudes e 35,11 mil dólares. Há menos fraudes em quantidade, porém maior exposição identificada. A referência de maiores valores encontra 17 fraudes e 14,67 mil dólares. O ganho vem da composição da fila, preservando o orçamento.</p><h3>Pergunta e resposta</h3><p>Por que 96 é diferente dos 231 da matriz? A matriz usa limiar fixo. Aqui selecionamos uma quantidade limitada por ranking diário.</p><details><summary>Fontes dos números</summary><p>results/financial_policies.csv; src/experiment.py: review_mask; results/classification_selection.json</p></details></section><section id="s12"><h2>12. A contribuição incremental simulada é US$ 16,35 mil</h2><p class="time">Tempo planejado: 80 segundos</p><h3>Fala sugerida</h3><p>Aqui separamos o que a base permite contar das hipóteses. Contamos 35.111,123 dólares de fraude na fila do modelo e 14.670 na referência. Aplicamos eficácia assumida de oitenta por cento e custo de dois dólares por revisão. O benefício líquido simulado fica 27.422,90 no modelo e 11.070 na referência. A diferença é 16.352,90. Para obter a redução percentual, dividimos pela perda simulada da referência, 67.781,26. Isso resulta em 24,13 por cento. Não incluímos custos de implantação nem medimos eficácia real.</p><h3>Pergunta e resposta</h3><p>Qual é o denominador de 24,13%? A perda simulada remanescente da referência: exposição total de fraude menos benefício líquido da regra.</p><details><summary>Fontes dos números</summary><p>results/financial_policies.csv; results/financial_bootstrap.json; notebook seção 14 e laboratório 24.4</p></details></section><section id="s13"><h2>13. Modelos simples já entregam parte do benefício</h2><p class="time">Tempo planejado: 55 segundos</p><h3>Fala sugerida</h3><p>Uma referência fraca pode exagerar a contribuição de machine learning. Por isso a referência primária é a regra simples escolhida na validação. Também mostramos uma logística com a mesma capacidade. Seu benefício simulado é 22.637,28 dólares, contra 27.422,90 do Extra Trees. A diferença adicional é 4.785,62, com redução de 8,51 por cento da perda da logística. Random Forest e a regressão de exposição têm resultados secundários melhores no teste, que relatamos sem substituir a política primária.</p><h3>Pergunta e resposta</h3><p>O projeto prova que Extra Trees é o melhor algoritmo? Não. O protocolo o escolheu antes do teste, e os resultados apoiam a relevância da priorização. A superioridade universal não foi testada.</p><details><summary>Fontes dos números</summary><p>results/financial_all_classifiers.csv; results/logistic_comparator_bootstrap.json; results/financial_policies.csv</p></details></section><section id="s14"><h2>14. A conclusão depende das hipóteses e do período</h2><p class="time">Tempo planejado: 60 segundos</p><h3>Fala sugerida</h3><p>O bootstrap pareado reamostra blocos circulares de sete dias e gera cinco mil réplicas. O intervalo exploratório do ganho vai de 11.865 a 21.327 dólares. É positivo neste recorte, mas só temos quatro semanas de teste. A sensibilidade também mostra eficácia reduzida a cinquenta por cento e penalidade adicional de dez dólares por revisão legítima. Com capacidade igual, o custo unitário por análise se cancela na diferença. Eficácia, custos de implantação e mudança temporal ainda precisam de avaliação.</p><h3>Pergunta e resposta</h3><p>O intervalo prova lucro futuro? Não. Resume variação na reamostragem do período e mantém as hipóteses econômicas fixas.</p><details><summary>Fontes dos números</summary><p>results/financial_bootstrap.json; results/financial_policies.csv; src/experiment.py: finance e bootstrap</p></details></section><section id="s15"><h2>15. O valor vem de priorizar melhor a mesma capacidade</h2><p class="time">Tempo planejado: 45 segundos</p><h3>Fala sugerida</h3><p>A resposta à pergunta inicial é positiva no nosso teste: a fila identifica maior valor de fraude sob o mesmo orçamento e produz benefício incremental nas hipóteses declaradas. A conclusão reúne classificação, regressão e exploração não supervisionada. Para evoluir, avaliaríamos outros períodos, eficácia e tempo da investigação, custos completos e efeito sobre legítimos. Atributos anônimos limitam explicação causal e uma base pública não permite afirmar conformidade jurídica. O papel do modelo é apoiar a triagem com revisão humana.</p><h3>Pergunta e resposta</h3><p>Qual é o principal limite? Só temos 28 dias de teste e não observamos o efeito real de investigar. Também não garantimos independência por cliente nem auditamos toda a origem das features.</p><details><summary>Fontes dos números</summary><p>results/financial_policies.csv; README.md; notebook seções 17 e 18</p></details></section><section id="s16"><h2>16. A demonstração refaz a decisão e a conta financeira</h2><p class="time">Tempo planejado: 70 segundos</p><h3>Fala sugerida</h3><p>Abrir o notebook no laboratório da seção 24. Primeiro mostrar o exemplo A versus B, que separa probabilidade de valor. Depois mostrar o arredondamento da capacidade diária e a conta real lida do CSV. Executar a reconciliação de 16.352,90 e 24,13 por cento. Se houver tempo, alterar a eficácia de 0,8 para 0,5 na simulação. O pipeline completo, a célula fit/predict e os dezenove algoritmos ficam disponíveis para perguntas. Não executamos a busca inteira durante a fala.</p><h3>Pergunta e resposta</h3><p>A leitura dos resultados é treinamento? Não. O notebook distingue resultados salvos, pequenos exercícios e a opção de reexecutar o experimento completo.</p><details><summary>Fontes dos números</summary><p>notebooks/01_projeto_fraude_completo.ipynb: seções 20, 23 e 24; src/download_data.py; requirements.txt</p></details></section><section id="s17"><h2>17. Mapa de cobertura do modelo do professor</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>Este mapa liga os temas solicitados aos slides e às evidências do projeto. A versão ampliada serve à apresentação e ao ensaio. O template original limita o PPT de submissão a dez slides, por isso preservamos o arquivo anterior de dez slides. O relatório tem oito páginas. O nome completo do autor aparece na capa.</p><h3>Pergunta e resposta</h3><p>Esta versão tem mais de dez slides? Sim, por solicitação de uma apresentação ampliada. A versão de dez slides permanece disponível para a submissão conforme o template.</p><details><summary>Fontes dos números</summary><p>references/template_professor.pptx; notebooks/01_projeto_fraude_completo.ipynb</p></details></section><section id="s18"><h2>18. Classificação: comparação completa no teste</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>A tabela contém os sete classificadores. O limiar foi definido por F1 na validação, portanto as métricas de classe não representam uma fila com capacidade fixa. A curva precisão-recall do Extra Trees usa score bruto, como o AP reportado. A linha de prevalência evidencia a classe rara.</p><h3>Pergunta e resposta</h3><p>AP é PR-AUC? Usamos average precision do scikit-learn. Ela resume a curva, mas não é necessariamente a integral trapezoidal chamada de PR-AUC.</p><details><summary>Fontes dos números</summary><p>results/classification_metrics.csv; results/classification_baselines.csv; previsões congeladas no teste</p></details></section><section id="s19"><h2>19. Regressão: erros, referência e R² no teste</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>O conjunto de regressão tem oito modelos, além de referências. Os modelos escolhem configuração nos folds e algoritmo na validação por MSE. Random Forest tem R quadrado 0,247 e HistGradientBoosting 0,257 no teste. A tabela expõe o concorrente melhor no teste sem mudar a escolha original. O zero constante tem MAE menor porque a grande maioria das exposições é zero.</p><h3>Pergunta e resposta</h3><p>R quadrado mede percentual de fraudes descobertas? Não. Ele compara erros quadráticos com uma previsão constante no conjunto avaliado.</p><details><summary>Fontes dos números</summary><p>results/regression_metrics.csv; results/regression_baselines.csv</p></details></section><section id="s20"><h2>20. O ajuste é otimista e os erros crescem na cauda</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>Refizemos os dois campeões com os parâmetros congelados e a mesma amostra final de trinta mil linhas. Confirmamos que as previsões de teste reproduzem as salvas. O Extra Trees tem AP 0,895 no ajuste e 0,379 no teste. O Random Forest tem RMSE 30,54 no ajuste e 39,96 no teste. A diferença é compatível com sobreajuste e mudança temporal, mas não isola a contribuição de cada um. Os resíduos mostram o desafio das exposições extremas. Este diagnóstico posterior não escolhe novos modelos.</p><h3>Pergunta e resposta</h3><p>Se existe diferença grande, o ganho financeiro deixa de existir? O ganho foi medido no teste posterior. A diferença limita confiança na generalização futura e motiva novos períodos, sem apagar o resultado do teste.</p><details><summary>Fontes dos números</summary><p>training_diagnostics.json; previsões congeladas results/regression_predictions.csv e classification_predictions.csv</p></details></section><section id="s21"><h2>21. Hiperparâmetros e critérios permanecem rastreáveis</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>As grades são pequenas por viabilidade computacional. Florestas usam sessenta árvores e a semente é 42. Não usamos oversampling. Cada algoritmo recebe a mesma amostra autorizada em cada ajuste. A configuração é escolhida pela média dos três folds, por AP na classificação e MSE na regressão. A seleção final do classificador usa captura monetária de validação.</p><h3>Pergunta e resposta</h3><p>O que é parâmetro e hiperparâmetro? Parâmetro o ajuste aprende, como coeficiente. Hiperparâmetro define a configuração, como profundidade, e é escolhido pela validação interna.</p><details><summary>Fontes dos números</summary><p>src/experiment.py: specs; results/classification_selection.json; results/regression_selection.json</p></details></section><section id="s22"><h2>22. Calibração, importância e discriminação são distintas</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>Platt ajusta a relação entre score bruto e rótulo no bloco de calibração. O Brier do Extra Trees no teste melhora de 0,025902 para 0,025697. A transformação monotônica preserva ordenação da probabilidade, mas pode alterar a ordem de probabilidade vezes valor. A importância por permutação mede queda de AP na calibração, sem selecionar atributos depois do teste. V200 e V70 são nomes anônimos: não inventamos explicações causais.</p><h3>Pergunta e resposta</h3><p>Como explicar uma feature importante e mascarada? Podemos descrever sua associação com a previsão e o método de importância, mas não atribuir uma interpretação operacional que não está documentada.</p><details><summary>Fontes dos números</summary><p>results/permutation_importance.csv; results/classification_metrics.csv; figures/calibration.png; figures/importance.png</p></details></section><section id="s23"><h2>23. Agrupamento: separação, ruído e loadings do PCA</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>K-means e hierárquico com dois grupos oferecem os melhores silhouettes dessas famílias nas configurações avaliadas. O DBSCAN muda muito com eps e exclui parte da amostra como ruído, por isso seu índice não deve ser comparado sem a fração excluída. No PCA, a primeira componente tem maiores pesos em C13, C1 e C2, mas esses códigos têm semântica limitada. A estabilidade do K-means entre três sementes foi ARI 1 neste recorte, sem provar estabilidade em outra amostra.</p><h3>Pergunta e resposta</h3><p>O que representam loadings? Pesos da combinação linear dos atributos transformados. Eles descrevem a projeção, não efeitos causais.</p><details><summary>Fontes dos números</summary><p>results/clustering_metrics.csv; results/pca_coefficients.csv; results/pca_variance.csv; results/cluster_stability.csv</p></details></section><section id="s24"><h2>24. Mais capacidade aumenta captura e trabalho</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>Todas as capacidades foram avaliadas com o mesmo conjunto de políticas e custos, mantendo dois por cento como cenário principal. Aumentar capacidade eleva a cobertura monetária, mas também exige mais revisões. Não escolhemos depois o cenário mais favorável. Custos de implantação consumiriam parte do benefício adicional, e o valor deve ser tratado apenas no horizonte do teste.</p><h3>Pergunta e resposta</h3><p>Dobrar a capacidade dobra o benefício? Não. Precisamos reconstruir o ranking diário e medir o valor marginal das transações adicionais.</p><details><summary>Fontes dos números</summary><p>results/financial_policies.csv; src/experiment.py: review_mask e financial</p></details></section><section id="s25"><h2>25. O M5 ajuda a contextualizar a escolha do projeto</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>M5 e fraude usam tarefas e hipóteses distintas. O M5 mostrou redução de 0,87 por cento sobre uma referência de estoque já calibrada, com intervalo do ganho incluindo zero. Fraude mostrou 24,13 por cento sobre sua própria regra de referência e intervalo positivo neste teste. Isso justifica priorizar fraude para uma narrativa financeira, mas não sustenta dizer que um setor ou modelo é universalmente superior.</p><h3>Pergunta e resposta</h3><p>Fraude é 28 vezes melhor? Não. Os percentuais têm denominadores, horizontes e decisões diferentes.</p><details><summary>Fontes dos números</summary><p>Comparacao/summary.json; Comparacao/comparison.csv; M5 results/financial_summary.json; fraude results/financial_bootstrap.json</p></details></section><section id="s26"><h2>26. Perguntas centrais e fontes para a defesa</h2><p class="time">Apoio para perguntas</p><h3>Fala sugerida</h3><p>Este slide organiza perguntas recorrentes. A apresentação principal cobre a pergunta, dados, método, resultados e valor. Os apoios detalham as métricas e limites. O notebook responde com exemplos, equações e cálculos executáveis. O código e os CSVs são as fontes dos números da apresentação, e as notas de cada slide identificam os arquivos.</p><h3>Pergunta e resposta</h3><p>Qual frase resume a contribuição? Conectamos a previsão de risco a uma fila de capacidade fixa e medimos o benefício incremental sob hipóteses explícitas.</p><details><summary>Fontes dos números</summary><p>Notebook seções 21, 22 e 24; https://www.kaggle.com/competitions/ieee-fraud-detection/data; https://www.openml.org/d/46858; https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html; repositório privado do projeto</p></details></section></body></html>
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro completo de João Pedro Castro e Vitor Neves</title><style>body{font:17px/1.7 system-ui,sans-serif;color:#243d4b;margin:0;background:#fafbfa}main{max-width:1120px;margin:45px auto;padding:0 28px}h1{font-size:38px;color:#102f46;line-height:1.2}h2{font-size:29px;color:#102f46;margin-top:65px;padding-top:20px;border-top:1px solid #d5dfe0}h3{font-size:24px;color:#176b72;margin-top:40px}h4{font-size:21px;margin-top:30px}a{color:#176b72}nav{padding:24px;background:#ebf2f1}nav a{display:block;margin:7px 0}table{border-collapse:collapse;width:100%;font-size:14px;margin:22px 0}th,td{text-align:left;vertical-align:top;padding:12px;border:1px solid #d5dfe0}th{background:#102f46;color:white}tr:nth-child(even){background:#ebf2f1}pre{background:#ebf2f1;padding:20px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}code{font-size:14px}p{overflow-wrap:anywhere}.tables{overflow:auto}@media(max-width:700px){main{padding:0 16px}table{font-size:12px}td,th{padding:7px}h1{font-size:30px}}@media print{nav{display:none}h2{break-before:page}table{font-size:10px}}</style><main><nav><strong>Estudo e defesa do projeto de fraude</strong><a href="#navegação">Navegação</a><a href="#fala-por-slide">Fala por slide</a><a href="#termos-significado-finalidade-e-uso">Termos: significado, finalidade e uso</a><a href="#as-19-técnicas-e-os-resultados">As 19 técnicas e os resultados</a><a href="#a-conta-financeira-e-as-comparações">A conta financeira e as comparações</a><a href="#explicações-passo-a-passo">Explicações passo a passo</a><a href="#perguntas-do-professor">Perguntas do professor</a><a href="#ensaio-e-demonstração-em-dupla">Ensaio e demonstração em dupla</a><a href="#fontes-e-rastreabilidade">Fontes e rastreabilidade</a></nav><h1>Roteiro completo de apresentação e defesa</h1>
+<p><strong>Autores: João Pedro Castro e Vitor Neves.</strong></p>
+<p>A apresentação e a entrega usam o mesmo arquivo: <a href="apresentacao_Fraude.pptx">apresentacao_Fraude.pptx</a>, com <strong>10 slides</strong>. O tempo planejado soma <strong>15 minutos, incluindo demonstração</strong>. Este roteiro concentra os detalhes que não cabem nos slides.</p>
+<p>Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensaiar e as seções técnicas para estudar. Ambos os integrantes devem conseguir explicar os números centrais.</p>
+<h2 id="navegação">Navegação</h2>
+<ol>
+<li><a href="#fala-por-slide">Fala por slide</a></li>
+<li><a href="#termos-significado-finalidade-e-uso">Termos: significado, finalidade e uso</a></li>
+<li><a href="#as-19-t%C3%A9cnicas-e-os-resultados">As 19 técnicas e os resultados</a></li>
+<li><a href="#a-conta-financeira-e-as-compara%C3%A7%C3%B5es">A conta financeira e as comparações</a></li>
+<li><a href="#explica%C3%A7%C3%B5es-passo-a-passo">Explicações passo a passo</a></li>
+<li><a href="#perguntas-do-professor">Perguntas do professor</a></li>
+<li><a href="#ensaio-e-demonstra%C3%A7%C3%A3o-em-dupla">Ensaio e demonstração em dupla</a></li>
+</ol>
+<h2 id="fala-por-slide">Fala por slide</h2>
+<h3 id="slide-01--fraude-e-priorização-econômica">Slide 01 — Fraude e priorização econômica</h3>
+<p><strong>Tempo: 00:00–00:35 (35 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> Nossa pergunta é como gerar mais valor com a mesma capacidade de investigação. Estudamos transações reais IEEE-CIS/Vesta e conectamos modelos de risco à escolha de uma fila diária. Comparamos dezenove técnicas. A apresentação e a entrega usam estes mesmos dez slides. O roteiro e o notebook concentram os detalhes de defesa.</p>
+<p><strong>Pergunta e resposta:</strong> O estudo mede dinheiro recuperado? Mede valor de fraude identificado e simula benefício com hipóteses explícitas.</p>
+<p><strong>Evidência para conferir:</strong> <code>README.md; results/config.json</code></p>
+<h3 id="slide-02--a-decisão-é-priorizar-uma-fila-limitada-de-análises">Slide 02 — A decisão é priorizar uma fila limitada de análises</h3>
+<p><strong>Tempo: 00:35–02:00 (85 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> Uma equipe limitada precisa escolher o que investigar. Comparamos risco e exposição monetária. No exemplo A, oitenta por cento de risco vezes dez dólares gera oito dólares esperados. Em B, vinte por cento vezes mil gera duzentos. A política principal usa probabilidade calibrada vezes valor e capacidade de dois por cento por dia. A validação escolhe maiores valores como referência entre três regras simples. A pergunta mensurável é identificar mais valor de fraude com a mesma quantidade de análises. Não estamos avaliando bloqueio automático nem intervenção causal.</p>
+<p><strong>Pergunta e resposta:</strong> Por que machine learning? Para explorar combinações de atributos de risco que uma regra baseada somente no montante não utiliza.</p>
+<p><strong>Evidência para conferir:</strong> <code>results/baseline_selection.json; src/experiment.py: review_mask e financial</code></p>
+<h3 id="slide-03--dados-preparação-e-avaliação-respeitam-a-cronologia">Slide 03 — Dados, preparação e avaliação respeitam a cronologia</h3>
+<p><strong>Tempo: 02:00–03:50 (110 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> A fonte original é IEEE-CIS/Vesta, no Kaggle, acessada por espelho OpenML documentado pelo Empulse. O arquivo tem 590.540 transações, 20.663 fraudes e 456 campos. Uma linha é transação, não cliente. Escolhemos uma em cada cinco linhas e removemos dias extremos parciais. A amostra final tem 116.533 transações e 71 entradas predefinidas. Ausências numéricas recebem mediana e indicadores, categorias recebem one-hot, e escalas são ajustadas no pipeline. Não eliminamos automaticamente montantes altos nem vetores semelhantes sem uma chave confiável. Os blocos preservam o tempo. O teste contém 15.915 transações, 530 fraudes e prevalência de 3,33%. Fonte e regras de uso estão nas referências. O espelho não demonstra licença irrestrita de redistribuição.</p>
+<p><strong>Pergunta e resposta:</strong> Como prevenimos vazamento? Transformações aprendem no treino de cada fold. Rótulo, exposição derivada e identificadores ficam fora das entradas. Features anônimas limitam a auditoria da construção original.</p>
+<p><strong>Evidência para conferir:</strong> <code>results/audit.json; results/provenance.json; results/missing_features.csv; data/processed/data_dictionary.csv; src/experiment.py</code></p>
+<h3 id="slide-04--dezenove-técnicas-com-critérios-de-seleção-definidos">Slide 04 — Dezenove técnicas com critérios de seleção definidos</h3>
+<p><strong>Tempo: 03:50–05:20 (90 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> São sete classificadores, oito regressores e quatro métodos não supervisionados. Logística oferece referência de risco simples. Árvores e ensembles capturam relações não lineares. Regularização compara estabilidade nos regressores. KNN e GaussianNB usam hipóteses diferentes. Três folds temporais escolhem pequenas grades por AP na classificação e MSE na regressão. Depois a validação escolhe Extra Trees pelo valor capturado com score bruto vezes montante, e Random Forest regressor por MSE. O ajuste final recebe treino mais validação, até trinta mil linhas por ajuste, semente 42. Platt ajusta probabilidades num bloco separado. Mantemos o campeão mesmo se outro vencer alguma métrica no teste.</p>
+<p><strong>Pergunta e resposta:</strong> O que conta como técnica? Cada algoritmo ou método listado. Configurações, baselines e cenários não aumentam a contagem.</p>
+<p><strong>Evidência para conferir:</strong> <code>src/experiment.py: specs, train e unsupervised; results/classification_selection.json; results/regression_selection.json</code></p>
+<h3 id="slide-05--regressão-exposição-rotulada-e-erros-no-teste">Slide 05 — Regressão: exposição rotulada e erros no teste</h3>
+<p><strong>Tempo: 05:20–07:00 (100 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> O alvo é montante vezes rótulo: zero para legítimas e valor da transação para fraude. Trata-se de exposição rotulada, não prejuízo líquido realizado. A média condicional desse alvo se relaciona à probabilidade de fraude vezes o montante conhecido. Os muitos zeros explicam o bom MAE da previsão zero. MSE pune erros grandes e orientou nossa escolha. Random Forest venceu na validação e obteve RMSE 39,96 e R quadrado 0,247 no teste. HistGradientBoosting teve resultado de teste um pouco melhor, sem troca posterior. O RMSE do ajuste final foi 30,54. Há otimismo no ajuste e possível mudança temporal, que não podemos separar. Os gráficos mostram subestimação de casos extremos e erros na cauda.</p>
+<p><strong>Pergunta e resposta:</strong> O R² deveria ser muito alto? Não. O evento é raro e a informação é incompleta. R² mede erro quadrático relativo, não porcentagem de fraudes encontradas.</p>
+<p><strong>Evidência para conferir:</strong> <code>results/regression_metrics.csv; results/regression_baselines.csv; results/training_diagnostics.json; results/figures/apresentacao_residuos.png</code></p>
+<h3 id="slide-06--classificação-comparação-e-diagnóstico-no-teste">Slide 06 — Classificação: comparação e diagnóstico no teste</h3>
+<p><strong>Tempo: 07:00–08:55 (115 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> Acurácia pode enganar: sempre prever legítima daria 96,67 por cento e recall zero. A tabela compara todos os sete classificadores. Extra Trees venceu a captura monetária na validação. Random Forest e HistGradientBoosting têm métricas de teste melhores em aspectos distintos, o que relatamos. O limiar de Extra Trees é 0,16, escolhido por F1 na validação. Ele gera 231 verdadeiros positivos, 390 falsos positivos, 299 falsos negativos e 14.995 verdadeiros negativos. A curva precisão-recall ajuda com classe rara. AP no ajuste é 0,895, no teste 0,379. Após Platt, Brier cai de 0,025902 para 0,025697. A matriz usa limiar fixo e não corresponde à fila de 333 análises.</p>
+<p><strong>Pergunta e resposta:</strong> Por que não usar limiar 0,5? O limiar depende do objetivo e da prevalência. Aqui o diagnóstico usa F1 de validação e a operação usa ranking diário.</p>
+<p><strong>Evidência para conferir:</strong> <code>results/classification_metrics.csv; results/confusion_matrix.csv; results/training_diagnostics.json; results/permutation_importance.csv</code></p>
+<h3 id="slide-07--agrupamento-e-pca-exploram-perfis-sem-usar-o-rótulo">Slide 07 — Agrupamento e PCA exploram perfis sem usar o rótulo</h3>
+<p><strong>Tempo: 08:55–10:15 (80 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> Utilizamos duas mil transações de treino e nove indicadores numéricos com mediana, logaritmo e escala. K-means e hierárquico testam de dois a seis grupos. DBSCAN testa quatro eps e precisa mostrar quanto considera ruído. A projeção usa duas componentes e preserva 56,53 por cento da variância, enquanto cinco preservam 89,02. No K-means com dois grupos, os tamanhos são 1.880 e 120 e as taxas de fraude posteriores são 4,52 e 6,67 por cento. O hierárquico com dois grupos teve silhouette 0,580 e Davies–Bouldin 0,756. O PCA tem maiores pesos da primeira componente em C13, C1 e C2. Grupos não provam tipos de fraude, e variância explicada não é R quadrado nem acurácia.</p>
+<p><strong>Pergunta e resposta:</strong> Como escolhemos e interpretamos grupos? Índices internos, tamanho, ruído e estabilidade apoiam a escolha. O rótulo serve apenas à descrição posterior.</p>
+<p><strong>Evidência para conferir:</strong> <code>results/clustering_metrics.csv; results/cluster_profiles.csv; results/pca_variance.csv; results/pca_coefficients.csv; results/cluster_stability.csv</code></p>
+<h3 id="slide-08--a-fila-identifica-mais-valor-com-as-mesmas-333-análises">Slide 08 — A fila identifica mais valor com as mesmas 333 análises</h3>
+<p><strong>Tempo: 10:15–12:35 (140 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> No teste de 28 dias há 78.851,255 dólares de exposição rotulada. A capacidade nominal de dois por cento, arredondada em cada dia, gera 333 análises. A regra de maiores valores encontra 17 fraudes e 14.670 dólares. A probabilidade isolada encontra 168 fraudes e 18.896 dólares. Probabilidade vezes valor encontra 96 fraudes e 35.111 dólares: menos fraudes em quantidade, mais dinheiro identificado. Assumindo eficácia de oitenta por cento e custo de dois dólares por análise, o benefício líquido é 27.422,90, contra 11.070. A diferença é 16.352,90. Dividimos pela perda simulada remanescente da referência, 67.781,26, para obter 24,13 por cento. Contra logística simples, o ganho adicional é 4.785,62 e redução de 8,51 por cento. Isso mostra que uma referência simples já oferece valor. A regressão de exposição é uma política secundária e não substitui retrospectivamente a principal.</p>
+<p><strong>Pergunta e resposta:</strong> Por que custos maiores não mudam o ganho incremental em dólares? Com quantidade igual de análises e sem penalidade adicional, o custo unitário se cancela na diferença.</p>
+<p><strong>Evidência para conferir:</strong> <code>results/financial_policies.csv; results/financial_all_classifiers.csv; results/financial_bootstrap.json; results/logistic_comparator_bootstrap.json</code></p>
+<h3 id="slide-09--a-evidência-é-positiva-neste-recorte-e-tem-limites-claros">Slide 09 — A evidência é positiva neste recorte e tem limites claros</h3>
+<p><strong>Tempo: 12:35–14:00 (85 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> O bootstrap pareado em blocos de sete dias produz intervalo exploratório de 11.865 a 21.327 dólares para o ganho principal. São cinco mil réplicas, mas apenas 28 dias de teste. Reduzir eficácia para cinquenta por cento mantém ganho simulado de 10.220,56. Não anualizamos. Features anônimas, possível repetição de cliente e rótulos históricos limitam a generalização. As revisões legítimas podem gerar atrito ou tratamento desigual. Uma implantação demandaria governança, finalidade e avaliação de privacidade, sem alegar conformidade jurídica a partir de dados públicos. A resposta à pergunta inicial é positiva neste teste sob hipóteses. Recomendamos outros períodos, custos completos e eficácia real antes de qualquer implantação.</p>
+<p><strong>Pergunta e resposta:</strong> O intervalo é garantia futura? Não. É exploratório, condicionado às hipóteses e ao curto período observado.</p>
+<p><strong>Evidência para conferir:</strong> <code>results/financial_bootstrap.json; results/financial_policies.csv; README.md; notebook seções 16–18</code></p>
+<h3 id="slide-10--demonstração-e-materiais-reproduzem-o-projeto">Slide 10 — Demonstração e materiais reproduzem o projeto</h3>
+<p><strong>Tempo: 14:00–15:00 (60 segundos).</strong></p>
+<p><strong>Fala sugerida:</strong> No notebook, mostrar a leitura, o pipeline, o split temporal e a célula de fit/predict da seção vinte. A busca inteira não roda durante a fala. Em seguida, a seção 24 reconcilia o ganho lendo o CSV. Usar os resultados já executados se o tempo de treinamento ultrapassar o ensaiado. O pacote contém PPT de dez slides, relatório de oito páginas, base processada, download da base original, código, notebook e roteiro detalhado. Os slides são os mesmos para entrega e apresentação. Conferir nomes completos dos dois integrantes, identificação dos arquivos e prazo no sistema antes da submissão.</p>
+<p><strong>Pergunta e resposta:</strong> Como outro integrante executa? Clona o repo privado após aceitar o convite, instala requirements numa venv e escolhe o kernel no notebook. A amostra processada já está incluída.</p>
+<p><strong>Evidência para conferir:</strong> <code>notebook seções 20 e 24; requirements.txt; src/download_data.py; references/template_professor.pptx</code></p>
+<h2 id="termos-significado-finalidade-e-uso">Termos: significado, finalidade e uso</h2>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Termo</th>
+<th>O que significa</th>
+<th>Para que serve</th>
+<th>Como usamos e o que encontramos</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Unidade de análise</td>
+<td>O objeto descrito por uma linha.</td>
+<td>Define o que pode ser previsto e comparado.</td>
+<td>Uma transação. Não supomos que cada linha seja uma pessoa diferente.</td>
+</tr>
+<tr>
+<td>Feature / atributo</td>
+<td>Informação de entrada usada na previsão.</td>
+<td>Representar o evento antes da decisão.</td>
+<td>71 entradas predefinidas, 50 numéricas e 21 categóricas. isFraud e exposure não entram.</td>
+</tr>
+<tr>
+<td>Alvo / target</td>
+<td>Resultado que o modelo aprende a estimar.</td>
+<td>Distinguir entradas da resposta.</td>
+<td>isFraud para classificar. TransactionAmt × isFraud para regressão.</td>
+</tr>
+<tr>
+<td>Amostra sistemática</td>
+<td>Seleção por intervalo fixo na ordem das linhas.</td>
+<td>Reduzir custo computacional com regra independente do rótulo.</td>
+<td>source_row % 5 == 0. Não é amostra aleatória simples e pode sofrer viés de periodicidade.</td>
+</tr>
+<tr>
+<td>Semente</td>
+<td>Valor inicial do gerador pseudoaleatório.</td>
+<td>Repetir sorteios e configurações.</td>
+<td>42 no protocolo principal. Não garante estabilidade em outras amostras.</td>
+</tr>
+<tr>
+<td>Prevalência</td>
+<td>Fração de exemplos positivos.</td>
+<td>Contextualizar métricas em classe rara.</td>
+<td>3,47% na amostra e 3,33% no teste. Um sempre-legítima tem 96,67% de acurácia.</td>
+</tr>
+<tr>
+<td>Desbalanceamento</td>
+<td>Uma classe tem muito menos exemplos.</td>
+<td>Escolher métricas e decisões adequadas.</td>
+<td>Fraude é minoria. Não usamos oversampling, e o teste mantém a prevalência observada.</td>
+</tr>
+<tr>
+<td>Imputação</td>
+<td>Substituição de valores ausentes por regra.</td>
+<td>Permitir ajuste sem apagar automaticamente registros.</td>
+<td>Mediana numérica aprendida no treino de cada fold, mais indicadores de ausência.</td>
+</tr>
+<tr>
+<td>One-hot encoding</td>
+<td>Colunas indicadoras para categorias.</td>
+<td>Evitar inventar ordem entre códigos.</td>
+<td>Códigos de produto, cartão e outras categorias. Raros se agrupam e novos recebem tratamento do encoder.</td>
+</tr>
+<tr>
+<td>Padronização</td>
+<td>Subtrair média e dividir pelo desvio.</td>
+<td>Equilibrar escalas para distância e regularização.</td>
+<td>StandardScaler dentro do pipeline. Árvores não exigem escala, mas compartilham preparação.</td>
+</tr>
+<tr>
+<td>Pipeline</td>
+<td>Sequência ajustável de preparação e modelo.</td>
+<td>Evitar divergência e vazamento no pré-processamento.</td>
+<td>Cada fold ajusta imputação, escala e codificação somente no passado autorizado.</td>
+</tr>
+<tr>
+<td>Vazamento / leakage</td>
+<td>Informação indisponível na decisão entra no aprendizado.</td>
+<td>Explicar resultados artificialmente bons.</td>
+<td>Alvo, exposure e identificadores ficam fora de X. Não auditamos integralmente o cálculo original de features anônimas.</td>
+</tr>
+<tr>
+<td>Split temporal</td>
+<td>Separação por ordem de ocorrência.</td>
+<td>Avaliar um futuro posterior ao desenvolvimento.</td>
+<td>Treino 1–107, validação 108–134, calibração 135–152, teste 153–180.</td>
+</tr>
+<tr>
+<td>Fold</td>
+<td>Uma rodada interna de ajuste e avaliação.</td>
+<td>Comparar configurações sem usar o teste final.</td>
+<td>Três folds temporais dentro do treino, com blocos futuros de dez dias.</td>
+</tr>
+<tr>
+<td>Parâmetro</td>
+<td>Quantidade que o ajuste aprende.</td>
+<td>Formar a função preditiva.</td>
+<td>Coeficientes da logística ou regras aprendidas por árvores.</td>
+</tr>
+<tr>
+<td>Hiperparâmetro</td>
+<td>Configuração escolhida antes de ajustar um estimador.</td>
+<td>Controlar complexidade e aprendizado.</td>
+<td>Profundidade, tamanho mínimo de folha, regularização e número de vizinhos. Grades pequenas no código.</td>
+</tr>
+<tr>
+<td>Regularização</td>
+<td>Penalização da complexidade do ajuste.</td>
+<td>Reduzir variabilidade e sensibilidade a particularidades.</td>
+<td>Ridge, Lasso e ElasticNet. Não garante automaticamente melhor desempenho.</td>
+</tr>
+<tr>
+<td>Sobreajuste</td>
+<td>Modelo aprende particularidades do ajuste que generalizam mal.</td>
+<td>Interpretar diferenças entre ajuste e teste.</td>
+<td>AP Extra Trees 0,895 no ajuste e 0,379 no teste. Mudança temporal também pode contribuir; não a isolamos.</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>Número que ordena casos.</td>
+<td>Construir classificação ou priorização.</td>
+<td>Probabilidade bruta ou calibrada. Na política principal usamos probabilidade calibrada × montante.</td>
+</tr>
+<tr>
+<td>Limiar / threshold</td>
+<td>Corte que converte score em classe.</td>
+<td>Gerar decisão binária e matriz de confusão.</td>
+<td>0,16 para Extra Trees, escolhido por F1 na validação. Não define a fila monetária.</td>
+</tr>
+<tr>
+<td>Precisão</td>
+<td>TP dividido por TP+FP.</td>
+<td>Avaliar qualidade dos alertas.</td>
+<td>Matriz do campeão: 231/621 = 37,2%. Fila monetária: 96/333 = 28,8%. São seleções diferentes.</td>
+</tr>
+<tr>
+<td>Recall / sensibilidade</td>
+<td>TP dividido por TP+FN.</td>
+<td>Medir quantas fraudes encontramos.</td>
+<td>Matriz: 231/530 = 43,6%. Fila: 96/530 = 18,1%. Não equivale à cobertura em dólares.</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>Média harmônica de precisão e recall.</td>
+<td>Equilibrar essas duas métricas para limiar.</td>
+<td>0,401 no teste do campeão com limiar fixo. Não usa montante.</td>
+</tr>
+<tr>
+<td>Acurácia</td>
+<td>Fração de todas as classes corretas.</td>
+<td>Resumo global, com risco de mascarar minoria.</td>
+<td>Sempre-legítima já atinge 96,67% no teste e perde todas as fraudes.</td>
+</tr>
+<tr>
+<td>ROC-AUC</td>
+<td>Área da curva recall versus taxa de falsos positivos.</td>
+<td>Avaliar discriminação ao variar limiares.</td>
+<td>Extra Trees 0,859 no teste. Não é porcentagem de fraudes encontradas.</td>
+</tr>
+<tr>
+<td>Average precision / AP</td>
+<td>Resumo da precisão ao aumentar o recall.</td>
+<td>Avaliar ranking com classe rara.</td>
+<td>Extra Trees 0,379. HistGB 0,454 no teste. AP não é necessariamente a integral trapezoidal chamada PR-AUC.</td>
+</tr>
+<tr>
+<td>Brier</td>
+<td>Média de (probabilidade − rótulo)².</td>
+<td>Avaliar erro probabilístico.</td>
+<td>Extra Trees: 0,025902 bruto e 0,025697 calibrado no teste. Menor é melhor, mas um valor isolado não prova calibração perfeita.</td>
+</tr>
+<tr>
+<td>Calibração</td>
+<td>Aproximar probabilidade prevista da frequência observada.</td>
+<td>Tornar valores probabilísticos mais coerentes.</td>
+<td>Platt em bloco separado. A correção é pequena no Brier do campeão.</td>
+</tr>
+<tr>
+<td>Logit e Platt</td>
+<td>Logit é log(p/(1−p)); Platt ajusta transformação logística.</td>
+<td>Recalibrar scores sem reajustar o classificador.</td>
+<td>Probabilidades limitadas antes do logit. C=1 no ajuste de calibração.</td>
+</tr>
+<tr>
+<td>Discriminação</td>
+<td>Capacidade de ordenar positivos acima de negativos.</td>
+<td>Distinguir ranking de calibração.</td>
+<td>Uma transformação monotônica preserva ordem de p, mas pode mudar ordem de p × valor.</td>
+</tr>
+<tr>
+<td>MAE</td>
+<td>Média dos erros absolutos.</td>
+<td>Medir erro em unidade monetária.</td>
+<td>RF regressor: US$ 8,30. Zero tem MAE menor porque o alvo tem muitos zeros.</td>
+</tr>
+<tr>
+<td>MSE</td>
+<td>Média dos erros ao quadrado.</td>
+<td>Penalizar erros grandes e buscar média condicional.</td>
+<td>Critério de escolha da regressão. RF no teste: cerca de 1.597,10 US$².</td>
+</tr>
+<tr>
+<td>RMSE</td>
+<td>Raiz do MSE.</td>
+<td>Ler erro quadrático na unidade original.</td>
+<td>RF: US$ 39,96 no teste, contra US$ 30,54 no ajuste final.</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>1 menos a razão entre erro quadrático e variação em torno da média.</td>
+<td>Comparar regressão com referência constante no conjunto avaliado.</td>
+<td>RF: 0,247 no teste. Pode ser negativo. Não é métrica de classificação nem cobertura de fraude.</td>
+</tr>
+<tr>
+<td>Exposição rotulada</td>
+<td>Montante multiplicado pelo indicador de fraude.</td>
+<td>Construir alvo contínuo e medir valor na seleção.</td>
+<td>Zero para legítima, montante para fraude. Não é prejuízo líquido registrado.</td>
+</tr>
+<tr>
+<td>Valor esperado</td>
+<td>Média ponderada pelos possíveis resultados.</td>
+<td>Ligar probabilidade ao dinheiro em risco.</td>
+<td>Para montante conhecido A, exposição esperada ideal = A × P(fraude</td>
+</tr>
+<tr>
+<td>Baseline / referência</td>
+<td>Regra ou modelo usado para comparação.</td>
+<td>Medir contribuição incremental.</td>
+<td>Maiores valores é referência primária escolhida na validação. Logística é diagnóstico adicional.</td>
+</tr>
+<tr>
+<td>Capacidade</td>
+<td>Quantidade disponível de revisões.</td>
+<td>Comparar decisões com trabalho equivalente.</td>
+<td>ceil(0,02 × n_dia). São 333 análises no teste pelo arredondamento diário.</td>
+</tr>
+<tr>
+<td>Recall monetário</td>
+<td>Valor de fraude selecionado / valor de fraude total.</td>
+<td>Medir cobertura financeira.</td>
+<td>44,53% no modelo principal, apesar de recall em quantidade de 18,11%.</td>
+</tr>
+<tr>
+<td>Eficácia</td>
+<td>Fração do valor identificado que se assume evitar ou recuperar.</td>
+<td>Converter captura em benefício simulado.</td>
+<td>80% no cenário central, 50% na sensibilidade. Não estimada na base.</td>
+</tr>
+<tr>
+<td>Benefício incremental</td>
+<td>Benefício do modelo menos o da referência.</td>
+<td>Isolar o acréscimo da nova política.</td>
+<td>US$ 16.352,90 contra maiores valores. US$ 4.785,62 contra logística, em comparação adicional.</td>
+</tr>
+<tr>
+<td>Perda simulada</td>
+<td>Exposição total rotulada menos benefício líquido simulado.</td>
+<td>Definir denominador financeiro coerente.</td>
+<td>Na referência: US$ 67.781,26. A redução de 24,13% usa esse denominador.</td>
+</tr>
+<tr>
+<td>Bootstrap pareado em blocos</td>
+<td>Reamostragem que conserva blocos temporais iguais nas políticas.</td>
+<td>Explorar variação da diferença de resultado.</td>
+<td>5.000 réplicas, blocos circulares de sete dias. Intervalo principal: US$ 11,87 mil–21,33 mil.</td>
+</tr>
+<tr>
+<td>Intervalo exploratório</td>
+<td>Faixa gerada pelo procedimento de reamostragem.</td>
+<td>Mostrar incerteza do recorte.</td>
+<td>Não cobre automaticamente hipóteses de eficácia nem garante ganhos futuros; só há 28 dias de teste.</td>
+</tr>
+<tr>
+<td>Clustering</td>
+<td>Agrupamento sem fornecer alvo.</td>
+<td>Explorar estrutura e perfis.</td>
+<td>2.000 transações de treino e nove indicadores. Rótulo consultado após agrupar.</td>
+</tr>
+<tr>
+<td>Silhouette</td>
+<td>Compara proximidade no grupo e separação entre grupos.</td>
+<td>Avaliar estrutura interna do agrupamento.</td>
+<td>K-means k=2: 0,552. Hierárquico k=2: 0,580. Valores maiores tendem a ser melhores.</td>
+</tr>
+<tr>
+<td>Davies–Bouldin / DB</td>
+<td>Relaciona dispersão interna e separação entre grupos.</td>
+<td>Complementar avaliação de compactação e separação.</td>
+<td>K-means 0,833 e hierárquico 0,756 em k=2. Menor tende a ser melhor.</td>
+</tr>
+<tr>
+<td>Ruído em DBSCAN</td>
+<td>Pontos fora das regiões densas definidas pelo método.</td>
+<td>Avaliar quanto da amostra fica sem grupo.</td>
+<td>eps=1,5: 9% de ruído. Não equivale a fraude e afeta comparação de índices.</td>
+</tr>
+<tr>
+<td>PCA / componente</td>
+<td>Nova coordenada linear que concentra variância dos atributos.</td>
+<td>Projetar e resumir estrutura.</td>
+<td>2 componentes: 56,53% de variância acumulada; 5: 89,02%.</td>
+</tr>
+<tr>
+<td>Loading / peso</td>
+<td>Coeficiente do atributo numa componente de PCA.</td>
+<td>Interpretar como a projeção se forma.</td>
+<td>PC1 dá maiores pesos a C13, C1 e C2. Códigos anônimos limitam significado de negócio.</td>
+</tr>
+<tr>
+<td>ARI</td>
+<td>Concordância entre agrupamentos, ajustada pelo acaso.</td>
+<td>Avaliar estabilidade na mesma amostra.</td>
+<td>ARI=1 nas três sementes adicionais do K-means. Não garante estabilidade em outra amostra.</td>
+</tr>
+<tr>
+<td>Importância por permutação</td>
+<td>Piora ao embaralhar um atributo.</td>
+<td>Avaliar dependência preditiva da entrada.</td>
+<td>Calculada na calibração por queda de AP. V200, V70, D2, M4 e card6 lideram. Correlação pode dividir importância.</td>
+</tr>
+<tr>
+<td>Drift / mudança temporal</td>
+<td>Distribuições ou relações mudam com o tempo.</td>
+<td>Explicar instabilidade e planejar monitoramento.</td>
+<td>Prevalências variam entre blocos. Diferença de ajuste e teste não separa drift de sobreajuste.</td>
+</tr>
+<tr>
+<td>Causalidade e contrafactual</td>
+<td>Efeito da ação e resultado alternativo que não observamos.</td>
+<td>Distinguir avaliação de ranking de impacto real da investigação.</td>
+<td>Não houve experimento de intervenção. Benefício depende da eficácia assumida.</td>
+</tr>
+</tbody></table></div>
+<h2 id="as-19-técnicas-e-os-resultados">As 19 técnicas e os resultados</h2>
+<p>Baselines, limiares e cenários não contam como técnicas adicionais. A tabela completa é material de defesa, não texto para ler durante os 15 minutos.</p>
+<h3 id="classificação-sete-técnicas">Classificação: sete técnicas</h3>
+<h4>Logistic</h4>
+<p><strong>Ideia:</strong> Combinação linear e função logística.</p>
+<p><strong>Para que serve:</strong> Referência simples de risco com probabilidades interpretáveis no espaço transformado.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;C&quot;: 1.0}</code>. C=1. A relação é linear no logit e pode perder interações.</p>
+<p><strong>Resultado no teste:</strong> AP=0.340, F1=0.363, recall=0.340, ROC-AUC=0.832.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>DecisionTree</h4>
+<p><strong>Ideia:</strong> Divisões sucessivas por regras.</p>
+<p><strong>Para que serve:</strong> Capturar não linearidades e interações.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_depth&quot;: 12, &quot;min_samples_leaf&quot;: 15}</code>. A profundidade e o mínimo de exemplos por folha controlam complexidade.</p>
+<p><strong>Resultado no teste:</strong> AP=0.377, F1=0.429, recall=0.353, ROC-AUC=0.812.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>RandomForest</h4>
+<p><strong>Ideia:</strong> Média ou voto de árvores com amostragem e atributos aleatórios.</p>
+<p><strong>Para que serve:</strong> Reduzir variabilidade de uma árvore isolada.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_depth&quot;: 18, &quot;min_samples_leaf&quot;: 3}</code>. 60 árvores. A importância não deve ser confundida com causalidade.</p>
+<p><strong>Resultado no teste:</strong> AP=0.448, F1=0.479, recall=0.409, ROC-AUC=0.871.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>ExtraTrees</h4>
+<p><strong>Ideia:</strong> Conjunto de árvores com cortes mais aleatórios.</p>
+<p><strong>Para que serve:</strong> Diversificar árvores e modelar interações.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_depth&quot;: 20, &quot;min_samples_leaf&quot;: 3}</code>. 60 árvores. Mais aleatoriedade não garante resultado melhor.</p>
+<p><strong>Resultado no teste:</strong> AP=0.379, F1=0.401, recall=0.436, ROC-AUC=0.859. <strong>Campeão escolhido na validação.</strong></p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>HistGradientBoosting</h4>
+<p><strong>Ideia:</strong> Árvores sequenciais com cortes acelerados por histogramas.</p>
+<p><strong>Para que serve:</strong> Corrigir erros sucessivamente.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_leaf_nodes&quot;: 31, &quot;l2_regularization&quot;: 20.0}</code>. 120 iterações fixas. Número de folhas e penalização L2 passam pela grade.</p>
+<p><strong>Resultado no teste:</strong> AP=0.454, F1=0.459, recall=0.455, ROC-AUC=0.876.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>KNN</h4>
+<p><strong>Ideia:</strong> Vizinhos no espaço transformado.</p>
+<p><strong>Para que serve:</strong> Comparar uma hipótese baseada em proximidade.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;n_neighbors&quot;: 45}</code>. 45 vizinhos escolhidos. Distância pode perder qualidade em muitas dimensões.</p>
+<p><strong>Resultado no teste:</strong> AP=0.304, F1=0.358, recall=0.275, ROC-AUC=0.797.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>GaussianNB</h4>
+<p><strong>Ideia:</strong> Bayes com distribuições gaussianas e independência condicional.</p>
+<p><strong>Para que serve:</strong> Referência probabilística rápida com outra hipótese.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;var_smoothing&quot;: 0.001}</code>. Hipóteses podem ser inadequadas com atributos correlacionados.</p>
+<p><strong>Resultado no teste:</strong> AP=0.086, F1=0.144, recall=0.602, ROC-AUC=0.742.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h3 id="regressão-oito-técnicas">Regressão: oito técnicas</h3>
+<h4>Linear</h4>
+<p><strong>Ideia:</strong> Soma ponderada das entradas para alvo contínuo.</p>
+<p><strong>Para que serve:</strong> Referência linear de exposição.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{}</code>. Sem penalização. Entradas transformadas e previsões negativas truncadas em zero.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 11.23, MSE=2056.46 US$², RMSE=US$ 45.35, R²=0.030.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>Ridge</h4>
+<p><strong>Ideia:</strong> Regressão linear com penalização quadrática.</p>
+<p><strong>Para que serve:</strong> Estabilizar coeficientes com correlação.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;alpha&quot;: 100.0}</code>. alpha=100 escolhido.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 11.19, MSE=2053.54 US$², RMSE=US$ 45.32, R²=0.031.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>Lasso</h4>
+<p><strong>Ideia:</strong> Regressão linear com penalização de magnitudes.</p>
+<p><strong>Para que serve:</strong> Reduzir complexidade e eventualmente zerar coeficientes.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;alpha&quot;: 0.1}</code>. alpha=0,1. Não interpretamos seleção como prova causal.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 10.87, MSE=2052.23 US$², RMSE=US$ 45.30, R²=0.032.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>ElasticNet</h4>
+<p><strong>Ideia:</strong> Mistura de penalizações L1 e L2.</p>
+<p><strong>Para que serve:</strong> Comparar compromisso entre Lasso e Ridge.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;alpha&quot;: 0.1}</code>. alpha=0,1 e l1_ratio=0,5 fixo.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 10.83, MSE=2054.33 US$², RMSE=US$ 45.32, R²=0.031.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>DecisionTree</h4>
+<p><strong>Ideia:</strong> Divisões sucessivas por regras.</p>
+<p><strong>Para que serve:</strong> Capturar não linearidades e interações.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_depth&quot;: 5, &quot;min_samples_leaf&quot;: 50}</code>. A profundidade e o mínimo de exemplos por folha controlam complexidade.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 8.25, MSE=1790.86 US$², RMSE=US$ 42.32, R²=0.155.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>RandomForest</h4>
+<p><strong>Ideia:</strong> Média ou voto de árvores com amostragem e atributos aleatórios.</p>
+<p><strong>Para que serve:</strong> Reduzir variabilidade de uma árvore isolada.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_depth&quot;: 15, &quot;min_samples_leaf&quot;: 5}</code>. 60 árvores. A importância não deve ser confundida com causalidade.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 8.30, MSE=1597.10 US$², RMSE=US$ 39.96, R²=0.247. <strong>Campeão escolhido na validação.</strong></p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>ExtraTrees</h4>
+<p><strong>Ideia:</strong> Conjunto de árvores com cortes mais aleatórios.</p>
+<p><strong>Para que serve:</strong> Diversificar árvores e modelar interações.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_depth&quot;: 15, &quot;min_samples_leaf&quot;: 5}</code>. 60 árvores. Mais aleatoriedade não garante resultado melhor.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 8.67, MSE=1772.34 US$², RMSE=US$ 42.10, R²=0.164.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h4>HistGradientBoosting</h4>
+<p><strong>Ideia:</strong> Árvores sequenciais com cortes acelerados por histogramas.</p>
+<p><strong>Para que serve:</strong> Corrigir erros sucessivamente.</p>
+<p><strong>Uso no projeto:</strong> configuração selecionada <code>{&quot;max_leaf_nodes&quot;: 15, &quot;l2_regularization&quot;: 50.0}</code>. 120 iterações fixas. Número de folhas e penalização L2 passam pela grade.</p>
+<p><strong>Resultado no teste:</strong> MAE=US$ 8.06, MSE=1574.02 US$², RMSE=US$ 39.67, R²=0.257.</p>
+<p><strong>Como defender:</strong> a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.</p>
+<h3 id="não-supervisionado-quatro-técnicas">Não supervisionado: quatro técnicas</h3>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Técnica</th>
+<th>Ideia e finalidade</th>
+<th>Uso e achado</th>
+<th>Limite de interpretação</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>K-means</td>
+<td>Centros que reduzem distâncias quadráticas internas</td>
+<td>k de 2 a 6. k=2: silhouette 0,552, grupos 1.880 e 120</td>
+<td>Escala e formato dos grupos importam. Taxa de fraude é posterior</td>
+</tr>
+<tr>
+<td>Hierárquico</td>
+<td>Uniões sucessivas, com corte da hierarquia</td>
+<td>k de 2 a 6. k=2: silhouette 0,580 e DB 0,756</td>
+<td>Índice interno maior não prova utilidade operacional</td>
+</tr>
+<tr>
+<td>DBSCAN</td>
+<td>Regiões densas e pontos sem grupo</td>
+<td>eps 0,7/1/1,5/2, min_samples=10. eps=1,5: 9% de ruído</td>
+<td>Índices calculados nos não-ruído. Ruído não é fraude</td>
+</tr>
+<tr>
+<td>PCA</td>
+<td>Projeção linear de variância máxima</td>
+<td>2 componentes: 56,53%, 5: 89,02%. PC1 com maior peso em C13/C1/C2</td>
+<td>Variância explicada não é poder de detecção nem causalidade</td>
+</tr>
+</tbody></table></div>
+<h2 id="a-conta-financeira-e-as-comparações">A conta financeira e as comparações</h2>
+<p><strong>Universo do teste:</strong> 15.915 transações, 530 fraudes e US$ 78.851,255 de exposição rotulada.</p>
+<p><strong>Capacidade:</strong> teto por dia, <code>ceil(0,02 × n_dia)</code>. São 333 análises, um pouco mais de 2% do total agregado pelo arredondamento.</p>
+<p><strong>Conta central:</strong></p>
+<pre><code class="language-text">Benefício líquido = eficácia × valor rotulado selecionado − custo × análises
+Modelo = 0,8 × 35.111,123 − 2 × 333 = US$ 27.422,8984
+Referência = 0,8 × 14.670 − 2 × 333 = US$ 11.070
+Incremento = 27.422,8984 − 11.070 = US$ 16.352,8984
+Perda da referência = 78.851,255 − 11.070 = US$ 67.781,255
+Redução relativa = 16.352,8984 / 67.781,255 = 24,13%
+</code></pre>
+<p>A referência primária é maiores valores, escolhida na validação. Contra logística, o ganho adicional é US$ 4.785,62 e a redução da perda simulada da logística é 8,51%. As duas comparações usam denominadores diferentes.</p>
+<h3 id="o-que-observamos-assumimos-e-concluímos">O que observamos, assumimos e concluímos</h3>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Observado na avaliação</td>
+<td>Valores, rótulos, filas selecionadas e montantes de fraude nessas filas</td>
+</tr>
+<tr>
+<td>Assumido</td>
+<td>Eficácia de 80%, US$ 2 por análise e penalidade adicional zero por revisão legítima</td>
+</tr>
+<tr>
+<td>Não medido</td>
+<td>Efeito real de investigar, recuperação efetiva, atraso, implantação e manutenção</td>
+</tr>
+<tr>
+<td>Conclusão</td>
+<td>Benefício incremental simulado positivo neste teste, condicionado às hipóteses</td>
+</tr>
+</tbody></table></div>
+<h3 id="comparação-de-todas-as-políticas-na-capacidade-principal">Comparação de todas as políticas na capacidade principal</h3>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Política</th>
+<th align="right">Fraudes selecionadas</th>
+<th align="right">Valor identificado (US$)</th>
+<th align="right">Benefício simulado (US$)</th>
+</tr>
+</thead>
+</table></div>
+<p>| Random | 11 | 881.03 | 38.82 |</p>
+<p>| LargestAmount | 17 | 14670.00 | 11070.00 |</p>
+<p>| ProductRateAmount | 16 | 10290.01 | 7566.01 |</p>
+<p>| ML_Probability | 168 | 18896.14 | 14450.92 |</p>
+<p>| ML_ExpectedAmount | 96 | 35111.12 | 27422.90 |</p>
+<p>| RegressionExposure | 105 | 36919.51 | 28869.60 |</p>
+<p><strong>Insight:</strong> probabilidade isolada encontra 168 fraudes e US$ 18.896,14. Probabilidade × valor encontra 96 fraudes e US$ 35.111,12. A segunda política captura mais dinheiro, embora encontre menos casos. A matriz com 231 verdadeiros positivos usa outra decisão, um limiar fixo.</p>
+<p><strong>Resultado secundário:</strong> o regressor captura mais valor que a política primária neste teste. Não mudamos a política principal a partir desse resultado.</p>
+<p><strong>Sensibilidade:</strong> eficácia de 50% produz US$ 10.220,56 de incremento. Custo igual por análise se cancela na diferença de filas de tamanho igual, sem penalidade adicional. A penalidade por legítima pode mudar a diferença. O intervalo exploratório principal é US$ 11.865,42–21.326,99 e mantém as hipóteses fixas. Não anualizamos.</p>
+<h2 id="explicações-passo-a-passo">Explicações passo a passo</h2>
+<p>Este material aprofunda as decisões da fala. As equações e tabelas executáveis estão no notebook.</p>
+<h3 id="etapa-2-origem-arquivos-e-significado-da-base">Etapa 2: Origem, arquivos e significado da base</h3>
+<p>A IEEE-CIS Fraud Detection foi disponibilizada por Vesta e IEEE-CIS no Kaggle. O conjunto público rotulado possui 590.540 transações e 20.663 fraudes. <code>isFraud</code> é o rótulo, <code>TransactionAmt</code> informa valor e <code>TransactionDT</code> é um deslocamento temporal em segundos. Ele não fornece uma data civil conhecida.</p>
+<p>Baixamos o espelho OpenML 46858, indicado pelo projeto Empulse. O parquet preserva <code>TransactionDT</code>, mas não <code>TransactionID</code>. Criamos <code>source_row</code>, um identificador de linha sem uso preditivo. O espelho contém 456 campos, incluindo variantes de nomes de atributos de identidade. Utilizamos uma lista predefinida de 71 atributos, não todos os campos nem os identificadores.</p>
+<p>Atributos C, D, V e parte de id são anonimizados. Conhecemos famílias gerais, mas não podemos inventar o significado de cada coluna. A disponibilização pública de um atributo não demonstra, sozinha, que seu cálculo original estava livre de informação futura; essa é uma limitação de proveniência.</p>
+<p>Fontes: <a href="https://www.kaggle.com/competitions/ieee-fraud-detection/data">competição</a>, <a href="https://www.openml.org/d/46858">metadados OpenML</a>, <a href="https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html">documentação Empulse</a>. Os hashes registram os arquivos locais. O MD5 nos metadados se refere ao ARFF, não ao parquet baixado; não alegamos que o verificamos contra o parquet.</p>
+<h4>Passo a passo: conhecer a base antes de modelar</h4>
+<p>Leia primeiro a origem e depois a unidade de cada campo. <code>TransactionAmt</code> é um valor em dólares; <code>isFraud</code> é uma variável binária, com 1 para fraude; <code>TransactionDT</code> ordena eventos por um deslocamento em segundos. Nenhum desses campos prova o prejuízo líquido da instituição.</p>
+<p>Uma base pública de competição é adequada para testar métodos com rótulos conhecidos. Ela não equivale à base operacional completa de uma empresa. O espelho é uma forma de acesso: preservamos sua origem e o hash do arquivo, sem tratar o OpenML como o produtor original dos eventos.</p>
+<p><strong>Como ler a auditoria a seguir:</strong> procure quantidade de linhas, fraudes, colunas originais e linhas usadas. São universos diferentes: arquivo original, amostra de avaliação e amostra usada em cada ajuste. Não use “treinamos com 590 mil transações” para descrever um ajuste limitado a 30 mil.</p>
+<p><strong>Se perguntarem o significado de V130:</strong> “É um atributo anonimizado. Posso explicar seu tratamento e sua importância estatística, mas a documentação disponível não permite dar um significado de negócio específico.”</p>
+<h3 id="etapa-3-unidade-de-análise-amostra-e-limites">Etapa 3: Unidade de análise, amostra e limites</h3>
+<p>Uma linha é uma transação, não um cliente. Selecionamos uma em cada cinco linhas do arquivo, sem olhar classe ou valor, e excluímos os dois dias extremos para evitar orçamentos em dias parciais. A amostra tem 116.533 transações e 4.046 fraudes.</p>
+<p>O orçamento operacional vale para essa amostra e não corresponde automaticamente à capacidade da empresa inteira. O sorteio de treino usa no máximo 30 mil linhas por ajuste, sem reequilibrar artificialmente as classes. Isso torna viável comparar dezenove técnicas. Todos os algoritmos recebem a mesma amostra de cada bloco autorizado. A avaliação usa todas as linhas dos respectivos blocos da amostra sistemática.</p>
+<p>Não há chave confiável de cliente para impedir que o mesmo indivíduo apareça em períodos diferentes. O teste temporal avalia um fluxo posterior, não generalização a clientes inéditos. Valores e taxas não podem ser extrapolados para todo o mercado.</p>
+<h4>Passo a passo: por que reduzir a base?</h4>
+<p>A seleção sistemática conserva aproximadamente um quinto das linhas e torna o estudo executável. Como o critério é a posição da linha, ele não favorece intencionalmente fraude ou valores altos. Contudo, não é uma amostra aleatória simples: se a ordenação tivesse periodicidade relacionada ao risco, poderia introduzir viés. Por isso, não afirmamos representatividade garantida.</p>
+<p>Há duas reduções diferentes: a amostra sistemática define o universo deste estudo; o limite de 30 mil reduz o custo de cada treinamento. O teste mantém todas as transações da amostra no seu intervalo, sem escolher apenas os casos fáceis.</p>
+<p><strong>Leia a tabela:</strong> <code>start</code> e <code>end</code> indicam o intervalo temporal; as quantidades mostram o peso de cada bloco. Compare a prevalência entre blocos: mudança na frequência de fraude pode afetar probabilidades e métricas.</p>
+<p><strong>Resposta de defesa:</strong> “Usamos a mesma regra de amostragem e os mesmos períodos para comparar os modelos. Uma extensão seria repetir o estudo em outras amostras e na base completa.”</p>
+<h3 id="etapa-4-limpeza-e-preparação">Etapa 4: Limpeza e preparação</h3>
+<p>Ausências podem ser informativas: dados de dispositivo nem sempre existem. Valores numéricos ausentes recebem mediana aprendida no treino, e indicadores adicionais registram a ausência. Categorias ausentes recebem uma categoria explícita. Categorias raras são agrupadas e categorias novas não interrompem a previsão.</p>
+<p>One-hot encoding evita impor ordem a códigos de cartão, região e produto. Padronização reduz diferenças de escala em regressões regularizadas e KNN. Árvores não precisam de escala, mas usamos o mesmo pipeline para comparação consistente. Preços extremos não são apagados apenas por serem grandes: podem representar exposição relevante.</p>
+<p>A fração de ausência registrada na auditoria refere-se aos campos efetivamente lidos, e não necessariamente a todos os 456 campos do espelho. Não interpretamos códigos anônimos como variáveis pessoais identificadas.</p>
+<h4>Passo a passo: o que o pré-processamento aprende?</h4>
+<p><strong>Imputação:</strong> se os valores de treino são 10, 20 e ausente, a mediana dos observados é 15. O ausente recebe 15. No teste, usamos essa mediana já aprendida; não recalculamos com o futuro.</p>
+<p><strong>Indicador de ausência:</strong> registra que o valor original não estava disponível. Isso diferencia um 15 observado de um 15 imputado, quando o indicador existe no pipeline.</p>
+<p><strong>One-hot:</strong> uma categoria como ProductCD=W vira uma coluna indicadora, não o número ordinal “5”. Cartões e regiões codificados são tratados como categorias quando assim definidos na lista CAT.</p>
+<p><strong>Padronização:</strong> subtrai a média e divide pelo desvio do treino. Em KNN, isso impede que uma variável domine a distância apenas por sua unidade. Em regularização, torna a penalização mais comparável entre variáveis.</p>
+<p><strong>Pipeline:</strong> encadeia as transformações e o estimador. Cada fold executa <code>fit</code> apenas no passado e <code>predict</code> no bloco posterior. Preencher ausências em toda a base antes da validação contaminaria a comparação.</p>
+<p><strong>Cuidado ao ler:</strong> ausência alta não determina remoção automática. Primeiro verificamos se a informação disponível é útil e coerente com o momento da decisão.</p>
+<h3 id="etapa-5-engenharia-de-atributos-e-prevenção-de-vazamento">Etapa 5: Engenharia de atributos e prevenção de vazamento</h3>
+<p>Usamos valor da transação, distâncias, famílias C/D, quinze atributos V predefinidos, códigos categóricos e presença de dispositivo. <code>hour_sin</code> e <code>hour_cos</code> representam o ciclo horário extraído do deslocamento; como a origem real é desconhecida, não afirmamos que correspondem à hora local do consumidor. <code>missing_count</code> resume ausência nos campos lidos.</p>
+<p>O rótulo, a exposição monetária rotulada, o identificador de linha e o dia relativo ficam fora de X. Não construímos agregações futuras por cartão. As transformações são ajustadas dentro de cada fold. O valor da transação é conhecido no momento de triagem e pode entrar no modelo; o fato de a transação ser fraude só aparece como alvo.</p>
+<p>A lista de atributos foi definida antes de olhar o teste. A importância por permutação é calculada na calibração para explicar o modelo, sem eliminar atributos depois de avaliar o teste.</p>
+<h4>Passo a passo: reconhecer vazamento</h4>
+<p>Faça sempre a pergunta: <strong>esse valor existiria antes de eu decidir investigar?</strong> O montante da transação existe; o rótulo confirmado posteriormente não. Uma média por cartão calculada usando transações futuras também não existiria naquele momento.</p>
+<p><code>exposure</code> é permitido como <strong>alvo</strong>, mas seria vazamento como <strong>entrada</strong>, pois contém <code>isFraud</code>. <code>source_row</code> identifica registros e resolve empates; não representa risco aprendido. O dia relativo separa os períodos e controla capacidade, mas não entra no classificador.</p>
+<p>As features cíclicas usam seno e cosseno para aproximar horários vizinhos na virada de um ciclo: o começo e o fim ficam próximos. Não afirmamos conhecer a hora civil real.</p>
+<p><strong>Limite da conclusão:</strong> nosso pipeline controla o vazamento que podemos observar no experimento. Não temos a documentação interna necessária para auditar integralmente a produção dos atributos anonimizados.</p>
+<h3 id="etapa-6-protocolo-temporal-e-orçamento-computacional">Etapa 6: Protocolo temporal e orçamento computacional</h3>
+<p>Separamos dias inteiros: treino 1–107, validação 108–134, calibração 135–152 e teste 153–180. São dias relativos, sem associação a uma data civil. O teste tem 28 dias, com 15.915 transações e 530 fraudes.</p>
+<p>Dentro do treino, três janelas futuras de dez dias comparam pequenas grades. Só o bloco anterior é usado para ajustar o pipeline. O treino de cada estimador recebe até 30 mil linhas sorteadas com semente 42. Depois da escolha, o ajuste final recebe uma amostra de até 30 mil linhas de treino + validação. A regra simples por produto também é reajustada nesses dois blocos para o teste.</p>
+<p>A validação escolhe o classificador pelo valor fraudulento identificado ao revisar 2% por dia usando score bruto × valor. Ela escolhe ainda um limiar F1 para diagnóstico. A calibração ajusta probabilidades por Platt. A política principal, sua capacidade de 2% e os custos centrais foram declarados antes do teste.</p>
+<h4>Passo a passo: quem pode olhar quais dados?</h4>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Aprende com</th>
+<th>Decide o quê?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Busca de hiperparâmetros</td>
+<td>Folds internos do treino</td>
+<td>Configuração de cada algoritmo</td>
+</tr>
+<tr>
+<td>Comparação de algoritmos</td>
+<td>Validação posterior</td>
+<td>Campeão e referência simples</td>
+</tr>
+<tr>
+<td>Ajuste final</td>
+<td>Treino + validação, respeitando o limite amostral</td>
+<td>Parâmetros do modelo escolhido</td>
+</tr>
+<tr>
+<td>Calibração</td>
+<td>Bloco próprio posterior</td>
+<td>Conversão do score em probabilidade</td>
+</tr>
+<tr>
+<td>Teste</td>
+<td>Somente avaliação</td>
+<td>Resultado final do protocolo congelado</td>
+</tr>
+</tbody></table></div>
+<p>Um <strong>parâmetro</strong> é aprendido no ajuste, como um coeficiente. Um <strong>hiperparâmetro</strong> é uma configuração escolhida antes desse ajuste, como a profundidade de uma árvore. Um <strong>fold</strong> é uma rodada com seu próprio treino e avaliação interna.</p>
+<p>O teste não escolhe o campeão. Se um concorrente ganha no teste, relatamos a informação e mantemos a escolha anterior. Alterar a seleção após ler esse resultado exigiria um novo período intocado para sustentar uma nova avaliação final.</p>
+<p><strong>Pergunta provável: por que não split aleatório?</strong> “Queremos avaliar transações posteriores às usadas para aprender. Um split aleatório misturaria passado e futuro e poderia produzir uma estimativa otimista para esse uso.”</p>
+<p><strong>Ponto crítico:</strong> o classificador é escolhido com probabilidades brutas na validação e a política final utiliza probabilidades calibradas. Mantivemos o protocolo. Não afirmamos que essa sequência garante o melhor modelo monetário possível.</p>
+<h3 id="etapa-7-técnicas-e-hipóteses">Etapa 7: Técnicas e hipóteses</h3>
+<p>São <strong>19 técnicas</strong>: sete classificadores, oito regressores, K-means, hierárquico, DBSCAN e PCA. Baselines e ajustes de política não contam como novas técnicas.</p>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Família</th>
+<th>Técnicas</th>
+<th>Por que testar</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Classificação</td>
+<td>Logística, Árvore, Random Forest, Extra Trees, HistGradientBoosting, KNN, GaussianNB</td>
+<td>Relações lineares, regras, ensembles, vizinhança e Bayes</td>
+</tr>
+<tr>
+<td>Regressão</td>
+<td>Linear, Ridge, Lasso, ElasticNet, Árvore, Random Forest, Extra Trees, HistGradientBoosting</td>
+<td>Estimar exposição monetária média e comparar regularização com não linearidade</td>
+</tr>
+<tr>
+<td>Não supervisionado</td>
+<td>K-means, Hierárquico, DBSCAN, PCA</td>
+<td>Estrutura, perfis, pontos esparsos e projeção</td>
+</tr>
+</tbody></table></div>
+<p>Random Forest agrega árvores com amostragem e aleatoriedade de atributos. Extra Trees acrescenta aleatoriedade de cortes. Boosting constrói árvores em sequência. GaussianNB assume independência condicional, improvável em atributos correlacionados. KNN depende da definição de distância e escala. Nenhuma técnica é superior por princípio.</p>
+<h4>Passo a passo: diferenciar as técnicas sem decorar nomes</h4>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Técnica</th>
+<th>Ideia para explicar</th>
+<th>Principal cuidado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Logística</td>
+<td>Soma ponderada das entradas e função que produz probabilidade</td>
+<td>Fronteira linear no espaço transformado</td>
+</tr>
+<tr>
+<td>Árvore</td>
+<td>Perguntas sucessivas dividem as transações</td>
+<td>Pode memorizar particularidades do treino</td>
+</tr>
+<tr>
+<td>Random Forest</td>
+<td>Combina árvores diversas para reduzir variabilidade</td>
+<td>Complexidade e interpretação</td>
+</tr>
+<tr>
+<td>Extra Trees</td>
+<td>Usa cortes mais aleatórios para diversificar árvores</td>
+<td>Mais aleatoriedade não garante maior ganho</td>
+</tr>
+<tr>
+<td>HistGradientBoosting</td>
+<td>Árvores sequenciais corrigem erros; histogramas agilizam cortes</td>
+<td>Configuração e sobreajuste</td>
+</tr>
+<tr>
+<td>KNN</td>
+<td>Consulta exemplos próximos</td>
+<td>Distância perde qualidade em muitas dimensões</td>
+</tr>
+<tr>
+<td>GaussianNB</td>
+<td>Combina evidências sob hipóteses probabilísticas simples</td>
+<td>Independência e distribuição podem ser inadequadas</td>
+</tr>
+<tr>
+<td>Ridge</td>
+<td>Penaliza coeficientes ao quadrado</td>
+<td>Intensidade da penalização</td>
+</tr>
+<tr>
+<td>Lasso</td>
+<td>Penaliza magnitudes e pode zerar coeficientes</td>
+<td>Seleção instável entre variáveis correlacionadas</td>
+</tr>
+<tr>
+<td>ElasticNet</td>
+<td>Mistura penalizações de Ridge e Lasso</td>
+<td>Precisa configurar força e mistura</td>
+</tr>
+</tbody></table></div>
+<p><strong>Bagging e boosting:</strong> florestas combinam árvores construídas com diversidade; boosting adiciona modelos em sequência. Não confunda quantidade de árvores com quantidade de técnicas.</p>
+<p><strong>Como justificar o conjunto:</strong> “Incluímos modelos simples e famílias com hipóteses diferentes. Isso permite avaliar se a complexidade acrescenta resultado, em vez de supor que o algoritmo mais sofisticado vencerá.”</p>
+<h3 id="etapa-8-classificação-e-escolha-do-algoritmo">Etapa 8: Classificação e escolha do algoritmo</h3>
+<p>A classe positiva é fraude. Como ela é rara, acurácia isolada é enganosa: prever tudo como legítimo pode acertar quase todas as linhas e não identificar fraude alguma.</p>
+<p>MAE e R² não são métricas da classificação. Usamos precisão, recall, F1, ROC-AUC, average precision e Brier. Average precision resume a curva precisão–recall e deve ser comparada à prevalência; não é a mesma integral trapezoidal frequentemente chamada de PR-AUC.</p>
+<p>O campeão é escolhido pela validação e fica congelado. Não mudamos de campeão porque outro teve maior AP no teste. O objetivo de priorização monetária também pode selecionar um modelo diferente do maior F1.</p>
+<h4>Passo a passo: ler as métricas de classificação</h4>
+<p>Considere TP = fraudes corretamente sinalizadas, FP = legítimas sinalizadas, FN = fraudes não sinalizadas e TN = legítimas não sinalizadas.</p>
+<ul>
+<li><strong>Precisão = TP/(TP+FP):</strong> dentre os alertas, quantos são fraude?</li>
+<li><strong>Recall = TP/(TP+FN):</strong> dentre as fraudes, quantas foram encontradas?</li>
+<li><strong>F1 = 2 × precisão × recall/(precisão+recall):</strong> equilíbrio entre as duas, sem considerar montante.</li>
+<li><strong>ROC-AUC:</strong> qualidade da ordenação entre positivos e negativos ao variar o limiar.</li>
+<li><strong>Average precision (AP):</strong> resumo da precisão ao aumentar o recall; especialmente informativa com classe rara. Sua referência depende da prevalência.</li>
+<li><strong>Brier:</strong> média de <code>(probabilidade − rótulo)²</code>; menor é melhor para erro probabilístico.</li>
+</ul>
+<p>Uma acurácia alta pode vir de ignorar a minoria. Uma AP alta também não determina qual fila captura mais dólares. Portanto, mostramos métricas preditivas e uma avaliação da decisão econômica.</p>
+<p><strong>Como ler as tabelas:</strong> identifique primeiro <code>split</code>; depois a coluna usada para escolher o campeão; só então compare os resultados de teste. AP e ROC-AUC são números entre 0 e 1, não percentuais de transações corretamente identificadas.</p>
+<p><strong>Resposta de defesa:</strong> “Extra Trees não foi escolhido por ter todas as melhores métricas no teste. Foi o escolhido pelo critério monetário na validação.”</p>
+<h3 id="etapa-9-limiar-e-matriz-de-confusão">Etapa 9: Limiar e matriz de confusão</h3>
+<p>O limiar F1 foi escolhido na validação e aplicado ao score bruto. Ele produz uma decisão binária que serve ao diagnóstico. A fila econômica é outra decisão: ordena probabilidade calibrada × valor e preenche a capacidade diária. Ela não utiliza automaticamente o limiar F1.</p>
+<p>Falso negativo é uma fraude fora da seleção. Falso positivo é uma transação legítima revisada. Revisar não é bloquear: o projeto representa triagem para investigação, com atraso e eficácia assumidos. Não demonstramos prevenção em tempo real ou recuperação garantida.</p>
+<h4>Passo a passo: dois critérios produzem duas matrizes diferentes</h4>
+<p>O limiar F1 compara cada score com um valor fixo. A fila econômica escolhe os melhores scores monetários dentro de cada dia. Os grupos selecionados não precisam ser iguais.</p>
+<p>A matriz exibida a seguir refere-se ao diagnóstico do limiar, não aos 333 casos da fila financeira. No teste, os números do diagnóstico são TN=14.995, FP=390, FN=299 e TP=231. Já a fila monetária principal contém 96 fraudes entre 333 análises.</p>
+<p><strong>Por que 231 não é melhor que 96?</strong> O primeiro número utiliza mais alertas e outra regra de seleção. A comparação financeira exige igual capacidade e considera o valor das fraudes. Misturar esses números levaria a uma conclusão errada.</p>
+<p><strong>Resposta de defesa:</strong> “O limiar ajuda a entender a classificação. Nossa decisão operacional principal é um ranking diário com capacidade fixa.”</p>
+<h3 id="etapa-10-probabilidade-calibrada-e-valor-esperado">Etapa 10: Probabilidade calibrada e valor esperado</h3>
+<p>Platt ajusta uma regressão logística entre logit do score bruto e o rótulo no bloco de calibração. O modelo preditivo não é reajustado com os rótulos desse bloco. Avaliamos Brier bruto e calibrado no teste.</p>
+<p>Multiplicar uma probabilidade por um valor conhecido produz uma estimativa de exposição esperada se a probabilidade for adequada. A calibração pode ser imperfeita, especialmente em subgrupos e em períodos futuros. Ser monotônica preserva a ordem de probabilidade isolada, mas pode mudar a ordem de probabilidade × valor.</p>
+<h4>Passo a passo: probabilidade não é certeza</h4>
+<p>Dizer “probabilidade de 20%” significa que, em conjuntos comparáveis com esse risco, esperamos algo próximo de 20 fraudes a cada 100 transações se o modelo estiver bem calibrado. Não sabemos quais serão elas.</p>
+<p><strong>Discriminação</strong> é ordenar os casos; <strong>calibração</strong> é aproximar as probabilidades das frequências observadas. Um modelo pode ordenar bem e ser excessivamente confiante.</p>
+<p>Platt aprende uma transformação usando um bloco separado. Como <code>logit(p)=log(p/(1−p))</code>, os scores são limitados antes da transformação para evitar logaritmos de zero. A transformação não consulta os rótulos de teste.</p>
+<p><strong>Leia o gráfico:</strong> distâncias da diagonal indicam discrepâncias entre risco previsto e frequência. Grupos com poucos exemplos têm estimativas instáveis. Brier menor no período avaliado não garante calibração perfeita em todos os subgrupos.</p>
+<p><strong>Importância por permutação:</strong> embaralha uma entrada e mede a piora. É uma associação com a previsão, não prova de causa. Variáveis correlacionadas podem dividir ou esconder importância.</p>
+<h3 id="etapa-11-regressão-de-exposição-monetária">Etapa 11: Regressão de exposição monetária</h3>
+<p>Definimos <code>exposure = TransactionAmt × isFraud</code>: zero para transações legítimas, valor da transação para fraudes rotuladas. Esse é um alvo contínuo derivado, em moeda, e não o prejuízo líquido observado pela empresa. Ele reformula o mesmo risco da classificação; não representa um fenômeno independente.</p>
+<p>O fato de o valor conhecido aparecer em X não revela o rótulo futuro. O modelo tenta aprender quanto dessa exposição estará associado a fraude. Não fornecemos <code>isFraud</code> ou <code>exposure</code> como entradas.</p>
+<p>A distribuição tem muitos zeros e cauda pesada. MAE tende a favorecer previsões próximas de zero, enquanto erro quadrático procura a média condicional. Selecionamos por MSE de validação, alinhado a uma média esperada, mas avaliamos também MAE, RMSE e R². Um R² baixo ou negativo não invalida uma política de ranking; tampouco deve ser escondido.</p>
+<h4>Passo a passo: por que uma regressão neste problema?</h4>
+<p>Se uma transação legítima vale US$ 500, seu alvo de exposição rotulada é 0. Se uma fraude vale US$ 500, o alvo é 500. No momento de prever, o rótulo ainda é desconhecido.</p>
+<p>Como o montante A é conhecido, a média condicional ideal desse alvo é <code>E[A × Y | X] = A × P(Y=1 | X)</code> quando A está contido em X. Isso explica a ligação entre regressão direta e probabilidade vezes valor. Na prática, estimadores, perdas e erros de calibração produzem rankings diferentes.</p>
+<p><strong>MAE</strong> é o erro absoluto médio, em dólares. <strong>MSE</strong> é a média dos erros ao quadrado, em dólares². <strong>RMSE</strong> é a raiz do MSE, volta à unidade monetária e dá mais peso aos erros grandes. <strong>R² = 1 − SSE/SST</strong> compara o erro quadrático com uma referência constante baseada na média do próprio conjunto avaliado; pode ser negativo.</p>
+<p>O R² do regressor escolhido fica próximo de 0,25 no teste. Não escondemos esse resultado nem buscamos um R² artificialmente alto. A utilidade de priorização é medida separadamente, com o orçamento fixo.</p>
+<p><strong>Resposta de defesa:</strong> “Não estamos prevendo o montante, que já é conhecido. Estamos estimando quanto desse montante está associado ao evento fraude.”</p>
+<h3 id="etapa-12-agrupamento-de-transações-e-pca">Etapa 12: Agrupamento de transações e PCA</h3>
+<p>Agrupamos duas mil transações sorteadas apenas do treino, sem usar rótulos. Nove indicadores numéricos passam por mediana, log1p após truncamento inferior em zero, e padronização. Essa transformação reduz o domínio de caudas. O truncamento é uma escolha para essa análise exploratória e pode perder informação de sinais negativos.</p>
+<p>Comparamos k de 2 a 6 em K-means e hierárquico e quatro eps de DBSCAN. Silhouette favorece separação, Davies–Bouldin favorece grupos compactos e distintos. DBSCAN calcula métricas apenas nos pontos não marcados como ruído, exigindo mostrar a fração excluída. Um único grupo não tem silhouette definido.</p>
+<p>PCA maximiza variância e produz uma projeção linear. Os coeficientes das componentes não são efeitos causais. A taxa de fraude dos grupos é calculada somente depois do agrupamento como descrição, não como critério usado para construí-los.</p>
+<h4>Passo a passo: o que os grupos realmente mostram?</h4>
+<p><strong>K-means:</strong> procura centros que reduzam a distância quadrática dentro dos grupos. <strong>Hierárquico:</strong> constrói uniões sucessivas; o corte define quantos grupos apresentar. <strong>DBSCAN:</strong> procura regiões densas e pode deixar pontos como ruído. Ruído não significa fraude.</p>
+<p><strong>Silhouette:</strong> combina proximidade ao próprio grupo e separação dos demais; maior costuma ser melhor. <strong>Davies–Bouldin:</strong> relaciona dispersão e separação; menor costuma ser melhor. Compare também tamanho dos grupos e fração de ruído, não apenas um índice.</p>
+<p><strong>PCA:</strong> cria novas coordenadas que concentram variância. Se duas componentes não preservam toda a variância, o gráfico bidimensional omite parte da estrutura. “Variância explicada” no PCA não é o R² da regressão nem porcentagem de fraudes detectadas.</p>
+<p><strong>ARI de estabilidade:</strong> compara agrupamentos de sementes distintas, descontando concordância casual. Estabilidade ajuda a avaliar repetibilidade, mas não demonstra significado de negócio.</p>
+<p><strong>Resposta de defesa:</strong> “Usamos agrupamento para explorar perfis sem fornecer o rótulo. Consultamos a taxa de fraude depois, como descrição. Não chamamos os grupos de tipos comprovados de fraude.”</p>
+<h3 id="etapa-13-políticas-operacionais-comparáveis">Etapa 13: Políticas operacionais comparáveis</h3>
+<p>Todas as políticas revisam <code>ceil(capacidade × transações do dia)</code> casos, mesmo que os scores sejam baixos. Empates são resolvidos por linha de origem, sem olhar o rótulo. Isso mede ganho de priorização com orçamento fixo, não a capacidade ótima da empresa.</p>
+<div class="tables"><table>
+<thead>
+<tr>
+<th>Política</th>
+<th>Score usado</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Random</td>
+<td>Sorteio reprodutível independente do rótulo</td>
+</tr>
+<tr>
+<td>LargestAmount</td>
+<td>Valor da transação</td>
+</tr>
+<tr>
+<td>ProductRateAmount</td>
+<td>Taxa histórica suavizada do produto × valor</td>
+</tr>
+<tr>
+<td>ML_Probability</td>
+<td>Probabilidade calibrada</td>
+</tr>
+<tr>
+<td>ML_ExpectedAmount</td>
+<td>Probabilidade calibrada × valor; política principal</td>
+</tr>
+<tr>
+<td>RegressionExposure</td>
+<td>Previsão do regressor de exposição</td>
+</tr>
+</tbody></table></div>
+<p>A referência é a melhor das três regras simples na validação. Depois do teste, mantemos essa referência mesmo se outra regra simples se destacar. Analisar montantes identifica o que está em jogo; não é necessário inventar o custo de aquisição ou margem de um produto.</p>
+<h4>Passo a passo: construir uma comparação justa</h4>
+<ol>
+<li>Separe as transações por dia relativo.</li>
+<li>Calcule a capacidade de cada dia com arredondamento para cima.</li>
+<li>Ordene cada política usando somente informação permitida.</li>
+<li>Selecione exatamente essa quantidade, inclusive quando os scores forem baixos.</li>
+<li>Só depois consulte rótulos e calcule quantidades e montantes.</li>
+</ol>
+<p>A ordem é decisiva: usar o rótulo para desempatar seria vazamento. <code>source_row</code> fornece um desempate determinístico independente do rótulo.</p>
+<p>Em 28 dias, a capacidade de 2% resulta em 333 análises, acima de <code>0,02 × 15.915 = 318,3</code> porque arredondamos separadamente cada dia. Não apresentamos 333 como 2% exatos do total.</p>
+<p><strong>Por que maiores valores é uma referência forte?</strong> Ela já coloca dinheiro no centro da seleção. Superá-la permite atribuir parte do resultado à informação de risco, além da informação de valor.</p>
+<h3 id="etapa-14-o-que-é-observado-e-o-que-é-assumido">Etapa 14: O que é observado e o que é assumido</h3>
+<p><strong>Observado no dataset:</strong> valor da transação, rótulo, fila selecionada e soma do valor rotulado revisado. Não observamos o efeito de investigar uma transação que não teria sido investigada na operação real.</p>
+<p><strong>Hipóteses centrais:</strong> custo de US$ 2 por investigação, eficácia de 80% sobre o valor fraudulento identificado e penalidade adicional zero por revisão legítima. “Eficácia” agrega a possibilidade de evitar ou recuperar uma parte da exposição. Não é uma taxa medida nessa base.</p>
+<p>Para cada política:</p>
+<p><code>benefício líquido simulado = eficácia × valor fraudulento identificado − custo × análises − penalidade × revisões legítimas</code>.</p>
+<p><code>perda total simulada = valor fraudulento total − benefício líquido simulado</code>.</p>
+<p>A diferença entre política e referência mede benefício incremental. As duas têm o mesmo número de análises, logo custos fixos por análise se cancelam na diferença quando não há penalidade adicional. O resultado não inclui implantação, manutenção, atrasos, qualidade da investigação ou efeito sobre clientes.</p>
+<h4>Passo a passo: refazer a conta que sustenta o trabalho</h4>
+<p>No teste, a exposição fraudulenta rotulada total é US$ 78.851,255. A fila principal identifica US$ 35.111,123; a regra de maiores valores identifica US$ 14.670. Ambas usam 333 análises.</p>
+<p>Com eficácia de 80% e custo de US$ 2 por análise:</p>
+<ul>
+<li>Modelo: <code>0,8 × 35.111,123 − 2 × 333 = US$ 27.422,8984</code> de benefício líquido simulado.</li>
+<li>Referência: <code>0,8 × 14.670 − 2 × 333 = US$ 11.070</code>.</li>
+<li>Contribuição incremental: <code>27.422,8984 − 11.070 = US$ 16.352,8984</code>.</li>
+<li>Perda simulada da referência: <code>78.851,255 − 11.070 = US$ 67.781,255</code>.</li>
+<li>Redução relativa dessa perda: <code>16.352,8984 / 67.781,255 ≈ 24,13%</code>.</li>
+</ul>
+<p>O denominador de 24,13% é a perda simulada da referência. Não é o valor total de todas as transações, não é o percentual de fraudes encontradas e não é retorno sobre investimento de implantação.</p>
+<p><strong>Resposta pronta:</strong> “Na amostra de teste, com a mesma capacidade, nosso ranking identificou mais valor de fraude. Sob eficácia de 80% e custo de dois dólares por análise, isso equivale a cerca de 16,35 mil dólares adicionais e 24,13% menos perda que a regra de maiores valores.”</p>
+<h3 id="etapa-15-capacidade-custos-e-eficácia">Etapa 15: Capacidade, custos e eficácia</h3>
+<p>Testamos capacidades de 1%, 2%, 5% e 10% por dia. Maior capacidade pode capturar mais fraude, mas exige mais trabalho e pode aumentar falsos positivos. A capacidade principal permanece 2%, definida antes do teste.</p>
+<p>Cenários: central; eficácia reduzida a 50%; custo de US$ 10 por investigação; e penalidade ilustrativa adicional de US$ 10 por transação legítima revisada. Não escolhemos o cenário mais favorável para apresentar como principal. Esses custos não são parâmetros fornecidos pela Vesta.</p>
+<p>Comparar apenas com nenhuma análise produziria uma impressão exagerada da contribuição de ML. Exibimos também quanto as regras simples já conseguiriam identificar.</p>
+<h4>Passo a passo: o que faz o ganho mudar?</h4>
+<p>Com a mesma quantidade de análises e sem penalidade adicional, o custo unitário se cancela na diferença entre políticas. Aumentar esse custo reduz o benefício absoluto de ambas, mas não muda o benefício incremental em dólares. A redução percentual pode mudar porque o denominador muda.</p>
+<p>A eficácia multiplica a diferença de valor capturado. Se for zero, não existe benefício monetário da captura neste modelo. Custos adicionais de implantação consumiriam parte do ganho: o estudo não os mediu.</p>
+<p>Uma penalidade para revisão legítima não se cancela quando as filas têm quantidades diferentes de legítimas. Essa hipótese representa atrito ou trabalho adicional e precisa ser apresentada como cenário.</p>
+<p><strong>Não anualize automaticamente:</strong> os 28 dias não provam estabilidade por um ano, nem a amostra representa o volume completo de uma empresa. Cenários servem para entender dependência das hipóteses, não para escolher a história mais favorável.</p>
+<h3 id="etapa-16-incerteza-estabilidade-e-verificação">Etapa 16: Incerteza, estabilidade e verificação</h3>
+<p>O bootstrap pareado reamostra blocos circulares de sete dias com todas as transações de cada dia juntas. São cinco mil réplicas. Isso preserva parte da dependência temporal, mas 28 dias fornecem poucos blocos independentes. O intervalo é exploratório e não substitui avaliação em outros períodos ou um piloto causal.</p>
+<p>As verificações exigem separação de dias, ausência do rótulo nas entradas, identidade da exposição, previsões finitas e igualdade exata dos orçamentos por política e dia. Uma verificação embaralha o rótulo depois dos scores e confirma que as decisões não mudam: a política seleciona sem conhecer a verdade do teste.</p>
+<h4>Passo a passo: entender o intervalo de incerteza</h4>
+<p>A unidade de reamostragem é um bloco de dias, não uma transação independente. Reamostrar transações isoladas ignoraria choques e dependência temporal compartilhados.</p>
+<p><strong>Pareado</strong> significa que, em cada réplica, modelo e referência recebem os mesmos dias. Calculamos a diferença nas duas políticas dentro da mesma réplica. Isso evita comparar períodos distintos por acidente.</p>
+<p>O intervalo exploratório principal é aproximadamente US$ 11,87 mil a US$ 21,33 mil. Ele resume a variação da diferença no procedimento de reamostragem, sob os custos e a eficácia escolhidos. Não é uma garantia de que 95% dos ganhos futuros estarão aí, nem incorpora automaticamente erros nas hipóteses econômicas.</p>
+<p>Com apenas quatro semanas de teste, a diversidade temporal é limitada. Um intervalo inteiramente positivo reforça a evidência nesse recorte, sem provar efeito causal.</p>
+<p><strong>Contra logística:</strong> o ganho adicional do campeão é cerca de US$ 4.785,62, ou 8,51% de redução da perda simulada da logística. Esse diagnóstico posterior mostra que um modelo simples já entrega parte importante do resultado; não redefine o campeão.</p>
+<h3 id="diagnóstico-adicional-contra-um-modelo-simples-de-risco">Diagnóstico adicional contra um modelo simples de risco</h3>
+<p>A referência principal continua sendo a regra escolhida antes do teste. Para não atribuir todo o benefício a uma arquitetura complexa, também mostramos todos os classificadores sob o mesmo orçamento. Uma regressão logística simples já identifica valor relevante; a contribuição adicional do campeão deve ser avaliada contra ela. Este diagnóstico não muda o campeão depois de olhar o teste.</p>
+<h3 id="etapa-17-limitações-e-ética">Etapa 17: Limitações e ética</h3>
+<p>O espelho e as features anonimizadas limitam a auditoria de como cada atributo foi calculado. A partição temporal não garante independência por cliente. O orçamento se refere à amostra sistemática, e o teste cobre apenas 28 dias. O custo e a eficácia de investigação não são observados. Uma investigação pode ocorrer tarde demais para impedir uma perda, e o rótulo histórico pode refletir processos operacionais existentes.</p>
+<p>O projeto não autoriza bloqueio automático de cartões. Transações legítimas revisadas podem causar atrito e tratamento desigual. Não tentamos reidentificar pessoas. Dados públicos e anonimizados não substituem uma análise de finalidade, proteção de dados, LGPD e governança numa implantação real. Não declaramos conformidade jurídica a partir deste estudo.</p>
+<p>A classificação e a regressão reformulam o mesmo risco. Clusters são exploratórios. Não atribuímos economia a segmentação ou explicações sem avaliar uma ação. O benefício simulado deve ser descontado de implantação e manutenção antes de discutir retorno de investimento.</p>
+<h4>Passo a passo: responder limitações sem desvalorizar o estudo</h4>
+<p>Use a sequência <strong>limite → consequência → próxima verificação</strong>. Exemplo: “Temos apenas 28 dias de teste; isso limita a estabilidade temporal; repetiríamos em outros períodos antes de implantação”.</p>
+<p>Outros exemplos: atributos mascarados limitam a tradução causal; custos assumidos exigem sensibilidade; falta de identificador confiável impede validar clientes inéditos; rótulos históricos podem refletir o processo de confirmação de fraude.</p>
+<p>O caráter acadêmico permite estudar essas decisões com hipóteses explícitas. Uma boa defesa sabe delimitar a evidência, sem transformar cada limitação em uma afirmação de que o modelo não serve.</p>
+<h3 id="etapa-18-insights-e-decisão-de-implantação">Etapa 18: Insights e decisão de implantação</h3>
+<p>A análise deve separar três coisas: reconhecer padrões de fraude, ordenar casos pelo valor em risco e transformar a fila em uma intervenção eficaz. Um classificador com bom F1 pode não maximizar o valor capturado. Revisar somente os maiores valores já é um baseline relevante.</p>
+<p>Uma vantagem grande no teste é uma razão para investigar um piloto, não prova de lucro futuro. O piloto precisaria medir capacidade, tempo de resposta, eficácia, custo, atrito de clientes e estabilidade temporal. Os resultados abaixo são calculados dos arquivos, sem números escolhidos para produzir uma narrativa favorável.</p>
+<h4>Passo a passo: interpretar o conjunto, não apenas a melhor tabela</h4>
+<p>Ao apresentar os resultados, mantenha quatro perguntas: o modelo prevê melhor? a fila seleciona melhor? a diferença tem relevância financeira sob as hipóteses? o desenho permite sustentar essa conclusão?</p>
+<p>Não compare diretamente R² da regressão, AP da classificação e silhouette do agrupamento. Medem tarefas diferentes. O vínculo entre as frentes é o problema de negócio e a análise dos dados, não uma escala única de desempenho.</p>
+<p><strong>Frase central:</strong> “O estudo mostra como converter uma previsão de risco em uma política de priorização e medir sua contribuição incremental em condições comparáveis.”</p>
+<h2 id="perguntas-do-professor">Perguntas do professor</h2>
+<h3 id="base-e-problema">Base e problema</h3>
+<p><strong>O que é a base?</strong> Transações reais de comércio eletrônico disponibilizadas por Vesta e IEEE-CIS, com rótulos históricos de fraude. Baixamos um espelho OpenML documentado e preservamos a origem.</p>
+<p><strong>Por que não usar o arquivo direto do Kaggle?</strong> O espelho é público e permite reproduzir o download. A fonte original e os direitos continuam os da competição; o arquivo não se torna de domínio público.</p>
+<p><strong>Uma linha é um cliente?</strong> Não, é uma transação. Não possuímos uma chave confiável que identifique clientes de forma completa.</p>
+<p><strong>O que significa cada V ou C?</strong> Muitas definições são ocultadas pelo provedor. Podemos explicar a família geral e o comportamento estatístico, mas não inventar uma interpretação específica.</p>
+<p><strong>Por que 456 campos no espelho?</strong> Há atributos de identidade com variantes de nomes. Lemos uma lista predefinida e auditamos o esquema recebido, sem assumir identidade perfeita com todas as versões da competição.</p>
+<p><strong>Por que uma em cada cinco linhas?</strong> Para limitar processamento sem selecionar pelo rótulo ou por resultado futuro. A amostra é sistemática e não representa automaticamente todo o fluxo de produção.</p>
+<p><strong>Por que só 30 mil linhas para treinar?</strong> É um orçamento comum a todos os algoritmos que permite comparação reproduzível. O teste usa todas as linhas de seu bloco da amostra. Mais dados é uma extensão possível, sem promessa de melhora.</p>
+<p><strong>Por que não retirar valores altos?</strong> O valor é parte do risco econômico. Apagar montantes extremos só por serem extremos poderia esconder o problema real.</p>
+<h3 id="metodologia">Metodologia</h3>
+<p><strong>Por que separar por tempo?</strong> O uso real recebe transações futuras. Dividir aleatoriamente poderia misturar padrões posteriores no treino.</p>
+<p><strong>O teste tem clientes inéditos?</strong> Não sabemos. A avaliação mede um fluxo posterior; não comprova generalização para novos clientes.</p>
+<p><strong>Onde poderia haver vazamento?</strong> Em rótulos ou valores derivados entrando em X, agregações futuras, transformações ajustadas fora do treino e escolha retrospectiva de políticas. A origem de features ocultas também limita a auditoria.</p>
+<p><strong>Por que TransactionDT não entra diretamente?</strong> É um deslocamento temporal com origem civil desconhecida e pode incentivar extrapolações frágeis. Usamos o tempo para separar blocos e extraímos um ciclo horário, sem afirmar hora local.</p>
+<p><strong>Por que o valor entra no modelo?</strong> Ele está disponível na transação. Não revela por si só se a operação é fraude.</p>
+<p><strong>A regressão não é uma classificação disfarçada?</strong> Ela é outra formulação do mesmo risco: estima uma média monetária em vez de uma probabilidade. Não a apresentamos como problema independente ou prejuízo líquido observado.</p>
+<p><strong>Por que não usar SMOTE?</strong> Preservamos a prevalência nos dados e exploramos métricas e ranking. Amostragem sintética exigiria ocorrer apenas dentro do treino e poderia distorcer probabilidades sem correção.</p>
+<p><strong>Como foram escolhidos hiperparâmetros?</strong> Pequenas grades em três folds temporais no treino. A escolha é documentada e não é busca exaustiva.</p>
+<p><strong>O que faz a calibração Platt?</strong> Ajusta uma transformação logística do score bruto com rótulos de um bloco separado, buscando probabilidades mais consistentes. Não garante calibração futura ou por subgrupo.</p>
+<h3 id="métricas-e-algoritmos">Métricas e algoritmos</h3>
+<p><strong>Por que não destacar acurácia?</strong> A classe legítima domina. Um modelo que nunca detecta fraude pode ter acurácia alta e ser inútil para a decisão.</p>
+<p><strong>Qual é a diferença entre precisão e recall?</strong> Precisão mede quantas revisões selecionadas eram fraude; recall mede quantas fraudes existentes foram selecionadas.</p>
+<p><strong>O que é AP?</strong> Average precision, um resumo da curva precisão–recall. Não é percentual de fraude nem a integral trapezoidal da curva.</p>
+<p><strong>Por que o limiar F1 não é usado na fila econômica?</strong> O limiar decide uma classe; a fila precisa respeitar capacidade e priorizar valor. São objetivos distintos.</p>
+<p><strong>Por que multiplicar probabilidade por valor?</strong> Isso estima exposição esperada, se a probabilidade for adequada e o valor representar o que está em risco. A eficácia da investigação vem depois.</p>
+<p><strong>Por que um modelo com maior F1 pode identificar menos dinheiro?</strong> Ele pode reconhecer muitas fraudes pequenas e perder poucas operações de alto valor.</p>
+<p><strong>Por que R² pode ser baixo?</strong> A exposição tem muitos zeros e eventos monetários extremos. Estimar a média exata é difícil. Avaliamos ranking e decisão separadamente, sem esconder o R².</p>
+<p><strong>Por que um baseline zero pode ter bom MAE?</strong> Porque a mediana de um alvo com mais de metade de zeros é zero. Isso não o torna útil para ordenar exposição positiva.</p>
+<p><strong>Qual é a diferença entre parâmetro e hiperparâmetro?</strong> Parâmetro é aprendido no ajuste; hiperparâmetro configura o algoritmo antes do ajuste, como profundidade ou regularização.</p>
+<p><strong>Por que one-hot e escala?</strong> Códigos não têm uma ordem numérica natural, e escalas distintas podem dominar distâncias e regularização.</p>
+<p><strong>O que é regularização?</strong> Penalização de complexidade para reduzir ajustes frágeis. L1 pode zerar coeficientes; L2 os contrai; ElasticNet combina as duas.</p>
+<p><strong>Por que permutação não mostra causa?</strong> Embaralhar mede dependência preditiva no modelo. Atributos correlacionados e fatores não observados impedem interpretação causal direta.</p>
+<h3 id="agrupamento-e-pca">Agrupamento e PCA</h3>
+<p><strong>Os clusters são tipos de fraude?</strong> Não. Foram construídos sem rótulo. A taxa de fraude posterior só descreve cada grupo histórico.</p>
+<p><strong>O que é ruído no DBSCAN?</strong> Ponto sem densidade suficiente segundo eps e min_samples, não necessariamente dado errado ou fraude.</p>
+<p><strong>Silhouette mais alta prova melhor grupo?</strong> Não. Pode excluir muitos pontos ou representar grupos pouco úteis. É preciso avaliar cobertura, tamanho e interpretação.</p>
+<p><strong>PCA melhora automaticamente a previsão?</strong> Não. Aqui é ferramenta de exploração e visualização, não uma etapa obrigatória do classificador.</p>
+<h3 id="dinheiro-e-conclusão">Dinheiro e conclusão</h3>
+<p><strong>Quanto foi realmente economizado?</strong> Não observamos economia realizada. Medimos valor fraudulento rotulado identificado e calculamos benefício sob eficácia e custos assumidos. As cifras concretas estão na seção 14.</p>
+<p><strong>O valor de uma fraude é igual à perda da empresa?</strong> Não necessariamente. Pode haver recuperação, responsabilidade compartilhada, tarifas e outros mecanismos não observados.</p>
+<p><strong>Por que custo de dois dólares e eficácia de 80%?</strong> São hipóteses ilustrativas declaradas antes do teste, não dados da Vesta. Outros cenários mostram sensibilidade.</p>
+<p><strong>A referência é não investigar ninguém?</strong> Essa é uma referência secundária. A principal é a melhor regra simples na validação, com o mesmo orçamento diário de análises.</p>
+<p><strong>Maior benefício significa que devemos implantar?</strong> Não sozinho. Precisamos validar eficácia, atraso, custo, estabilidade, atrito e despesas de implantação com um piloto.</p>
+<p><strong>Revisar significa bloquear?</strong> Não. A política representa uma fila de investigação. Bloqueio automático exigiria outro desenho operacional e avaliação de consequências.</p>
+<p><strong>Como sabemos que o teste não escolheu a referência?</strong> A referência foi avaliada e congelada no bloco de validação; o arquivo baseline_selection registra seus resultados.</p>
+<p><strong>Por que comparar os dois projetos sem comparar dólares absolutos?</strong> Os recortes, escalas, períodos e premissas são diferentes. Comparamos evidência incremental, incerteza e adequação acadêmica.</p>
+<p><strong>Fraude resolve a fragilidade econômica do M5?</strong> Pode fornecer uma vantagem mais clara na triagem, mas ainda depende de eficácia da ação. A decisão deve seguir os resultados e não uma promessa anterior.</p>
+<h2 id="ensaio-e-demonstração-em-dupla">Ensaio e demonstração em dupla</h2>
+<p><strong>Sugestão de divisão para ensaiar:</strong> João apresenta slides 1–4 (5min20s). Vitor apresenta 5–7 (4min55s). João apresenta 8 (2min20s). Vitor apresenta 9–10 (2min25s). É uma sugestão, não uma divisão obrigatória. Ambos devem dominar o projeto inteiro.</p>
+<ol>
+<li>Cada integrante explica em voz alta origem, split, campeão, fila e conta financeira sem consultar o texto.</li>
+<li>O outro faz as perguntas da seção anterior e pede a evidência no notebook.</li>
+<li>Ensaiem com cronômetro. Cortem detalhes da fala, mantendo-os no roteiro para perguntas.</li>
+<li>Antes da apresentação, abram o notebook e executem o modo de leitura. Confiram kernel, caminhos e dependências.</li>
+<li>Durante a demonstração, mostrem leitura, preparação, split e a célula didática da seção 20. O treinamento completo fica fora da fala. A seção 24.4 reconcilia o resultado com o CSV.</li>
+<li>Se a célula didática demorar além do tempo ensaiado, mostrem as saídas executadas e expliquem as operações. Não atribuam ao exemplo pequeno o resultado do campeão completo.</li>
+</ol>
+<h3 id="frases-que-precisam-sair-corretas">Frases que precisam sair corretas</h3>
+<ul>
+<li>“Uma linha é uma transação, não um cliente.”</li>
+<li>“Extra Trees foi escolhido pela captura monetária na validação.”</li>
+<li>“O teste mede o protocolo congelado.”</li>
+<li>“O ranking principal usa probabilidade calibrada vezes valor, com a mesma capacidade diária.”</li>
+<li>“24,13% é redução da perda simulada da regra de maiores valores.”</li>
+<li>“O valor identificado é medido na avaliação, e o benefício depende das hipóteses.”</li>
+<li>“Um resultado melhor no teste sugere investigação futura, sem troca retrospectiva do campeão.”</li>
+</ul>
+<h3 id="antes-da-submissão">Antes da submissão</h3>
+<p>Conferir os nomes João Pedro Castro e Vitor Neves em PPT e relatório, adequar a identificação dos arquivos e conferir a data no sistema da instituição. O professor pede PPT com até 10 slides, DOC com até 10 páginas, base e código. Esta documentação não substitui a submissão pelo sistema da disciplina.</p>
+<h2 id="fontes-e-rastreabilidade">Fontes e rastreabilidade</h2>
+<ul>
+<li><a href="https://www.kaggle.com/competitions/ieee-fraud-detection/data">Competição IEEE-CIS / Vesta no Kaggle</a>.</li>
+<li><a href="https://www.openml.org/d/46858">Espelho OpenML 46858</a>.</li>
+<li><a href="https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html">Documentação Empulse</a>.</li>
+<li><code>references/template_professor.pptx</code>: requisitos do trabalho.</li>
+<li><code>results/*_metrics.csv</code>: desempenho por algoritmo e bloco.</li>
+<li><code>results/financial_policies.csv</code>: resultado por política, capacidade e cenário.</li>
+<li><code>results/training_diagnostics.json</code>: comparação posterior entre ajuste e teste.</li>
+<li><code>src/experiment.py</code>: decisões, configurações e cálculos.</li>
+<li><code>src/diagnosticos_apresentacao.py</code>: reprodução do diagnóstico sem nova seleção.</li>
+</ul>
+<p>Os arquivos têm origem identificada e hash local. O MD5 do OpenML refere-se ao ARFF, não ao parquet recebido. Não afirmamos licença irrestrita a partir da existência do espelho. O repositório permanece privado.</p>
+</main></html>

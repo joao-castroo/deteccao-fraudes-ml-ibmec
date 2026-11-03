@@ -1,126 +1,136 @@
-[
-  {
-    "check": "Ten slides",
-    "passed": true
-  },
-  {
-    "check": "Ten speaker notes",
-    "passed": true
-  },
-  {
-    "check": "Two native charts",
-    "passed": true
-  },
-  {
-    "check": "Two embedded chart workbooks",
-    "passed": true
-  },
-  {
-    "check": "Classifier Logistic",
-    "passed": true
-  },
-  {
-    "check": "Classifier DecisionTree",
-    "passed": true
-  },
-  {
-    "check": "Classifier RandomForest",
-    "passed": true
-  },
-  {
-    "check": "Classifier ExtraTrees",
-    "passed": true
-  },
-  {
-    "check": "Classifier HistGradientBoosting",
-    "passed": true
-  },
-  {
-    "check": "Classifier KNN",
-    "passed": true
-  },
-  {
-    "check": "Classifier GaussianNB",
-    "passed": true
-  },
-  {
-    "check": "Regressor Linear",
-    "passed": true
-  },
-  {
-    "check": "Regressor Ridge",
-    "passed": true
-  },
-  {
-    "check": "Regressor Lasso",
-    "passed": true
-  },
-  {
-    "check": "Regressor ElasticNet",
-    "passed": true
-  },
-  {
-    "check": "Regressor DecisionTree",
-    "passed": true
-  },
-  {
-    "check": "Regressor RandomForest",
-    "passed": true
-  },
-  {
-    "check": "Regressor ExtraTrees",
-    "passed": true
-  },
-  {
-    "check": "Regressor HistGradientBoosting",
-    "passed": true
-  },
-  {
-    "check": "Finance Random",
-    "passed": true
-  },
-  {
-    "check": "Finance LargestAmount",
-    "passed": true
-  },
-  {
-    "check": "Finance ProductRateAmount",
-    "passed": true
-  },
-  {
-    "check": "Finance ML_Probability",
-    "passed": true
-  },
-  {
-    "check": "Finance ML_ExpectedAmount",
-    "passed": true
-  },
-  {
-    "check": "Finance RegressionExposure",
-    "passed": true
-  },
-  {
-    "check": "Twenty notebook cells executed",
-    "passed": true
-  },
-  {
-    "check": "No notebook error outputs",
-    "passed": true
-  },
-  {
-    "check": "HTML figures embedded",
-    "passed": true
-  },
-  {
-    "check": "125 model/data checks",
-    "passed": true
-  },
-  {
-    "check": "Comparison matches evaluation",
-    "passed": true
-  },
-  {
-    "check": "Cost assumptions explicit",
-    "passed": true
-  }
-]
+{
+  "scope": "Current submission materials: same 10-slide PPT for presentation and delivery. Original experiment metrics unchanged.",
+  "checks": [
+    {
+      "name": "PPT possui exatamente 10 slides",
+      "passed": true
+    },
+    {
+      "name": "PPT possui 10 notas de fala",
+      "passed": true
+    },
+    {
+      "name": "PPT contém João Pedro Castro e Vitor Neves",
+      "passed": true
+    },
+    {
+      "name": "PPT contém 16.352,90",
+      "passed": true
+    },
+    {
+      "name": "PPT contém 24,13%",
+      "passed": true
+    },
+    {
+      "name": "PPT contém 4.785,62",
+      "passed": true
+    },
+    {
+      "name": "PPT contém Silhouette",
+      "passed": true
+    },
+    {
+      "name": "PPT contém R²",
+      "passed": true
+    },
+    {
+      "name": "PPT sem placeholder de autoria",
+      "passed": true
+    },
+    {
+      "name": "Relatório identifica os dois autores",
+      "passed": true
+    },
+    {
+      "name": "Notebook mantém 81 células",
+      "passed": true
+    },
+    {
+      "name": "Notebook mantém 25 células executadas",
+      "passed": true
+    },
+    {
+      "name": "Notebook sem saídas de erro",
+      "passed": true
+    },
+    {
+      "name": "HTML do notebook identifica a dupla",
+      "passed": true
+    },
+    {
+      "name": "Roteiro documenta 54 termos",
+      "passed": true
+    },
+    {
+      "name": "Existe apenas um PPT próprio de entrega",
+      "passed": true
+    },
+    {
+      "name": "Roteiro soma 15 minutos",
+      "passed": true
+    },
+    {
+      "name": "Link README.md: docs/COMECE_AQUI.md",
+      "passed": true
+    },
+    {
+      "name": "Link README.md: deliverables/apresentacao_Fraude.pptx",
+      "passed": true
+    },
+    {
+      "name": "Link README.md: docs/ROTEIRO_E_DEFESA.md",
+      "passed": true
+    },
+    {
+      "name": "Link README.md: deliverables/roteiro_apresentacao_15min.html",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../deliverables/apresentacao_Fraude.pptx",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ROTEIRO_E_DEFESA.md",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../deliverables/roteiro_apresentacao_15min.html",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../notebooks/01_projeto_fraude_completo.ipynb",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../deliverables/notebook_leitura.html",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../deliverables/relatorio_Fraude.docx",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../src/experiment.py",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../src/diagnosticos_apresentacao.py",
+      "passed": true
+    },
+    {
+      "name": "Link docs/COMECE_AQUI.md: ../results",
+      "passed": true
+    },
+    {
+      "name": "Link docs/ROTEIRO_E_DEFESA.md: ../deliverables/apresentacao_Fraude.pptx",
+      "passed": true
+    }
+  ],
+  "passed": 31,
+  "report_pages": 8,
+  "presentation_seconds": 900,
+  "authors": [
+    "João Pedro Castro",
+    "Vitor Neves"
+  ]
+}
