@@ -224,13 +224,29 @@
     {
       "name": "Resultado salvo de regressão com Random Forest",
       "passed": true
+    },
+    {
+      "name": "Quadro síntese com 15 aplicações e justificativas",
+      "passed": true
+    },
+    {
+      "name": "Importância de 71 entradas da regressão com valores finitos",
+      "passed": true
+    },
+    {
+      "name": "Notebook mostra importância, resíduos e coeficientes PCA",
+      "passed": true
+    },
+    {
+      "name": "Matriz de cobertura preserva ressalvas e pendências",
+      "passed": true
     }
   ],
-  "passed": 56,
+  "passed": 60,
   "financial_incremental_benefit": 18699.657600000002,
   "manual_visual_review": {
     "ppt_slides": 10,
-    "report_pages": 8,
+    "report_pages": 9,
     "study_guide_pages": 30,
     "all_pages_inspected": true
   }

@@ -12,7 +12,7 @@ Autores: **João Pedro Castro e Vitor Neves**. O repositório é privado. Vitor 
 | [Roteiro em HTML](../deliverables/roteiro_apresentacao_15min.html) | Baixar e abrir no navegador, com navegação e tabelas |
 | [Notebook](../notebooks/01_projeto_fraude_completo.ipynb) | Código executado, resultados e exercícios |
 | [Notebook em HTML](../deliverables/notebook_leitura.html) | Leitura sem instalar Python: baixar e abrir no navegador |
-| [Relatório](../deliverables/relatorio_Fraude.docx) | Texto da entrega, com 8 páginas |
+| [Relatório](../deliverables/relatorio_Fraude.docx) | Texto da entrega, com 9 páginas |
 | [Código principal](../src/experiment.py) | Protocolo e 15 técnicas |
 | [Diagnóstico de ajuste e teste](../src/diagnosticos_apresentacao.py) | Refaz somente os campeões, sem mudar seleção |
 | [Resultados](../results) | Métricas, políticas, parâmetros e verificações |

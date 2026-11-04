@@ -24,7 +24,7 @@ Este repositório contém o projeto de fraude, separado do M5. A base bruta é o
 2. `notebooks/01_projeto_fraude_completo.ipynb`: notebook executado, com 25 seções numeradas (0–24), 81 células, explicações passo a passo e cinco exercícios didáticos adicionais.
 3. `deliverables/guia_defesa.html`: perguntas respondidas e glossário.
 4. `deliverables/apresentacao_Fraude.pptx`: dez slides com notas de fala.
-5. `deliverables/relatorio_Fraude.docx`: relatório de oito páginas.
+5. `deliverables/relatorio_Fraude.docx`: relatório de nove páginas.
 
 Autores: João Pedro Castro e Vitor Neves. Antes da submissão, adequar os nomes de arquivo à exigência do professor. A data e o prazo devem ser conferidos no sistema da instituição. Nada foi publicado ou submetido.
 
@@ -96,3 +96,7 @@ O hash SHA-256 local está em results/provenance.json. O MD5 OpenML se refere ao
 Mantidos Ridge e Lasso na regressão e HistGradientBoosting nas duas tarefas supervisionadas. Classificação: Logística, LDA, HistGradientBoosting, KNN e GaussianNB. Regressão: Linear, Ridge, Lasso, Árvore, Random Forest e HistGradientBoosting. Agrupamento: K-means, Hierárquico e DBSCAN. PCA é redução de dimensionalidade. Cada aplicação por tarefa conta uma vez; são 15 técnicas aplicadas, não 15 famílias distintas. O teste já foi consultado na versão anterior: esta revisão tem caráter retrospectivo, sem novo holdout inédito. Grades e critérios de validação continuam fixos.
 
 Veja [a justificativa da revisão e o ranking de validação](docs/REVISAO_CURRICULAR.md).
+
+## Conferência final de requisitos
+
+Veja [a matriz de cobertura](docs/CONFERENCIA_REQUISITOS.md) e [o quadro síntese das 15 aplicações](docs/QUADRO_SINTESE.md). O relatório tem nove páginas e os slides permanecem dez. `python src/diagnosticos_apresentacao.py` reproduz os vencedores e gera importância da regressão, resíduos e diagnóstico de ajuste–teste; o fluxo completo também chama esse diagnóstico. Os arquivos identificados para submissão ficam em `entrega_sala/`, preparados pelo script `src/prepare_submission.py`.

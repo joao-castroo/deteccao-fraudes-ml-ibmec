@@ -56,6 +56,12 @@ for file in ['relatorio_Fraude.docx','roteiro_completo_apresentacao_e_defesa.doc
     check(file+': sem resultado principal anterior',all(x not in text for x in ['16.352,90','24,13%','4.785,62']))
 check('Resultado salvo de classificação com HistGradientBoosting',meta('classification_selection.json')['winner']=='HistGradientBoosting')
 check('Resultado salvo de regressão com Random Forest',meta('regression_selection.json')['winner']=='RandomForest')
-report={'scope':'Curricular revision: 15 applications, Ridge/Lasso/HistGB retained; same previously inspected test period. Retrospective evaluation.', 'checks':checks,'passed':len(checks),'financial_incremental_benefit':delta,'manual_visual_review':{'ppt_slides':10,'report_pages':8,'study_guide_pages':30,'all_pages_inspected':True}}
+summary=rows('techniques_summary.csv')
+check('Quadro síntese com 15 aplicações e justificativas',len(summary)==15 and all(x['configuration'] and x['test_metric'] and x['strength'] and x['limitation'] for x in summary))
+regimp=rows('regression_permutation_importance.csv')
+check('Importância de 71 entradas da regressão com valores finitos',len(regimp)==71 and all(math.isfinite(float(x['increase_RMSE_USD'])) for x in regimp))
+check('Notebook mostra importância, resíduos e coeficientes PCA',all(x in source for x in ['regression_permutation_importance.csv','regression_residuals','pca_coefficients.csv']))
+check('Matriz de cobertura preserva ressalvas e pendências',all(x in (ROOT/'docs/CONFERENCIA_REQUISITOS.md').read_text() for x in ['ex-aluno','Ação externa pendente','ensaio cronometrado real']))
+report={'scope':'Curricular revision: 15 applications, Ridge/Lasso/HistGB retained; same previously inspected test period. Retrospective evaluation.', 'checks':checks,'passed':len(checks),'financial_incremental_benefit':delta,'manual_visual_review':{'ppt_slides':10,'report_pages':9,'study_guide_pages':30,'all_pages_inspected':True}}
 (ROOT/'results/delivery_verification.json').write_text(json.dumps(report,indent=2,ensure_ascii=False))
 print(f'{len(checks)} verificações de entrega aprovadas.')

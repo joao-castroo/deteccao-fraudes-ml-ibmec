@@ -37,6 +37,6 @@ O HistGradientBoosting já era um candidato na versão anterior. Reduzir a lista
 - Notebook: 81 células, 25 de código executadas, sem saída de erro.
 - Dados e políticas: 125 verificações aprovadas.
 - Diagnóstico dos dois vencedores: novo ajuste com a mesma amostra e parâmetros reproduz as previsões salvas.
-- Entrega: mesmo PPT de dez slides para apresentação e entrega, relatório de oito páginas, roteiro de estudo separado em Word e HTML.
+- Entrega: mesmo PPT de dez slides para apresentação e entrega, relatório de nove páginas, roteiro de estudo separado em Word e HTML.
 
 O ambiente emitiu avisos numéricos preservados nos logs. As previsões aceitas são finitas; os avisos não foram tratados como resultados válidos por si mesmos.

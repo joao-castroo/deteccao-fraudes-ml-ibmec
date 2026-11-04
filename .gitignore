@@ -10,3 +10,5 @@ data/raw/
 *.pem
 *.key
 *.download
+
+entrega_sala/

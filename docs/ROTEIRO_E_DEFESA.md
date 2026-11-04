@@ -52,7 +52,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 **Evidência para conferir:** `results/audit.json; results/provenance.json; results/missing_features.csv; data/processed/data_dictionary.csv; src/experiment.py`
 
 
-### Slide 04 — Quinze técnicas com critérios de seleção definidos
+### Slide 04 — Síntese de 15 técnicas e critérios de seleção
 
 **Tempo: 03:50–05:20 (90 segundos).**
 
@@ -122,7 +122,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 **Tempo: 14:00–15:00 (60 segundos).**
 
-**Fala sugerida:** No notebook, mostrar a leitura, o pipeline, o split temporal e a célula de fit/predict da seção vinte. A busca inteira não roda durante a fala. Em seguida, a seção 24 reconcilia o ganho lendo o CSV. Usar os resultados já executados se o tempo de treinamento ultrapassar o ensaiado. O pacote contém PPT de dez slides, relatório de oito páginas, base processada, download da base original, código, notebook e roteiro detalhado. Os slides são os mesmos para entrega e apresentação. Conferir nomes completos dos dois integrantes, identificação dos arquivos e prazo no sistema antes da submissão.
+**Fala sugerida:** No notebook, mostrar a leitura, o pipeline, o split temporal e a célula de fit/predict da seção vinte. A busca inteira não roda durante a fala. Em seguida, a seção 24 reconcilia o ganho lendo o CSV. Usar os resultados já executados se o tempo de treinamento ultrapassar o ensaiado. O pacote contém PPT de dez slides, relatório de nove páginas, base processada, download da base original, código, notebook e roteiro detalhado. Os slides são os mesmos para entrega e apresentação. Os arquivos de submissão identificam João Pedro Castro e Vitor Neves. O prazo é 23h59 do dia anterior à apresentação, conforme a data no sistema.
 
 **Pergunta e resposta:** Como outro integrante executa? Clona o repo privado após aceitar o convite, instala requirements numa venv e escolhe o kernel no notebook. A amostra processada já está incluída.
 
@@ -406,6 +406,8 @@ Atributos C, D, V e parte de id são anonimizados. Conhecemos famílias gerais, 
 
 Fontes: [competição](https://www.kaggle.com/competitions/ieee-fraud-detection/data), [metadados OpenML](https://www.openml.org/d/46858), [documentação Empulse](https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html). Os hashes registram os arquivos locais. O MD5 nos metadados se refere ao ARFF, não ao parquet baixado; não alegamos que o verificamos contra o parquet.
 
+**Licença no cadastro:** o campo `licence` dos metadados OpenML registra literalmente “Kaggle and IEEE CIS”. Isso identifica a origem declarada do regime de uso, mas não é uma licença aberta padronizada nem autorização irrestrita de redistribuição. O período observado é relativo; datas de upload/coleta do espelho não são datas civis das transações.
+
 #### Passo a passo: conhecer a base antes de modelar
 Leia primeiro a origem e depois a unidade de cada campo. `TransactionAmt` é um valor em dólares; `isFraud` é uma variável binária, com 1 para fraude; `TransactionDT` ordena eventos por um deslocamento em segundos. Nenhum desses campos prova o prejuízo líquido da instituição.
 
@@ -604,6 +606,8 @@ O R² do regressor escolhido fica próximo de 0,25 no teste. Não escondemos ess
 
 **Resposta de defesa:** “Não estamos prevendo o montante, que já é conhecido. Estamos estimando quanto desse montante está associado ao evento fraude.”
 
+**Importância na regressão:** embaralhamos cada atributo em 1.200 linhas da calibração e medimos o aumento de RMSE, com três repetições. Valores positivos indicam piora ao destruir aquela informação. Correlação pode dividir importância; valores negativos podem resultar de variabilidade ou atributos pouco úteis. Não usamos essa análise para selecionar entradas, refazer o vencedor ou provar causalidade. O diagnóstico ajuste–teste usa o ajuste final de 30 mil linhas e as previsões congeladas.
+
 ### Etapa 12: Agrupamento de transações e PCA
 Agrupamos duas mil transações sorteadas apenas do treino, sem usar rótulos. Nove indicadores numéricos passam por mediana, log1p após truncamento inferior em zero, e padronização. Essa transformação reduz o domínio de caudas. O truncamento é uma escolha para essa análise exploratória e pode perder informação de sinais negativos.
 
@@ -718,6 +722,8 @@ O espelho e as features anonimizadas limitam a auditoria de como cada atributo f
 O projeto não autoriza bloqueio automático de cartões. Transações legítimas revisadas podem causar atrito e tratamento desigual. Não tentamos reidentificar pessoas. Dados públicos e anonimizados não substituem uma análise de finalidade, proteção de dados, LGPD e governança numa implantação real. Não declaramos conformidade jurídica a partir deste estudo.
 
 A classificação e a regressão reformulam o mesmo risco. Clusters são exploratórios. Não atribuímos economia a segmentação ou explicações sem avaliar uma ação. O benefício simulado deve ser descontado de implantação e manutenção antes de discutir retorno de investimento.
+
+**Equidade:** discutimos risco de viés e tratamento desigual, mas não medimos paridade entre grupos protegidos. As variáveis anônimas e a ausência de atributos sensíveis interpretáveis impedem uma conclusão de ausência de discriminação. Discussão ética é parte do estudo; certificação de equidade exigiria dados e validação próprios.
 
 #### Passo a passo: responder limitações sem desvalorizar o estudo
 Use a sequência **limite → consequência → próxima verificação**. Exemplo: “Temos apenas 28 dias de teste; isso limita a estabilidade temporal; repetiríamos em outros períodos antes de implantação”.

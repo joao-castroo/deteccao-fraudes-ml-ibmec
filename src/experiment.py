@@ -351,6 +351,9 @@ def run():
  for name,p in [('NeverFraud',np.zeros(len(test))),('AlwaysFraud',np.ones(len(test))),('TrainingRate',np.full(len(test),tr.isFraud.mean()))]:bclass.append(dict(model=name,**cls_metrics(test.isFraud,p,.5)))
  pd.DataFrame(bclass).to_csv(ROOT/'results/classification_baselines.csv',index=False)
  figures(d,cm,rm,cp,rp,cwin,rwin,fin,det,cl,cmodels)
+ # Diagnósticos explicativos reproduzem campeões; não mudam escolhas nem filas.
+ from diagnosticos_apresentacao import run as diagnose_frozen_models
+ diagnose_frozen_models()
  save(dict(python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,sklearn=sklearn.__version__,duration_seconds=time.time()-start,
  classification_winner=cwin,regression_winner=rwin,checks=checks,techniques=15),'execution.json')
  print('DONE',cwin,rwin,checks,flush=True)
