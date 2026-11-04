@@ -8,7 +8,7 @@ Projeto separado do M5, criado em `ProjML/Projeto_Fraude`. O projeto anterior pe
 
 - [Comece aqui: acesso, VS Code e estudo em dupla](docs/COMECE_AQUI.md).
 - [Apresentação oficial de 10 slides](deliverables/apresentacao_Fraude.pptx), com notas e demonstração, para os 15 minutos totais.
-- [Roteiro completo de estudo e defesa](docs/ROTEIRO_E_DEFESA.md), legível no GitHub: 54 termos, 19 técnicas, resultados, cálculos e perguntas.
+- [Roteiro completo de estudo e defesa](docs/ROTEIRO_E_DEFESA.md), legível no GitHub: 54 termos, 15 técnicas, resultados, cálculos e perguntas.
 - [Roteiro HTML](deliverables/roteiro_apresentacao_15min.html), para baixar e abrir no navegador.
 - [Roteiro completo em Word](deliverables/roteiro_completo_apresentacao_e_defesa.docx), para baixar, editar e enviar.
 
@@ -30,11 +30,11 @@ Autores: João Pedro Castro e Vitor Neves. Antes da submissão, adequar os nomes
 
 ## Resultado principal
 
-Com as mesmas 333 revisões diárias acumuladas no teste de 28 dias, a fila principal identifica US$ 35.111,12 em valor rotulado de fraude, contra US$ 14.670,00 da regra de maiores transações. A diferença de valor identificado é observável neste recorte, mas não equivale a valor evitado ou recuperado.
+Com as mesmas 333 revisões diárias acumuladas no teste de 28 dias, a fila principal identifica US$ 38.044,57 em valor rotulado de fraude, contra US$ 14.670,00 da regra de maiores transações. A diferença de valor identificado é observável neste recorte, mas não equivale a valor evitado ou recuperado.
 
-Com eficácia assumida de 80% e custo de US$ 2 por revisão, o benefício incremental simulado é US$ 16.352,90, com intervalo exploratório de US$ 11.865,42 a US$ 21.326,99. A redução de perda simulada da referência é 24,13%. O mesmo tipo de resultado no M5 foi 0,87%, mas as tarefas e premissas são diferentes.
+Com eficácia assumida de 80% e custo de US$ 2 por revisão, o benefício incremental simulado é US$ 18.699,66, com intervalo exploratório de US$ 13.862,06 a US$ 23.765,04. A redução de perda simulada da referência é 27,59%. O mesmo tipo de resultado no M5 foi 0,87%, mas as tarefas e premissas são diferentes.
 
-Contra uma regressão logística simples, a vantagem adicional do campeão é US$ 4.785,62 (8,51% de redução da perda simulada da logística). Essa avaliação é um diagnóstico adicional e não substitui a referência principal escolhida antes do teste. Outros modelos tiveram algumas métricas melhores no teste; não trocamos o campeão retrospectivamente.
+Contra uma regressão logística simples, a vantagem adicional do campeão é US$ 7.132,38 (12,69% de redução da perda simulada da logística). Essa avaliação é um diagnóstico adicional e não substitui a referência principal escolhida antes do teste. Outros modelos tiveram algumas métricas melhores no teste; não trocamos o campeão retrospectivamente.
 
 ## Escopo e hipóteses
 
@@ -47,7 +47,7 @@ Contra uma regressão logística simples, a vantagem adicional do campeão é US
 - Regressores estimam `TransactionAmt*isFraud`, uma exposição derivada; não são perdas líquidas observadas.
 - Fila principal: probabilidade calibrada × valor, com teto de 2% por dia. O arredondamento diário gera 333 revisões, ligeiramente acima de 2% no agregado.
 - Revisar não é bloquear. Eficácia, atraso e custo da investigação não foram observados.
-- Dezenove técnicas: sete classificadores, oito regressores, três agrupamentos e PCA, além de baselines.
+- Quinze técnicas: cinco classificadores, seis regressores, três agrupamentos e PCA, além de baselines.
 
 ## Execução
 
@@ -90,3 +90,9 @@ O teste tem 28 dias. Há poucos blocos temporais independentes. Não há uma cha
 - https://empulse.readthedocs.io/en/latest/guide/datasets/ieee_fraud_detection.html
 
 O hash SHA-256 local está em results/provenance.json. O MD5 OpenML se refere ao ARFF; não foi comparado ao parquet. O uso segue as regras da competição. Espelho público não equivale a licença irrestrita de redistribuição. Os arquivos ficam locais e no pacote solicitado para uso acadêmico.
+
+## Revisão curricular com 15 técnicas
+
+Mantidos Ridge e Lasso na regressão e HistGradientBoosting nas duas tarefas supervisionadas. Classificação: Logística, LDA, HistGradientBoosting, KNN e GaussianNB. Regressão: Linear, Ridge, Lasso, Árvore, Random Forest e HistGradientBoosting. Agrupamento: K-means, Hierárquico e DBSCAN. PCA é redução de dimensionalidade. Cada aplicação por tarefa conta uma vez; são 15 técnicas aplicadas, não 15 famílias distintas. O teste já foi consultado na versão anterior: esta revisão tem caráter retrospectivo, sem novo holdout inédito. Grades e critérios de validação continuam fixos.
+
+Veja [a justificativa da revisão e o ranking de validação](docs/REVISAO_CURRICULAR.md).

@@ -1,8 +1,8 @@
 {
-  "candidate": "ExtraTrees",
+  "candidate": "HistGradientBoosting",
   "reference": "Logistic",
-  "incremental_benefit": 4785.620000000001,
-  "ci95_low": 2803.772160000001,
-  "ci95_high": 6760.3689399999985,
+  "incremental_benefit": 7132.379199999999,
+  "ci95_low": 4357.875360000003,
+  "ci95_high": 10016.030959999996,
   "note": "Additional diagnostic after primary evaluation; does not replace original comparator or winner"
 }

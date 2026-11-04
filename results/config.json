@@ -1,4 +1,5 @@
 {
+  "curricular_revision": "15 techniques; test period previously inspected in earlier version; retrospective evaluation, not a fresh holdout",
   "seed": 42,
   "sample": "every fifth source row; no stratification",
   "training_budget": 30000,

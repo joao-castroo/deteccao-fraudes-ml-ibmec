@@ -15,9 +15,9 @@ def run():
     ajuste = budget_sample(dados[dados.split.isin(['train', 'validation'])])
     teste = dados[dados.split == 'test']
     linhas = []
-    for tarefa, nome in [('classification', 'ExtraTrees'), ('regression', 'RandomForest')]:
+    for tarefa in ['classification', 'regression']:
         selecao = json.loads((ROOT / f'results/{tarefa}_selection.json').read_text())
-        assert selecao['winner'] == nome, 'O campeão mudou. Reveja o diagnóstico.'
+        nome = selecao['winner']
         estimador = clone(specs(tarefa)[nome][0]).set_params(**selecao['params'][nome])
         modelo = Pipeline([('pre', preprocess()), ('model', estimador)])
         alvo = 'isFraud' if tarefa == 'classification' else 'exposure'

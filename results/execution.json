@@ -3,9 +3,9 @@
   "numpy": "2.0.2",
   "pandas": "2.3.3",
   "sklearn": "1.6.1",
-  "duration_seconds": 162.76895999908447,
-  "classification_winner": "ExtraTrees",
+  "duration_seconds": 100.22763872146606,
+  "classification_winner": "HistGradientBoosting",
   "regression_winner": "RandomForest",
   "checks": 125,
-  "techniques": 19
+  "techniques": 15
 }

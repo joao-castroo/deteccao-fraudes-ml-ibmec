@@ -1,52 +1,184 @@
 {
-  "scope": "Current submission materials: same 10-slide PPT for presentation and delivery. Original experiment metrics unchanged.",
+  "scope": "Curricular revision: 15 applications, Ridge/Lasso/HistGB retained; same previously inspected test period. Retrospective evaluation.",
   "checks": [
     {
-      "name": "PPT possui exatamente 10 slides",
+      "name": "classification: candidatos exatos",
       "passed": true
     },
     {
-      "name": "PPT possui 10 notas de fala",
+      "name": "classification: métricas apenas dos candidatos atuais",
       "passed": true
     },
     {
-      "name": "PPT contém João Pedro Castro e Vitor Neves",
+      "name": "classification Logistic: três folds por configuração",
       "passed": true
     },
     {
-      "name": "PPT contém 16.352,90",
+      "name": "classification Logistic: treino anterior à validação",
       "passed": true
     },
     {
-      "name": "PPT contém 24,13%",
+      "name": "classification Logistic: configuração coincide com CV",
       "passed": true
     },
     {
-      "name": "PPT contém 4.785,62",
+      "name": "classification LDA: três folds por configuração",
       "passed": true
     },
     {
-      "name": "PPT contém Silhouette",
+      "name": "classification LDA: treino anterior à validação",
       "passed": true
     },
     {
-      "name": "PPT contém R²",
+      "name": "classification LDA: configuração coincide com CV",
       "passed": true
     },
     {
-      "name": "PPT sem placeholder de autoria",
+      "name": "classification HistGradientBoosting: três folds por configuração",
       "passed": true
     },
     {
-      "name": "Relatório identifica os dois autores",
+      "name": "classification HistGradientBoosting: treino anterior à validação",
       "passed": true
     },
     {
-      "name": "Notebook mantém 81 células",
+      "name": "classification HistGradientBoosting: configuração coincide com CV",
       "passed": true
     },
     {
-      "name": "Notebook mantém 25 células executadas",
+      "name": "classification KNN: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "classification KNN: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "classification KNN: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "classification GaussianNB: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "classification GaussianNB: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "classification GaussianNB: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "classification: vencedor coincide com critério de validação",
+      "passed": true
+    },
+    {
+      "name": "regression: candidatos exatos",
+      "passed": true
+    },
+    {
+      "name": "regression: métricas apenas dos candidatos atuais",
+      "passed": true
+    },
+    {
+      "name": "regression Linear: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "regression Linear: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "regression Linear: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "regression Ridge: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "regression Ridge: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "regression Ridge: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "regression Lasso: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "regression Lasso: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "regression Lasso: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "regression DecisionTree: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "regression DecisionTree: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "regression DecisionTree: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "regression RandomForest: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "regression RandomForest: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "regression RandomForest: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "regression HistGradientBoosting: três folds por configuração",
+      "passed": true
+    },
+    {
+      "name": "regression HistGradientBoosting: treino anterior à validação",
+      "passed": true
+    },
+    {
+      "name": "regression HistGradientBoosting: configuração coincide com CV",
+      "passed": true
+    },
+    {
+      "name": "regression: vencedor coincide com critério de validação",
+      "passed": true
+    },
+    {
+      "name": "15 aplicações no registro de execução",
+      "passed": true
+    },
+    {
+      "name": "125 verificações do experimento aprovadas",
+      "passed": true
+    },
+    {
+      "name": "Identidade financeira em todos os cenários",
+      "passed": true
+    },
+    {
+      "name": "Mesma quantidade de revisões entre políticas",
+      "passed": true
+    },
+    {
+      "name": "Bootstrap e benefício incremental reconciliados",
+      "passed": true
+    },
+    {
+      "name": "81 células e 25 células de código executadas",
       "passed": true
     },
     {
@@ -54,83 +186,52 @@
       "passed": true
     },
     {
-      "name": "HTML do notebook identifica a dupla",
+      "name": "Notebook explica LDA, CV temporal e revisão retrospectiva",
       "passed": true
     },
     {
-      "name": "Roteiro documenta 54 termos",
+      "name": "PPT de dez slides e dez notas",
       "passed": true
     },
     {
-      "name": "Existe apenas um PPT próprio de entrega",
+      "name": "PPT autores e ganho atual",
       "passed": true
     },
     {
-      "name": "Roteiro soma 15 minutos",
+      "name": "PPT mantém Ridge, Lasso e HistGradientBoosting",
       "passed": true
     },
     {
-      "name": "Link README.md: docs/COMECE_AQUI.md",
+      "name": "relatorio_Fraude.docx: autoria e resultado atuais",
       "passed": true
     },
     {
-      "name": "Link README.md: deliverables/apresentacao_Fraude.pptx",
+      "name": "relatorio_Fraude.docx: sem resultado principal anterior",
       "passed": true
     },
     {
-      "name": "Link README.md: docs/ROTEIRO_E_DEFESA.md",
+      "name": "roteiro_completo_apresentacao_e_defesa.docx: autoria e resultado atuais",
       "passed": true
     },
     {
-      "name": "Link README.md: deliverables/roteiro_apresentacao_15min.html",
+      "name": "roteiro_completo_apresentacao_e_defesa.docx: sem resultado principal anterior",
       "passed": true
     },
     {
-      "name": "Link docs/COMECE_AQUI.md: ../deliverables/apresentacao_Fraude.pptx",
+      "name": "Resultado salvo de classificação com HistGradientBoosting",
       "passed": true
     },
     {
-      "name": "Link docs/COMECE_AQUI.md: ROTEIRO_E_DEFESA.md",
-      "passed": true
-    },
-    {
-      "name": "Link docs/COMECE_AQUI.md: ../deliverables/roteiro_apresentacao_15min.html",
-      "passed": true
-    },
-    {
-      "name": "Link docs/COMECE_AQUI.md: ../notebooks/01_projeto_fraude_completo.ipynb",
-      "passed": true
-    },
-    {
-      "name": "Link docs/COMECE_AQUI.md: ../deliverables/notebook_leitura.html",
-      "passed": true
-    },
-    {
-      "name": "Link docs/COMECE_AQUI.md: ../deliverables/relatorio_Fraude.docx",
-      "passed": true
-    },
-    {
-      "name": "Link docs/COMECE_AQUI.md: ../src/experiment.py",
-      "passed": true
-    },
-    {
-      "name": "Link docs/COMECE_AQUI.md: ../src/diagnosticos_apresentacao.py",
-      "passed": true
-    },
-    {
-      "name": "Link docs/COMECE_AQUI.md: ../results",
-      "passed": true
-    },
-    {
-      "name": "Link docs/ROTEIRO_E_DEFESA.md: ../deliverables/apresentacao_Fraude.pptx",
+      "name": "Resultado salvo de regressão com Random Forest",
       "passed": true
     }
   ],
-  "passed": 31,
-  "report_pages": 8,
-  "presentation_seconds": 900,
-  "authors": [
-    "João Pedro Castro",
-    "Vitor Neves"
-  ]
+  "passed": 56,
+  "financial_incremental_benefit": 18699.657600000002,
+  "manual_visual_review": {
+    "ppt_slides": 10,
+    "report_pages": 8,
+    "study_guide_pages": 30,
+    "all_pages_inspected": true
+  }
 }

@@ -10,7 +10,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 1. [Fala por slide](#fala-por-slide)
 2. [Termos: significado, finalidade e uso](#termos-significado-finalidade-e-uso)
-3. [As 19 técnicas e os resultados](#as-19-técnicas-e-os-resultados)
+3. [As 15 técnicas e os resultados](#as-15-técnicas-e-os-resultados)
 4. [A conta financeira e as comparações](#a-conta-financeira-e-as-comparações)
 5. [Explicações passo a passo](#explicações-passo-a-passo)
 6. [Perguntas do professor](#perguntas-do-professor)
@@ -23,7 +23,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 **Tempo: 00:00–00:35 (35 segundos).**
 
-**Fala sugerida:** Nossa pergunta é como gerar mais valor com a mesma capacidade de investigação. Estudamos transações reais IEEE-CIS/Vesta e conectamos modelos de risco à escolha de uma fila diária. Comparamos dezenove técnicas. A apresentação e a entrega usam estes mesmos dez slides. O roteiro e o notebook concentram os detalhes de defesa.
+**Fala sugerida:** Nossa pergunta é como gerar mais valor com a mesma capacidade de investigação. Estudamos transações reais IEEE-CIS/Vesta e conectamos modelos de risco à escolha de uma fila diária. Comparamos quinze técnicas. A apresentação e a entrega usam estes mesmos dez slides. O roteiro e o notebook concentram os detalhes de defesa.
 
 **Pergunta e resposta:** O estudo mede dinheiro recuperado? Mede valor de fraude identificado e simula benefício com hipóteses explícitas.
 
@@ -52,11 +52,11 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 **Evidência para conferir:** `results/audit.json; results/provenance.json; results/missing_features.csv; data/processed/data_dictionary.csv; src/experiment.py`
 
 
-### Slide 04 — Dezenove técnicas com critérios de seleção definidos
+### Slide 04 — Quinze técnicas com critérios de seleção definidos
 
 **Tempo: 03:50–05:20 (90 segundos).**
 
-**Fala sugerida:** São sete classificadores, oito regressores e quatro métodos não supervisionados. Logística oferece referência de risco simples. Árvores e ensembles capturam relações não lineares. Regularização compara estabilidade nos regressores. KNN e GaussianNB usam hipóteses diferentes. Três folds temporais escolhem pequenas grades por AP na classificação e MSE na regressão. Depois a validação escolhe Extra Trees pelo valor capturado com score bruto vezes montante, e Random Forest regressor por MSE. O ajuste final recebe treino mais validação, até trinta mil linhas por ajuste, semente 42. Platt ajusta probabilidades num bloco separado. Mantemos o campeão mesmo se outro vencer alguma métrica no teste.
+**Fala sugerida:** São cinco classificadores, seis regressores e quatro métodos não supervisionados. Logística oferece referência de risco simples. Árvores e ensembles capturam relações não lineares. Regularização compara estabilidade nos regressores. KNN e GaussianNB usam hipóteses diferentes. Três folds temporais escolhem pequenas grades por AP na classificação e MSE na regressão. Depois a validação escolhe HistGradientBoosting pelo valor capturado com score bruto vezes montante, e Random Forest regressor por MSE. O ajuste final recebe treino mais validação, até trinta mil linhas por ajuste, semente 42. Platt ajusta probabilidades num bloco separado. Mantemos o campeão mesmo se outro vencer alguma métrica no teste.
 
 **Pergunta e resposta:** O que conta como técnica? Cada algoritmo ou método listado. Configurações, baselines e cenários não aumentam a contagem.
 
@@ -78,7 +78,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 **Tempo: 07:00–08:55 (115 segundos).**
 
-**Fala sugerida:** Acurácia pode enganar: sempre prever legítima daria 96,67 por cento e recall zero. A tabela compara todos os sete classificadores. Extra Trees venceu a captura monetária na validação. Random Forest e HistGradientBoosting têm métricas de teste melhores em aspectos distintos, o que relatamos. O limiar de Extra Trees é 0,16, escolhido por F1 na validação. Ele gera 231 verdadeiros positivos, 390 falsos positivos, 299 falsos negativos e 14.995 verdadeiros negativos. A curva precisão-recall ajuda com classe rara. AP no ajuste é 0,895, no teste 0,379. Após Platt, Brier cai de 0,025902 para 0,025697. A matriz usa limiar fixo e não corresponde à fila de 333 análises.
+**Fala sugerida:** Acurácia pode enganar: sempre prever legítima daria 96,67 por cento e recall zero. A tabela compara todos os cinco classificadores. HistGradientBoosting venceu a captura monetária na validação. LDA acrescenta uma hipótese de fronteira linear com covariância compartilhada. A tabela apresenta todos os candidatos da revisão. O limiar de HistGradientBoosting é 0,20, escolhido por F1 na validação. Ele gera 241 verdadeiros positivos, 279 falsos positivos, 289 falsos negativos e 15.106 verdadeiros negativos. A curva precisão-recall ajuda com classe rara. AP no ajuste é 0,751, no teste 0,454. Após Platt, Brier cai de 0,023109 para 0,023080. A matriz usa limiar fixo e não corresponde à fila de 333 análises.
 
 **Pergunta e resposta:** Por que não usar limiar 0,5? O limiar depende do objetivo e da prevalência. Aqui o diagnóstico usa F1 de validação e a operação usa ranking diário.
 
@@ -100,7 +100,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 **Tempo: 10:15–12:35 (140 segundos).**
 
-**Fala sugerida:** No teste de 28 dias há 78.851,255 dólares de exposição rotulada. A capacidade nominal de dois por cento, arredondada em cada dia, gera 333 análises. A regra de maiores valores encontra 17 fraudes e 14.670 dólares. A probabilidade isolada encontra 168 fraudes e 18.896 dólares. Probabilidade vezes valor encontra 96 fraudes e 35.111 dólares: menos fraudes em quantidade, mais dinheiro identificado. Assumindo eficácia de oitenta por cento e custo de dois dólares por análise, o benefício líquido é 27.422,90, contra 11.070. A diferença é 16.352,90. Dividimos pela perda simulada remanescente da referência, 67.781,26, para obter 24,13 por cento. Contra logística simples, o ganho adicional é 4.785,62 e redução de 8,51 por cento. Isso mostra que uma referência simples já oferece valor. A regressão de exposição é uma política secundária e não substitui retrospectivamente a principal.
+**Fala sugerida:** No teste de 28 dias há 78.851,255 dólares de exposição rotulada. A capacidade nominal de dois por cento, arredondada em cada dia, gera 333 análises. A regra de maiores valores encontra 17 fraudes e 14.670 dólares. A probabilidade isolada encontra 194 fraudes e 21.300 dólares. Probabilidade vezes valor encontra 114 fraudes e 38.045 dólares: menos fraudes em quantidade, mais dinheiro identificado. Assumindo eficácia de oitenta por cento e custo de dois dólares por análise, o benefício líquido é 29.769,66, contra 11.070. A diferença é 18.699,66. Dividimos pela perda simulada remanescente da referência, 67.781,26, para obter 27,59 por cento. Contra logística simples, o ganho adicional é 7.132,38 e redução de 12,69 por cento. Isso mostra que uma referência simples já oferece valor. A regressão de exposição é uma política secundária e não substitui retrospectivamente a principal.
 
 **Pergunta e resposta:** Por que custos maiores não mudam o ganho incremental em dólares? Com quantidade igual de análises e sem penalidade adicional, o custo unitário se cancela na diferença.
 
@@ -111,7 +111,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 **Tempo: 12:35–14:00 (85 segundos).**
 
-**Fala sugerida:** O bootstrap pareado em blocos de sete dias produz intervalo exploratório de 11.865 a 21.327 dólares para o ganho principal. São cinco mil réplicas, mas apenas 28 dias de teste. Reduzir eficácia para cinquenta por cento mantém ganho simulado de 10.220,56. Não anualizamos. Features anônimas, possível repetição de cliente e rótulos históricos limitam a generalização. As revisões legítimas podem gerar atrito ou tratamento desigual. Uma implantação demandaria governança, finalidade e avaliação de privacidade, sem alegar conformidade jurídica a partir de dados públicos. A resposta à pergunta inicial é positiva neste teste sob hipóteses. Recomendamos outros períodos, custos completos e eficácia real antes de qualquer implantação.
+**Fala sugerida:** O bootstrap pareado em blocos de sete dias produz intervalo exploratório de 13.862 a 23.765 dólares para o ganho principal. São cinco mil réplicas, mas apenas 28 dias de teste. Reduzir eficácia para cinquenta por cento mantém ganho simulado de 11.687,29. Não anualizamos. Features anônimas, possível repetição de cliente e rótulos históricos limitam a generalização. As revisões legítimas podem gerar atrito ou tratamento desigual. Uma implantação demandaria governança, finalidade e avaliação de privacidade, sem alegar conformidade jurídica a partir de dados públicos. A resposta à pergunta inicial é positiva neste teste sob hipóteses. Recomendamos outros períodos, custos completos e eficácia real antes de qualquer implantação.
 
 **Pergunta e resposta:** O intervalo é garantia futura? Não. É exploratório, condicionado às hipóteses e ao curto período observado.
 
@@ -149,18 +149,18 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 | Fold | Uma rodada interna de ajuste e avaliação. | Comparar configurações sem usar o teste final. | Três folds temporais dentro do treino, com blocos futuros de dez dias. |
 | Parâmetro | Quantidade que o ajuste aprende. | Formar a função preditiva. | Coeficientes da logística ou regras aprendidas por árvores. |
 | Hiperparâmetro | Configuração escolhida antes de ajustar um estimador. | Controlar complexidade e aprendizado. | Profundidade, tamanho mínimo de folha, regularização e número de vizinhos. Grades pequenas no código. |
-| Regularização | Penalização da complexidade do ajuste. | Reduzir variabilidade e sensibilidade a particularidades. | Ridge, Lasso e ElasticNet. Não garante automaticamente melhor desempenho. |
-| Sobreajuste | Modelo aprende particularidades do ajuste que generalizam mal. | Interpretar diferenças entre ajuste e teste. | AP Extra Trees 0,895 no ajuste e 0,379 no teste. Mudança temporal também pode contribuir; não a isolamos. |
+| Regularização | Penalização da complexidade do ajuste. | Reduzir variabilidade e sensibilidade a particularidades. | Ridge e Lasso. Não garante automaticamente melhor desempenho. |
+| Sobreajuste | Modelo aprende particularidades do ajuste que generalizam mal. | Interpretar diferenças entre ajuste e teste. | AP HistGradientBoosting: 0,751 no ajuste e 0,454 no teste. Mudança temporal também pode contribuir; não a isolamos. |
 | Score | Número que ordena casos. | Construir classificação ou priorização. | Probabilidade bruta ou calibrada. Na política principal usamos probabilidade calibrada × montante. |
-| Limiar / threshold | Corte que converte score em classe. | Gerar decisão binária e matriz de confusão. | 0,16 para Extra Trees, escolhido por F1 na validação. Não define a fila monetária. |
-| Precisão | TP dividido por TP+FP. | Avaliar qualidade dos alertas. | Matriz do campeão: 231/621 = 37,2%. Fila monetária: 96/333 = 28,8%. São seleções diferentes. |
-| Recall / sensibilidade | TP dividido por TP+FN. | Medir quantas fraudes encontramos. | Matriz: 231/530 = 43,6%. Fila: 96/530 = 18,1%. Não equivale à cobertura em dólares. |
-| F1 | Média harmônica de precisão e recall. | Equilibrar essas duas métricas para limiar. | 0,401 no teste do campeão com limiar fixo. Não usa montante. |
+| Limiar / threshold | Corte que converte score em classe. | Gerar decisão binária e matriz de confusão. | 0,20 para HistGradientBoosting, escolhido por F1 na validação. A fila monetária usa ranking diário. |
+| Precisão | TP dividido por TP+FP. | Avaliar qualidade dos alertas. | Matriz: 241/(241+279) = 46,3%. Fila monetária: 114/333 = 34,2%. |
+| Recall / sensibilidade | TP dividido por TP+FN. | Medir quantas fraudes encontramos. | Matriz: 241/530 = 45,5%. Fila: 114/530 = 21,5%. |
+| F1 | Média harmônica de precisão e recall. | Equilibrar essas duas métricas para limiar. | 0,459 no teste do campeão com limiar fixo. Não usa montante. |
 | Acurácia | Fração de todas as classes corretas. | Resumo global, com risco de mascarar minoria. | Sempre-legítima já atinge 96,67% no teste e perde todas as fraudes. |
-| ROC-AUC | Área da curva recall versus taxa de falsos positivos. | Avaliar discriminação ao variar limiares. | Extra Trees 0,859 no teste. Não é porcentagem de fraudes encontradas. |
-| Average precision / AP | Resumo da precisão ao aumentar o recall. | Avaliar ranking com classe rara. | Extra Trees 0,379. HistGB 0,454 no teste. AP não é necessariamente a integral trapezoidal chamada PR-AUC. |
-| Brier | Média de (probabilidade − rótulo)². | Avaliar erro probabilístico. | Extra Trees: 0,025902 bruto e 0,025697 calibrado no teste. Menor é melhor, mas um valor isolado não prova calibração perfeita. |
-| Calibração | Aproximar probabilidade prevista da frequência observada. | Tornar valores probabilísticos mais coerentes. | Platt em bloco separado. A correção é pequena no Brier do campeão. |
+| ROC-AUC | Área da curva recall versus taxa de falsos positivos. | Avaliar discriminação ao variar limiares. | HistGradientBoosting: 0,876 no teste. Não é porcentagem de fraudes encontradas. |
+| Average precision / AP | Resumo da precisão ao aumentar o recall. | Avaliar ranking com classe rara. | HistGradientBoosting: 0,454. AP não é necessariamente a integral trapezoidal chamada PR-AUC. |
+| Brier | Média de (probabilidade − rótulo)². | Avaliar erro probabilístico. | HistGradientBoosting: 0,023109 bruto e 0,023080 calibrado no teste. Menor é melhor. |
+| Calibração | Aproximar probabilidade prevista da frequência observada. | Tornar valores probabilísticos mais coerentes. | Platt em bloco separado. Brier pode melhorar ou piorar fora dele; conferir a comparação bruta/calibrada. |
 | Logit e Platt | Logit é log(p/(1−p)); Platt ajusta transformação logística. | Recalibrar scores sem reajustar o classificador. | Probabilidades limitadas antes do logit. C=1 no ajuste de calibração. |
 | Discriminação | Capacidade de ordenar positivos acima de negativos. | Distinguir ranking de calibração. | Uma transformação monotônica preserva ordem de p, mas pode mudar ordem de p × valor. |
 | MAE | Média dos erros absolutos. | Medir erro em unidade monetária. | RF regressor: US$ 8,30. Zero tem MAE menor porque o alvo tem muitos zeros. |
@@ -171,11 +171,11 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 | Valor esperado | Média ponderada pelos possíveis resultados. | Ligar probabilidade ao dinheiro em risco. | Para montante conhecido A, exposição esperada ideal = A × P(fraude \| X). |
 | Baseline / referência | Regra ou modelo usado para comparação. | Medir contribuição incremental. | Maiores valores é referência primária escolhida na validação. Logística é diagnóstico adicional. |
 | Capacidade | Quantidade disponível de revisões. | Comparar decisões com trabalho equivalente. | ceil(0,02 × n_dia). São 333 análises no teste pelo arredondamento diário. |
-| Recall monetário | Valor de fraude selecionado / valor de fraude total. | Medir cobertura financeira. | 44,53% no modelo principal, apesar de recall em quantidade de 18,11%. |
+| Recall monetário | Valor de fraude selecionado / valor de fraude total. | Medir cobertura financeira. | 48,25% no modelo principal, com recall de casos 21,51%. |
 | Eficácia | Fração do valor identificado que se assume evitar ou recuperar. | Converter captura em benefício simulado. | 80% no cenário central, 50% na sensibilidade. Não estimada na base. |
-| Benefício incremental | Benefício do modelo menos o da referência. | Isolar o acréscimo da nova política. | US$ 16.352,90 contra maiores valores. US$ 4.785,62 contra logística, em comparação adicional. |
-| Perda simulada | Exposição total rotulada menos benefício líquido simulado. | Definir denominador financeiro coerente. | Na referência: US$ 67.781,26. A redução de 24,13% usa esse denominador. |
-| Bootstrap pareado em blocos | Reamostragem que conserva blocos temporais iguais nas políticas. | Explorar variação da diferença de resultado. | 5.000 réplicas, blocos circulares de sete dias. Intervalo principal: US$ 11,87 mil–21,33 mil. |
+| Benefício incremental | Benefício do modelo menos o da referência. | Isolar o acréscimo da nova política. | US$ 18.699,66 contra maiores valores. US$ 7.132,38 contra logística, em diagnóstico adicional. |
+| Perda simulada | Exposição total rotulada menos benefício líquido simulado. | Definir denominador financeiro coerente. | Na referência: US$ 67.781,26. A redução de 27,59% usa esse denominador. |
+| Bootstrap pareado em blocos | Reamostragem que conserva blocos temporais iguais nas políticas. | Explorar variação da diferença de resultado. | 5.000 réplicas, blocos circulares de sete dias. Intervalo principal: US$ 13,86 mil–23,77 mil. |
 | Intervalo exploratório | Faixa gerada pelo procedimento de reamostragem. | Mostrar incerteza do recorte. | Não cobre automaticamente hipóteses de eficácia nem garante ganhos futuros; só há 28 dias de teste. |
 | Clustering | Agrupamento sem fornecer alvo. | Explorar estrutura e perfis. | 2.000 transações de treino e nove indicadores. Rótulo consultado após agrupar. |
 | Silhouette | Compara proximidade no grupo e separação entre grupos. | Avaliar estrutura interna do agrupamento. | K-means k=2: 0,552. Hierárquico k=2: 0,580. Valores maiores tendem a ser melhores. |
@@ -184,16 +184,16 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 | PCA / componente | Nova coordenada linear que concentra variância dos atributos. | Projetar e resumir estrutura. | 2 componentes: 56,53% de variância acumulada; 5: 89,02%. |
 | Loading / peso | Coeficiente do atributo numa componente de PCA. | Interpretar como a projeção se forma. | PC1 dá maiores pesos a C13, C1 e C2. Códigos anônimos limitam significado de negócio. |
 | ARI | Concordância entre agrupamentos, ajustada pelo acaso. | Avaliar estabilidade na mesma amostra. | ARI=1 nas três sementes adicionais do K-means. Não garante estabilidade em outra amostra. |
-| Importância por permutação | Piora ao embaralhar um atributo. | Avaliar dependência preditiva da entrada. | Calculada na calibração por queda de AP. V200, V70, D2, M4 e card6 lideram. Correlação pode dividir importância. |
+| Importância por permutação | Piora ao embaralhar um atributo. | Avaliar dependência preditiva da entrada. | Calculada na calibração por queda de AP. Consultar permutation_importance.csv. Correlação pode dividir importância. |
 | Drift / mudança temporal | Distribuições ou relações mudam com o tempo. | Explicar instabilidade e planejar monitoramento. | Prevalências variam entre blocos. Diferença de ajuste e teste não separa drift de sobreajuste. |
 | Causalidade e contrafactual | Efeito da ação e resultado alternativo que não observamos. | Distinguir avaliação de ranking de impacto real da investigação. | Não houve experimento de intervenção. Benefício depende da eficácia assumida. |
 
-## As 19 técnicas e os resultados
+## As 15 técnicas e os resultados
 
 Baselines, limiares e cenários não contam como técnicas adicionais. A tabela completa é material de defesa, não texto para ler durante os 15 minutos.
 
 
-### Classificação: sete técnicas
+### Classificação: cinco técnicas
 
 #### Logistic
 
@@ -208,41 +208,15 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
 
-#### DecisionTree
+#### LDA
 
-**Ideia:** Divisões sucessivas por regras.
+**Ideia:** Distribuições gaussianas por classe com covariância compartilhada.
 
-**Para que serve:** Capturar não linearidades e interações.
+**Para que serve:** Comparar fronteira linear probabilística com logística.
 
-**Uso no projeto:** configuração selecionada `{"max_depth": 12, "min_samples_leaf": 15}`. A profundidade e o mínimo de exemplos por folha controlam complexidade.
+**Uso no projeto:** configuração selecionada `{"shrinkage": "auto"}`. solver=lsqr. Shrinkage entre 0,1 e auto; auto escolhido nos folds. Covariância compartilhada pode ser restritiva.
 
-**Resultado no teste:** AP=0.377, F1=0.429, recall=0.353, ROC-AUC=0.812.
-
-**Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
-
-
-#### RandomForest
-
-**Ideia:** Média ou voto de árvores com amostragem e atributos aleatórios.
-
-**Para que serve:** Reduzir variabilidade de uma árvore isolada.
-
-**Uso no projeto:** configuração selecionada `{"max_depth": 18, "min_samples_leaf": 3}`. 60 árvores. A importância não deve ser confundida com causalidade.
-
-**Resultado no teste:** AP=0.448, F1=0.479, recall=0.409, ROC-AUC=0.871.
-
-**Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
-
-
-#### ExtraTrees
-
-**Ideia:** Conjunto de árvores com cortes mais aleatórios.
-
-**Para que serve:** Diversificar árvores e modelar interações.
-
-**Uso no projeto:** configuração selecionada `{"max_depth": 20, "min_samples_leaf": 3}`. 60 árvores. Mais aleatoriedade não garante resultado melhor.
-
-**Resultado no teste:** AP=0.379, F1=0.401, recall=0.436, ROC-AUC=0.859. **Campeão escolhido na validação.**
+**Resultado no teste:** AP=0.324, F1=0.367, recall=0.308, ROC-AUC=0.819.
 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
@@ -253,9 +227,9 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 
 **Para que serve:** Corrigir erros sucessivamente.
 
-**Uso no projeto:** configuração selecionada `{"max_leaf_nodes": 31, "l2_regularization": 20.0}`. 120 iterações fixas. Número de folhas e penalização L2 passam pela grade.
+**Uso no projeto:** configuração selecionada `{"max_leaf_nodes": 31, "l2_regularization": 20.0}`. Até 120 iterações. Early stopping pode encerrar antes usando parte interna do treino. Número de folhas e penalização L2 passam pela grade.
 
-**Resultado no teste:** AP=0.454, F1=0.459, recall=0.455, ROC-AUC=0.876.
+**Resultado no teste:** AP=0.454, F1=0.459, recall=0.455, ROC-AUC=0.876. **Campeão escolhido na validação.**
 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
@@ -286,7 +260,7 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
 
-### Regressão: oito técnicas
+### Regressão: seis técnicas
 
 #### Linear
 
@@ -327,19 +301,6 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
 
-#### ElasticNet
-
-**Ideia:** Mistura de penalizações L1 e L2.
-
-**Para que serve:** Comparar compromisso entre Lasso e Ridge.
-
-**Uso no projeto:** configuração selecionada `{"alpha": 0.1}`. alpha=0,1 e l1_ratio=0,5 fixo.
-
-**Resultado no teste:** MAE=US$ 10.83, MSE=2054.33 US$², RMSE=US$ 45.32, R²=0.031.
-
-**Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
-
-
 #### DecisionTree
 
 **Ideia:** Divisões sucessivas por regras.
@@ -366,26 +327,13 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
 
-#### ExtraTrees
-
-**Ideia:** Conjunto de árvores com cortes mais aleatórios.
-
-**Para que serve:** Diversificar árvores e modelar interações.
-
-**Uso no projeto:** configuração selecionada `{"max_depth": 15, "min_samples_leaf": 5}`. 60 árvores. Mais aleatoriedade não garante resultado melhor.
-
-**Resultado no teste:** MAE=US$ 8.67, MSE=1772.34 US$², RMSE=US$ 42.10, R²=0.164.
-
-**Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
-
-
 #### HistGradientBoosting
 
 **Ideia:** Árvores sequenciais com cortes acelerados por histogramas.
 
 **Para que serve:** Corrigir erros sucessivamente.
 
-**Uso no projeto:** configuração selecionada `{"max_leaf_nodes": 15, "l2_regularization": 50.0}`. 120 iterações fixas. Número de folhas e penalização L2 passam pela grade.
+**Uso no projeto:** configuração selecionada `{"max_leaf_nodes": 15, "l2_regularization": 50.0}`. Até 120 iterações. Early stopping pode encerrar antes usando parte interna do treino. Número de folhas e penalização L2 passam pela grade.
 
 **Resultado no teste:** MAE=US$ 8.06, MSE=1574.02 US$², RMSE=US$ 39.67, R²=0.257.
 
@@ -404,49 +352,44 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 
 ## A conta financeira e as comparações
 
-**Universo do teste:** 15.915 transações, 530 fraudes e US$ 78.851,255 de exposição rotulada.
-
-**Capacidade:** teto por dia, `ceil(0,02 × n_dia)`. São 333 análises, um pouco mais de 2% do total agregado pelo arredondamento.
-
-**Conta central:**
+**Teste:** 15.915 transações, 530 fraudes, US$ 78.851,255 de exposição rotulada. A capacidade de 2% arredondada por dia resulta em 333 análises para cada política.
 
 ```text
-Benefício líquido = eficácia × valor rotulado selecionado − custo × análises
-Modelo = 0,8 × 35.111,123 − 2 × 333 = US$ 27.422,8984
+Benefício = eficácia × valor identificado − custo × análises
+Modelo = 0,8 × 38.044,572 − 2 × 333 = US$ 29.769,6576
 Referência = 0,8 × 14.670 − 2 × 333 = US$ 11.070
-Incremento = 27.422,8984 − 11.070 = US$ 16.352,8984
+Incremento = US$ 18.699,6576
 Perda da referência = 78.851,255 − 11.070 = US$ 67.781,255
-Redução relativa = 16.352,8984 / 67.781,255 = 24,13%
+Redução relativa = 18.699,6576 / 67.781,255 = 27,59%
 ```
 
-A referência primária é maiores valores, escolhida na validação. Contra logística, o ganho adicional é US$ 4.785,62 e a redução da perda simulada da logística é 8,51%. As duas comparações usam denominadores diferentes.
+A referência de maiores valores foi escolhida na validação. Contra logística, o incremento é US$ 7.132,38, ou 12,69% de redução da perda simulada dela. Os denominadores são diferentes.
 
 ### O que observamos, assumimos e concluímos
 
 | Categoria | Conteúdo |
 |---|---|
-| Observado na avaliação | Valores, rótulos, filas selecionadas e montantes de fraude nessas filas |
-| Assumido | Eficácia de 80%, US$ 2 por análise e penalidade adicional zero por revisão legítima |
-| Não medido | Efeito real de investigar, recuperação efetiva, atraso, implantação e manutenção |
-| Conclusão | Benefício incremental simulado positivo neste teste, condicionado às hipóteses |
+| Observado na avaliação | Valores, rótulos, filas e valor rotulado selecionado |
+| Assumido | Eficácia de 80%, US$ 2 por revisão e penalidade adicional zero por legítima |
+| Não medido | Impacto causal, recuperação real, atraso, implantação e manutenção |
+| Conclusão | Benefício incremental simulado positivo neste recorte e sob as hipóteses |
 
-### Comparação de todas as políticas na capacidade principal
+### Todas as políticas na capacidade principal
 
 | Política | Fraudes selecionadas | Valor identificado (US$) | Benefício simulado (US$) |
 |---|---:|---:|---:|
-| Random | 11 | 881.03 | 38.82 |
-| LargestAmount | 17 | 14670.00 | 11070.00 |
-| ProductRateAmount | 16 | 10290.01 | 7566.01 |
-| ML_Probability | 168 | 18896.14 | 14450.92 |
-| ML_ExpectedAmount | 96 | 35111.12 | 27422.90 |
-| RegressionExposure | 105 | 36919.51 | 28869.60 |
+| Random | 11 | 881,03 | 38,82 |
+| LargestAmount | 17 | 14.670,00 | 11.070,00 |
+| ProductRateAmount | 16 | 10.290,01 | 7.566,01 |
+| ML_Probability | 194 | 21.299,71 | 16.373,77 |
+| ML_ExpectedAmount | 114 | 38.044,57 | 29.769,66 |
+| RegressionExposure | 105 | 36.919,51 | 28.869,60 |
 
+**Insight:** probabilidade isolada encontra 194 fraudes e US$ 21.299,71; probabilidade × valor encontra 114 fraudes e US$ 38.044,57. Encontrar mais casos e identificar mais dinheiro são objetivos distintos.
 
-**Insight:** probabilidade isolada encontra 168 fraudes e US$ 18.896,14. Probabilidade × valor encontra 96 fraudes e US$ 35.111,12. A segunda política captura mais dinheiro, embora encontre menos casos. A matriz com 231 verdadeiros positivos usa outra decisão, um limiar fixo.
+**Incerteza:** bootstrap circular de sete dias, 5.000 réplicas, intervalo exploratório US$ 13.862,06–23.765,04. Mantém hipóteses fixas. Eficácia de 50% reduz o incremento para US$ 11.687,29. Custo igual se cancela na diferença entre filas iguais. Não anualizamos.
 
-**Resultado secundário:** o regressor captura mais valor que a política primária neste teste. Não mudamos a política principal a partir desse resultado.
-
-**Sensibilidade:** eficácia de 50% produz US$ 10.220,56 de incremento. Custo igual por análise se cancela na diferença de filas de tamanho igual, sem penalidade adicional. A penalidade por legítima pode mudar a diferença. O intervalo exploratório principal é US$ 11.865,42–21.326,99 e mantém as hipóteses fixas. Não anualizamos.
+**Transparência da revisão:** este período de teste já foi consultado na versão anterior. A nova lista responde ao conteúdo da disciplina, com os mesmos critérios temporais; o resultado é retrospectivo e não equivale a confirmação em uma nova amostra inédita.
 
 
 ## Explicações passo a passo
@@ -475,7 +418,7 @@ Uma base pública de competição é adequada para testar métodos com rótulos 
 ### Etapa 3: Unidade de análise, amostra e limites
 Uma linha é uma transação, não um cliente. Selecionamos uma em cada cinco linhas do arquivo, sem olhar classe ou valor, e excluímos os dois dias extremos para evitar orçamentos em dias parciais. A amostra tem 116.533 transações e 4.046 fraudes.
 
-O orçamento operacional vale para essa amostra e não corresponde automaticamente à capacidade da empresa inteira. O sorteio de treino usa no máximo 30 mil linhas por ajuste, sem reequilibrar artificialmente as classes. Isso torna viável comparar dezenove técnicas. Todos os algoritmos recebem a mesma amostra de cada bloco autorizado. A avaliação usa todas as linhas dos respectivos blocos da amostra sistemática.
+O orçamento operacional vale para essa amostra e não corresponde automaticamente à capacidade da empresa inteira. O sorteio de treino usa no máximo 30 mil linhas por ajuste, sem reequilibrar artificialmente as classes. Isso torna viável comparar quinze técnicas. Todos os algoritmos recebem a mesma amostra de cada bloco autorizado. A avaliação usa todas as linhas dos respectivos blocos da amostra sistemática.
 
 Não há chave confiável de cliente para impedir que o mesmo indivíduo apareça em períodos diferentes. O teste temporal avalia um fluxo posterior, não generalização a clientes inéditos. Valores e taxas não podem ser extrapolados para todo o mercado.
 
@@ -531,6 +474,8 @@ Dentro do treino, três janelas futuras de dez dias comparam pequenas grades. S�
 
 A validação escolhe o classificador pelo valor fraudulento identificado ao revisar 2% por dia usando score bruto × valor. Ela escolhe ainda um limiar F1 para diagnóstico. A calibração ajusta probabilidades por Platt. A política principal, sua capacidade de 2% e os custos centrais foram declarados antes do teste.
 
+**Revisão curricular:** o conjunto de candidatos foi reduzido pelo conteúdo estudado, mantendo Ridge, Lasso e HistGradientBoosting e incluindo LDA. Este período de teste já havia sido consultado na versão anterior. A avaliação desta revisão é retrospectiva, sem trocar grades ou critérios pelo resultado do teste; não é um novo holdout inédito.
+
 #### Passo a passo: quem pode olhar quais dados?
 | Etapa | Aprende com | Decide o quê? |
 |---|---|---|
@@ -549,33 +494,44 @@ O teste não escolhe o campeão. Se um concorrente ganha no teste, relatamos a i
 **Ponto crítico:** o classificador é escolhido com probabilidades brutas na validação e a política final utiliza probabilidades calibradas. Mantivemos o protocolo. Não afirmamos que essa sequência garante o melhor modelo monetário possível.
 
 ### Etapa 7: Técnicas e hipóteses
-São **19 técnicas**: sete classificadores, oito regressores, K-means, hierárquico, DBSCAN e PCA. Baselines e ajustes de política não contam como novas técnicas.
+São **15 técnicas**: cinco classificadores, seis regressores, K-means, hierárquico, DBSCAN e PCA. Baselines e ajustes de política não contam como novas técnicas.
 
 | Família | Técnicas | Por que testar |
 |---|---|---|
-| Classificação | Logística, Árvore, Random Forest, Extra Trees, HistGradientBoosting, KNN, GaussianNB | Relações lineares, regras, ensembles, vizinhança e Bayes |
-| Regressão | Linear, Ridge, Lasso, ElasticNet, Árvore, Random Forest, Extra Trees, HistGradientBoosting | Estimar exposição monetária média e comparar regularização com não linearidade |
+| Classificação | Logística, LDA, HistGradientBoosting, KNN, GaussianNB | Relações lineares, regras, ensembles, vizinhança e Bayes |
+| Regressão | Linear, Ridge, Lasso, Árvore, Random Forest, HistGradientBoosting | Estimar exposição monetária média e comparar regularização com não linearidade |
 | Não supervisionado | K-means, Hierárquico, DBSCAN, PCA | Estrutura, perfis, pontos esparsos e projeção |
 
-Random Forest agrega árvores com amostragem e aleatoriedade de atributos. Extra Trees acrescenta aleatoriedade de cortes. Boosting constrói árvores em sequência. GaussianNB assume independência condicional, improvável em atributos correlacionados. KNN depende da definição de distância e escala. Nenhuma técnica é superior por princípio.
+Random Forest agrega árvores com amostragem e aleatoriedade de atributos. LDA estima distribuições por classe com covariância compartilhada e regularização. Boosting constrói árvores em sequência. GaussianNB assume independência condicional, improvável em atributos correlacionados. KNN depende da definição de distância e escala. Nenhuma técnica é superior por princípio.
+
+**Contagem:** 6 aplicações de regressão + 5 de classificação + 3 agrupamentos + PCA = 15. HistGradientBoosting aparece uma vez em cada tarefa supervisionada. PCA é redução de dimensionalidade, e não um quarto algoritmo de clustering. São 15 aplicações por tarefa, não 15 famílias distintas.
 
 #### Passo a passo: diferenciar as técnicas sem decorar nomes
 | Técnica | Ideia para explicar | Principal cuidado |
 |---|---|---|
+| LDA | Gaussianas por classe com a mesma covariância, gerando fronteira linear | Correlação, distribuição e covariância precisam ser consideradas |
 | Logística | Soma ponderada das entradas e função que produz probabilidade | Fronteira linear no espaço transformado |
 | Árvore | Perguntas sucessivas dividem as transações | Pode memorizar particularidades do treino |
 | Random Forest | Combina árvores diversas para reduzir variabilidade | Complexidade e interpretação |
-| Extra Trees | Usa cortes mais aleatórios para diversificar árvores | Mais aleatoriedade não garante maior ganho |
 | HistGradientBoosting | Árvores sequenciais corrigem erros; histogramas agilizam cortes | Configuração e sobreajuste |
 | KNN | Consulta exemplos próximos | Distância perde qualidade em muitas dimensões |
 | GaussianNB | Combina evidências sob hipóteses probabilísticas simples | Independência e distribuição podem ser inadequadas |
 | Ridge | Penaliza coeficientes ao quadrado | Intensidade da penalização |
 | Lasso | Penaliza magnitudes e pode zerar coeficientes | Seleção instável entre variáveis correlacionadas |
-| ElasticNet | Mistura penalizações de Ridge e Lasso | Precisa configurar força e mistura |
 
 **Bagging e boosting:** florestas combinam árvores construídas com diversidade; boosting adiciona modelos em sequência. Não confunda quantidade de árvores com quantidade de técnicas.
 
 **Como justificar o conjunto:** “Incluímos modelos simples e famílias com hipóteses diferentes. Isso permite avaliar se a complexidade acrescenta resultado, em vez de supor que o algoritmo mais sofisticado vencerá.”
+
+**LDA, passo a passo:** estima a média das entradas em cada classe e uma matriz de covariância compartilhada. Pelo teorema de Bayes, transforma essas estimativas e as prevalências em scores por classe. Covariância compartilhada gera uma fronteira linear. A grade compara `shrinkage=0.1` e `shrinkage="auto"`, com solver `lsqr`; shrinkage estabiliza a covariância em entradas correlacionadas e após one-hot. É diferente da logística, que ajusta diretamente a probabilidade condicional. Não usamos LDA para projetar os dados: aqui é classificador. PCA é nossa técnica de projeção.
+
+**Por que não QDA ou todos os modelos da foto?** A comparação cobre hipóteses distintas com orçamento viável. QDA estima covariâncias por classe e teria mais parâmetros com uma classe rara. Não inventamos resultados para modelos não treinados. Linear, Ridge e Lasso também precisam ser defendidos, mas já integram o conteúdo estudado.
+
+**Validação do KNN:** k=15 teve AP média 0,2355; k=45 teve 0,2674 em três folds temporais. Escolhemos 45 antes da validação externa. Para LDA, shrinkage=0,1 teve AP 0,3102 e auto 0,3213. HistGradientBoosting teve 0,515288 e 0,515409 nas duas configurações, uma diferença muito pequena que exige cautela. A grade é pequena e não demonstra ótimo global.
+
+**Por que temporal em vez de KFold aleatório?** Preveremos transações futuras. Em cada fold, o treino termina antes do início da validação; folds aleatórios misturariam passado e futuro. Isso é validação cruzada temporal, com três avaliações internas. A base tem classes raras, mas mantemos a frequência observada.
+
+**Limite de iterações do HistGradientBoosting:** max_iter=120 é o teto, não uma afirmação de que sempre foram construídas 120 etapas. O early stopping automático pode encerrar antes, usando apenas uma fração interna do bloco de ajuste. Não usa o teste final.
 
 ### Etapa 8: Classificação e escolha do algoritmo
 A classe positiva é fraude. Como ela é rara, acurácia isolada é enganosa: prever tudo como legítimo pode acertar quase todas as linhas e não identificar fraude alguma.
@@ -598,7 +554,7 @@ Uma acurácia alta pode vir de ignorar a minoria. Uma AP alta também não deter
 
 **Como ler as tabelas:** identifique primeiro `split`; depois a coluna usada para escolher o campeão; só então compare os resultados de teste. AP e ROC-AUC são números entre 0 e 1, não percentuais de transações corretamente identificadas.
 
-**Resposta de defesa:** “Extra Trees não foi escolhido por ter todas as melhores métricas no teste. Foi o escolhido pelo critério monetário na validação.”
+**Resposta de defesa:** “HistGradientBoosting não foi escolhido por ter todas as melhores métricas no teste. Foi o escolhido pelo critério monetário na validação.”
 
 ### Etapa 9: Limiar e matriz de confusão
 O limiar F1 foi escolhido na validação e aplicado ao score bruto. Ele produz uma decisão binária que serve ao diagnóstico. A fila econômica é outra decisão: ordena probabilidade calibrada × valor e preenche a capacidade diária. Ela não utiliza automaticamente o limiar F1.
@@ -608,9 +564,9 @@ Falso negativo é uma fraude fora da seleção. Falso positivo é uma transaçã
 #### Passo a passo: dois critérios produzem duas matrizes diferentes
 O limiar F1 compara cada score com um valor fixo. A fila econômica escolhe os melhores scores monetários dentro de cada dia. Os grupos selecionados não precisam ser iguais.
 
-A matriz exibida a seguir refere-se ao diagnóstico do limiar, não aos 333 casos da fila financeira. No teste, os números do diagnóstico são TN=14.995, FP=390, FN=299 e TP=231. Já a fila monetária principal contém 96 fraudes entre 333 análises.
+A matriz exibida a seguir refere-se ao diagnóstico do limiar, não aos 333 casos da fila financeira. No teste, os números do diagnóstico são TN=15.106, FP=279, FN=289 e TP=241. Já a fila monetária principal contém 114 fraudes entre 333 análises.
 
-**Por que 231 não é melhor que 96?** O primeiro número utiliza mais alertas e outra regra de seleção. A comparação financeira exige igual capacidade e considera o valor das fraudes. Misturar esses números levaria a uma conclusão errada.
+**Por que 241 não é melhor que 114?** O primeiro número utiliza mais alertas e outra regra de seleção. A comparação financeira exige igual capacidade e considera o valor das fraudes. Misturar esses números levaria a uma conclusão errada.
 
 **Resposta de defesa:** “O limiar ajuda a entender a classificação. Nossa decisão operacional principal é um ranking diário com capacidade fixa.”
 
@@ -707,19 +663,19 @@ Para cada política:
 A diferença entre política e referência mede benefício incremental. As duas têm o mesmo número de análises, logo custos fixos por análise se cancelam na diferença quando não há penalidade adicional. O resultado não inclui implantação, manutenção, atrasos, qualidade da investigação ou efeito sobre clientes.
 
 #### Passo a passo: refazer a conta que sustenta o trabalho
-No teste, a exposição fraudulenta rotulada total é US$ 78.851,255. A fila principal identifica US$ 35.111,123; a regra de maiores valores identifica US$ 14.670. Ambas usam 333 análises.
+No teste, a exposição fraudulenta rotulada total é US$ 78.851,255. A fila principal identifica US$ 38.044,572; a regra de maiores valores identifica US$ 14.670. Ambas usam 333 análises.
 
 Com eficácia de 80% e custo de US$ 2 por análise:
 
-- Modelo: `0,8 × 35.111,123 − 2 × 333 = US$ 27.422,8984` de benefício líquido simulado.
+- Modelo: `0,8 × 38.044,572 − 2 × 333 = US$ 29.769,6576` de benefício líquido simulado.
 - Referência: `0,8 × 14.670 − 2 × 333 = US$ 11.070`.
-- Contribuição incremental: `27.422,8984 − 11.070 = US$ 16.352,8984`.
+- Contribuição incremental: `29.769,6576 − 11.070 = US$ 18.699,6576`.
 - Perda simulada da referência: `78.851,255 − 11.070 = US$ 67.781,255`.
-- Redução relativa dessa perda: `16.352,8984 / 67.781,255 ≈ 24,13%`.
+- Redução relativa dessa perda: `18.699,6576 / 67.781,255 ≈ 27,59%`.
 
-O denominador de 24,13% é a perda simulada da referência. Não é o valor total de todas as transações, não é o percentual de fraudes encontradas e não é retorno sobre investimento de implantação.
+O denominador de 27,59% é a perda simulada da referência. Não é o valor total de todas as transações, não é o percentual de fraudes encontradas e não é retorno sobre investimento de implantação.
 
-**Resposta pronta:** “Na amostra de teste, com a mesma capacidade, nosso ranking identificou mais valor de fraude. Sob eficácia de 80% e custo de dois dólares por análise, isso equivale a cerca de 16,35 mil dólares adicionais e 24,13% menos perda que a regra de maiores valores.”
+**Resposta pronta:** “Na amostra de teste, com a mesma capacidade, nosso ranking identificou mais valor de fraude. Sob eficácia de 80% e custo de dois dólares por análise, isso equivale a cerca de 18,70 mil dólares adicionais e 27,59% menos perda que a regra de maiores valores.”
 
 ### Etapa 15: Capacidade, custos e eficácia
 Testamos capacidades de 1%, 2%, 5% e 10% por dia. Maior capacidade pode capturar mais fraude, mas exige mais trabalho e pode aumentar falsos positivos. A capacidade principal permanece 2%, definida antes do teste.
@@ -747,11 +703,11 @@ A unidade de reamostragem é um bloco de dias, não uma transação independente
 
 **Pareado** significa que, em cada réplica, modelo e referência recebem os mesmos dias. Calculamos a diferença nas duas políticas dentro da mesma réplica. Isso evita comparar períodos distintos por acidente.
 
-O intervalo exploratório principal é aproximadamente US$ 11,87 mil a US$ 21,33 mil. Ele resume a variação da diferença no procedimento de reamostragem, sob os custos e a eficácia escolhidos. Não é uma garantia de que 95% dos ganhos futuros estarão aí, nem incorpora automaticamente erros nas hipóteses econômicas.
+O intervalo exploratório principal é aproximadamente US$ 13,86 mil a US$ 23,77 mil. Ele resume a variação da diferença no procedimento de reamostragem, sob os custos e a eficácia escolhidos. Não é uma garantia de que 95% dos ganhos futuros estarão aí, nem incorpora automaticamente erros nas hipóteses econômicas.
 
 Com apenas quatro semanas de teste, a diversidade temporal é limitada. Um intervalo inteiramente positivo reforça a evidência nesse recorte, sem provar efeito causal.
 
-**Contra logística:** o ganho adicional do campeão é cerca de US$ 4.785,62, ou 8,51% de redução da perda simulada da logística. Esse diagnóstico posterior mostra que um modelo simples já entrega parte importante do resultado; não redefine o campeão.
+**Contra logística:** o ganho adicional do campeão é cerca de US$ 7.132,38, ou 12,69% de redução da perda simulada da logística. Esse diagnóstico posterior mostra que um modelo simples já entrega parte importante do resultado; não redefine o campeão.
 
 ### Diagnóstico adicional contra um modelo simples de risco
 A referência principal continua sendo a regra escolhida antes do teste. Para não atribuir todo o benefício a uma arquitetura complexa, também mostramos todos os classificadores sob o mesmo orçamento. Uma regressão logística simples já identifica valor relevante; a contribuição adicional do campeão deve ser avaliada contra ela. Este diagnóstico não muda o campeão depois de olhar o teste.
@@ -842,7 +798,7 @@ Não compare diretamente R² da regressão, AP da classificação e silhouette d
 
 **Por que one-hot e escala?** Códigos não têm uma ordem numérica natural, e escalas distintas podem dominar distâncias e regularização.
 
-**O que é regularização?** Penalização de complexidade para reduzir ajustes frágeis. L1 pode zerar coeficientes; L2 os contrai; ElasticNet combina as duas.
+**O que é regularização?** Penalização de complexidade para reduzir ajustes frágeis. L1 pode zerar coeficientes; L2 os contrai.
 
 **Por que permutação não mostra causa?** Embaralhar mede dependência preditiva no modelo. Atributos correlacionados e fatores não observados impedem interpretação causal direta.
 
@@ -888,10 +844,10 @@ Não compare diretamente R² da regressão, AP da classificação e silhouette d
 ### Frases que precisam sair corretas
 
 - “Uma linha é uma transação, não um cliente.”
-- “Extra Trees foi escolhido pela captura monetária na validação.”
+- “HistGradientBoosting foi escolhido pela captura monetária na validação.”
 - “O teste mede o protocolo congelado.”
 - “O ranking principal usa probabilidade calibrada vezes valor, com a mesma capacidade diária.”
-- “24,13% é redução da perda simulada da regra de maiores valores.”
+- “27,59% é redução da perda simulada da regra de maiores valores.”
 - “O valor identificado é medido na avaliação, e o benefício depende das hipóteses.”
 - “Um resultado melhor no teste sugere investigação futura, sem troca retrospectiva do campeão.”
 

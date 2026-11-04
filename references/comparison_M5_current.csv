@@ -1,0 +1,3 @@
+projeto,referencia,reducao_custo_percentual,beneficio_incremental_USD,intervalo95_inferior,intervalo95_superior,periodo,evidencia
+M5 / estoque,Média móvel calibrada,0.8663608527256101,56.67461428571369,-32.35243750000012,141.11770107142846,20 semanas,Intervalo inclui zero
+IEEE-CIS / fraude,Maiores transações / mesmo orçamento,27.58824338675936,18699.6576,13862.060780000002,23765.044719999998,28 dias,Intervalo exploratório positivo; revisão curricular retrospectiva

@@ -22,11 +22,12 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler,OneHotEncoder
 from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LinearRegression,Ridge,Lasso,ElasticNet,LogisticRegression
-from sklearn.tree import DecisionTreeClassifier,DecisionTreeRegressor
-from sklearn.ensemble import (RandomForestClassifier,ExtraTreesClassifier,HistGradientBoostingClassifier,
- RandomForestRegressor,ExtraTreesRegressor,HistGradientBoostingRegressor)
+from sklearn.linear_model import LinearRegression,Ridge,Lasso,LogisticRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import (HistGradientBoostingClassifier,
+ RandomForestRegressor,HistGradientBoostingRegressor)
 from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import (mean_absolute_error,mean_squared_error,r2_score,accuracy_score,precision_score,
  recall_score,f1_score,roc_auc_score,average_precision_score,brier_score_loss,confusion_matrix,
@@ -40,7 +41,7 @@ SEED=42
 # Lista definida antes de olhar o teste, sem seleção supervisionada de atributos.
 NUM=['TransactionAmt','dist1','dist2']+[f'C{i}' for i in range(1,15)]+[f'D{i}' for i in range(1,16)]+[f'V{i}' for i in [1,3,5,7,13,20,30,50,70,100,130,150,200,250,300]]+['hour_sin','hour_cos','missing_count']
 CAT=['ProductCD','card1','card2','card3','card4','card5','card6','addr1','addr2','P_emaildomain','R_emaildomain','M1','M2','M3','M4','M5','M6','M7','M8','M9','DeviceType']
-CONFIG=dict(seed=42,sample='every fifth source row; no stratification',training_budget=30000,
+CONFIG=dict(curricular_revision='15 techniques; test period previously inspected in earlier version; retrospective evaluation, not a fresh holdout',seed=42,sample='every fifth source row; no stratification',training_budget=30000,
  timeline='whole relative days 60% train,15% validation,10% calibration,15% test',
  capacity=.02,cost=2.,efficacy=.8,false_positive_penalty=0.,
  selection_classifier='largest labeled fraud amount captured with 2% daily review in validation',
@@ -136,19 +137,16 @@ def specs(task):
  if task=='classification':
   return {
   'Logistic':(LogisticRegression(max_iter=600),[{'C':.1},{'C':1.}]),
-  'DecisionTree':(DecisionTreeClassifier(random_state=SEED),[{'max_depth':6,'min_samples_leaf':30},{'max_depth':12,'min_samples_leaf':15}]),
-  'RandomForest':(RandomForestClassifier(n_estimators=60,n_jobs=4,random_state=SEED),[{'max_depth':10,'min_samples_leaf':5},{'max_depth':18,'min_samples_leaf':3}]),
-  'ExtraTrees':(ExtraTreesClassifier(n_estimators=60,n_jobs=4,random_state=SEED),[{'max_depth':12,'min_samples_leaf':5},{'max_depth':20,'min_samples_leaf':3}]),
+  # LDA regularizado: covariância compartilhada; shrinkage reduz singularidade no one-hot.
+  'LDA':(LinearDiscriminantAnalysis(solver='lsqr'),[{'shrinkage':.1},{'shrinkage':'auto'}]),
   'HistGradientBoosting':(HistGradientBoostingClassifier(max_iter=120,random_state=SEED),[{'max_leaf_nodes':15,'l2_regularization':10.},{'max_leaf_nodes':31,'l2_regularization':20.}]),
   'KNN':(KNeighborsClassifier(n_jobs=4),[{'n_neighbors':15},{'n_neighbors':45}]),
   'GaussianNB':(GaussianNB(),[{'var_smoothing':1e-5},{'var_smoothing':1e-3}])}
  return {
   'Linear':(LinearRegression(),[{}]),'Ridge':(Ridge(),[{'alpha':10.},{'alpha':100.}]),
   'Lasso':(Lasso(max_iter=1500),[{'alpha':.1},{'alpha':1.}]),
-  'ElasticNet':(ElasticNet(max_iter=1500,l1_ratio=.5),[{'alpha':.1},{'alpha':1.}]),
   'DecisionTree':(DecisionTreeRegressor(random_state=SEED),[{'max_depth':5,'min_samples_leaf':50},{'max_depth':10,'min_samples_leaf':25}]),
   'RandomForest':(RandomForestRegressor(n_estimators=60,n_jobs=4,random_state=SEED),[{'max_depth':10,'min_samples_leaf':10},{'max_depth':15,'min_samples_leaf':5}]),
-  'ExtraTrees':(ExtraTreesRegressor(n_estimators=60,n_jobs=4,random_state=SEED),[{'max_depth':10,'min_samples_leaf':10},{'max_depth':15,'min_samples_leaf':5}]),
   'HistGradientBoosting':(HistGradientBoostingRegressor(max_iter=120,random_state=SEED),[{'max_leaf_nodes':15,'l2_regularization':50.},{'max_leaf_nodes':31,'l2_regularization':100.}])}
 
 def train(d,task):
@@ -354,7 +352,7 @@ def run():
  pd.DataFrame(bclass).to_csv(ROOT/'results/classification_baselines.csv',index=False)
  figures(d,cm,rm,cp,rp,cwin,rwin,fin,det,cl,cmodels)
  save(dict(python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,sklearn=sklearn.__version__,duration_seconds=time.time()-start,
- classification_winner=cwin,regression_winner=rwin,checks=checks,techniques=19),'execution.json')
+ classification_winner=cwin,regression_winner=rwin,checks=checks,techniques=15),'execution.json')
  print('DONE',cwin,rwin,checks,flush=True)
  return d
 if __name__=='__main__':run()

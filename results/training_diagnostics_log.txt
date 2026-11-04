@@ -1,0 +1,9 @@
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted
+/Users/runner/work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted
+          task                model                 split  accuracy  precision   recall       F1  ROC_AUC       AP    Brier  threshold      MAE         MSE      RMSE       R2
+classification HistGradientBoosting Ajuste final (30 mil)   0.97870   0.724204 0.680254 0.701541 0.956057 0.751302 0.016989        0.2      NaN         NaN       NaN      NaN
+classification HistGradientBoosting       Teste posterior   0.96431   0.463462 0.454717 0.459048 0.875991 0.454000 0.023109        0.2      NaN         NaN       NaN      NaN
+    regression         RandomForest Ajuste final (30 mil)       NaN        NaN      NaN      NaN      NaN      NaN      NaN        NaN 6.223050  932.717712 30.540427 0.590367
+    regression         RandomForest       Teste posterior       NaN        NaN      NaN      NaN      NaN      NaN      NaN        NaN 8.295079 1597.101692 39.963755 0.246503
