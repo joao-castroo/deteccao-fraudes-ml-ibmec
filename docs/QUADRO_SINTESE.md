@@ -1,4 +1,4 @@
-# Quadro síntese das 15 aplicações de técnicas
+# Comparação das técnicas e adequação aos dados
 
 Modelos supervisionados: métricas do teste, com escolhas pela validação. Agrupamentos e PCA: métricas na amostra de treino, não no teste. Os índices de tarefas diferentes não são comparáveis entre si.
 
@@ -20,4 +20,4 @@ Modelos supervisionados: métricas do teste, com escolhas pela validação. Agru
 | Exploração | DBSCAN | eps=1.5; mín=10 | Sil=0.369; ruído=9% | Densidade e ruído | Depende de eps e cobertura |
 | Exploração | PCA | 9 entradas; projeção 2D | 2 CP=56.53%; 5=89.02% | Resume variância | Não otimiza fraude ou lucro |
 
-* Vencedor da tarefa na validação. PCA é redução de dimensionalidade. HistGB é aplicado à regressão e à classificação. A contagem de 15 é por aplicação e tarefa. Baselines e configurações não acrescentam técnicas.
+* Vencedor da tarefa na validação. PCA é redução de dimensionalidade. HistGB é aplicado à regressão e à classificação. Baselines e configurações integram a comparação e não são argumentos de adequação.

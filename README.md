@@ -8,7 +8,7 @@ Projeto separado do M5, criado em `ProjML/Projeto_Fraude`. O projeto anterior pe
 
 - [Comece aqui: acesso, VS Code e estudo em dupla](docs/COMECE_AQUI.md).
 - [Apresentação oficial de 10 slides](deliverables/apresentacao_Fraude.pptx), com notas e demonstração, para os 15 minutos totais.
-- [Roteiro completo de estudo e defesa](docs/ROTEIRO_E_DEFESA.md), legível no GitHub: 54 termos, 15 técnicas, resultados, cálculos e perguntas.
+- [Roteiro completo de estudo e defesa](docs/ROTEIRO_E_DEFESA.md), legível no GitHub: 54 termos, métodos, resultados, cálculos e perguntas.
 - [Roteiro HTML](deliverables/roteiro_apresentacao_15min.html), para baixar e abrir no navegador.
 - [Roteiro completo em Word](deliverables/roteiro_completo_apresentacao_e_defesa.docx), para baixar, editar e enviar.
 
@@ -47,7 +47,7 @@ Contra uma regressão logística simples, a vantagem adicional do campeão é US
 - Regressores estimam `TransactionAmt*isFraud`, uma exposição derivada; não são perdas líquidas observadas.
 - Fila principal: probabilidade calibrada × valor, com teto de 2% por dia. O arredondamento diário gera 333 revisões, ligeiramente acima de 2% no agregado.
 - Revisar não é bloquear. Eficácia, atraso e custo da investigação não foram observados.
-- Quinze técnicas: cinco classificadores, seis regressores, três agrupamentos e PCA, além de baselines.
+- Técnicas lineares, árvores e ensembles, vizinhança e Bayes, além de agrupamentos, PCA e referências simples, para confrontar hipóteses diferentes.
 
 ## Execução
 
@@ -91,12 +91,14 @@ O teste tem 28 dias. Há poucos blocos temporais independentes. Não há uma cha
 
 O hash SHA-256 local está em results/provenance.json. O MD5 OpenML se refere ao ARFF; não foi comparado ao parquet. O uso segue as regras da competição. Espelho público não equivale a licença irrestrita de redistribuição. Os arquivos ficam locais e no pacote solicitado para uso acadêmico.
 
-## Revisão curricular com 15 técnicas
+## Adequação das técnicas ao problema
 
-Mantidos Ridge e Lasso na regressão e HistGradientBoosting nas duas tarefas supervisionadas. Classificação: Logística, LDA, HistGradientBoosting, KNN e GaussianNB. Regressão: Linear, Ridge, Lasso, Árvore, Random Forest e HistGradientBoosting. Agrupamento: K-means, Hierárquico e DBSCAN. PCA é redução de dimensionalidade. Cada aplicação por tarefa conta uma vez; são 15 técnicas aplicadas, não 15 famílias distintas. O teste já foi consultado na versão anterior: esta revisão tem caráter retrospectivo, sem novo holdout inédito. Grades e critérios de validação continuam fixos.
+Mantidos Ridge e Lasso na regressão e HistGradientBoosting nas duas tarefas supervisionadas. Classificação: Logística, LDA, HistGradientBoosting, KNN e GaussianNB. Regressão: Linear, Ridge, Lasso, Árvore, Random Forest e HistGradientBoosting. Agrupamento: K-means, Hierárquico e DBSCAN. PCA é redução de dimensionalidade. A escolha confronta hipóteses diferentes, com preparação e avaliação temporal comuns. O teste já foi consultado na versão anterior: esta revisão tem caráter retrospectivo, sem novo holdout inédito. Grades e critérios de validação continuam fixos.
 
 Veja [a justificativa da revisão e o ranking de validação](docs/REVISAO_CURRICULAR.md).
 
 ## Conferência final de requisitos
 
-Veja [a matriz de cobertura](docs/CONFERENCIA_REQUISITOS.md) e [o quadro síntese das 15 aplicações](docs/QUADRO_SINTESE.md). O relatório tem nove páginas e os slides permanecem dez. `python src/diagnosticos_apresentacao.py` reproduz os vencedores e gera importância da regressão, resíduos e diagnóstico de ajuste–teste; o fluxo completo também chama esse diagnóstico. Os arquivos identificados para submissão ficam em `entrega_sala/`, preparados pelo script `src/prepare_submission.py`.
+Veja [a matriz de cobertura](docs/CONFERENCIA_REQUISITOS.md) e [o quadro comparação dos métodos](docs/QUADRO_SINTESE.md). O relatório tem nove páginas e os slides permanecem dez. `python src/diagnosticos_apresentacao.py` reproduz os vencedores e gera importância da regressão, resíduos e diagnóstico de ajuste–teste; o fluxo completo também chama esse diagnóstico. Os arquivos identificados para submissão ficam em `entrega_sala/`, preparados pelo script `src/prepare_submission.py`.
+
+A seleção parte da fraude rara, das entradas anônimas e correlacionadas, da ordem temporal e da exposição com muitos zeros. Comparamos fronteiras lineares, interações, distância e aproximações probabilísticas. Extra Trees e ElasticNet foram treinados na versão anterior e retirados por revisão curricular, sem alegação de inferioridade demonstrada. Veja o histórico e as justificativas em docs/REVISAO_CURRICULAR.md.

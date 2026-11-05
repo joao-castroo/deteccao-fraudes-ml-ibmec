@@ -228,7 +228,7 @@ display(pd.DataFrame([meta(&#x27;provenance.json&#x27;)]))</pre></details><div c
 </div></div><pre>## 3. Unidade de análise, amostra e limites
 Uma linha é uma transação, não um cliente. Selecionamos uma em cada cinco linhas do arquivo, sem olhar classe ou valor, e excluímos os dois dias extremos para evitar orçamentos em dias parciais. A amostra tem 116.533 transações e 4.046 fraudes.
 
-O orçamento operacional vale para essa amostra e não corresponde automaticamente à capacidade da empresa inteira. O sorteio de treino usa no máximo 30 mil linhas por ajuste, sem reequilibrar artificialmente as classes. Isso torna viável comparar quinze técnicas. Todos os algoritmos recebem a mesma amostra de cada bloco autorizado. A avaliação usa todas as linhas dos respectivos blocos da amostra sistemática.
+O orçamento operacional vale para essa amostra e não corresponde automaticamente à capacidade da empresa inteira. O sorteio de treino usa no máximo 30 mil linhas por ajuste, sem reequilibrar artificialmente as classes. Isso torna viável comparar hipóteses e níveis de complexidade. Todos os algoritmos recebem a mesma amostra de cada bloco autorizado. A avaliação usa todas as linhas dos respectivos blocos da amostra sistemática.
 
 Não há chave confiável de cliente para impedir que o mesmo indivíduo apareça em períodos diferentes. O teste temporal avalia um fluxo posterior, não generalização a clientes inéditos. Valores e taxas não podem ser extrapolados para todo o mercado.</pre><pre>### Passo a passo: por que reduzir a base?
 A seleção sistemática conserva aproximadamente um quinto das linhas e torna o estudo executável. Como o critério é a posição da linha, ele não favorece intencionalmente fraude ou valores altos. Contudo, não é uma amostra aleatória simples: se a ordenação tivesse periodicidade relacionada ao risco, poderia introduzir viés. Por isso, não afirmamos representatividade garantida.
@@ -858,17 +858,21 @@ display(cv_resumo[[&quot;model&quot;,&quot;params&quot;,&quot;AP_media&quot;,&qu
   </tbody>
 </table>
 </div></div><pre>## 7. Técnicas e hipóteses
-São **15 técnicas**: cinco classificadores, seis regressores, K-means, hierárquico, DBSCAN e PCA. Baselines e ajustes de política não contam como novas técnicas.
+**Critério de escolha:** confrontamos hipóteses distintas para verificar se a complexidade traz ganho sobre referências simples. A fraude é rara (3,33% no teste), as 71 entradas incluem várias variáveis anônimas e correlacionadas, as transações têm ordem temporal e o alvo monetário tem muitos zeros.
 
-| Família | Técnicas | Por que testar |
+| Família | Hipótese confrontada com os dados | Adequação e limite |
 |---|---|---|
-| Classificação | Logística, LDA, HistGradientBoosting, KNN, GaussianNB | Relações lineares, regras, ensembles, vizinhança e Bayes |
-| Regressão | Linear, Ridge, Lasso, Árvore, Random Forest, HistGradientBoosting | Estimar exposição monetária média e comparar regularização com não linearidade |
-| Não supervisionado | K-means, Hierárquico, DBSCAN, PCA | Estrutura, perfis, pontos esparsos e projeção |
+| Logística e LDA | Uma fronteira linear pode separar o risco? | Referências para verificar se interações são necessárias; LDA usa covariância compartilhada com shrinkage |
+| Árvore, Random Forest e HistGradientBoosting | Não linearidades e interações acrescentam valor? | Testam maior flexibilidade, com controle de complexidade e risco de sobreajuste |
+| Linear, Ridge e Lasso | Uma relação linear basta para a exposição monetária? | Referências e penalização sob correlação; muitos zeros e cauda pesada exigem diferentes métricas |
+| KNN | Proximidade entre transações ajuda a prever fraude? | Escala e muitas dimensões podem reduzir a qualidade das distâncias |
+| GaussianNB | Uma aproximação bayesiana simples é competitiva? | Independência condicional é uma hipótese exigente; não fizemos teste formal para comprová-la ou rejeitá-la |
+| K-means, Hierárquico, DBSCAN e PCA | Há perfis, regiões densas e projeções úteis? | Exploração sem rótulo; estrutura e variância não demonstram retorno financeiro |
 
-Random Forest agrega árvores com amostragem e aleatoriedade de atributos. LDA estima distribuições por classe com covariância compartilhada e regularização. Boosting constrói árvores em sequência. GaussianNB assume independência condicional, improvável em atributos correlacionados. KNN depende da definição de distância e escala. Nenhuma técnica é superior por princípio.
+**Como decidimos:** as pequenas grades usam folds temporais. O critério de validação escolhe o algoritmo; o teste descreve o desempenho posterior. AP e captura monetária respondem a objetivos distintos. A quantidade de métodos não é evidência de adequação.
 
-**Contagem:** 6 aplicações de regressão + 5 de classificação + 3 agrupamentos + PCA = 15. HistGradientBoosting aparece uma vez em cada tarefa supervisionada. PCA é redução de dimensionalidade, e não um quarto algoritmo de clustering. São 15 aplicações por tarefa, não 15 famílias distintas.</pre><pre>### Passo a passo: diferenciar as técnicas sem decorar nomes
+**Tentativas anteriores:** Extra Trees e ElasticNet foram efetivamente treinados e têm resultados preservados no histórico do repositório. A retirada ocorreu pela revisão do escopo curricular. Não afirmamos que perderam por desempenho, nem que todos os algoritmos estudados foram testados. Árvore e Random Forest continuaram na regressão. LDA foi incluído como outra hipótese linear de classificação.
+</pre><pre>### Passo a passo: diferenciar as técnicas sem decorar nomes
 | Técnica | Ideia para explicar | Principal cuidado |
 |---|---|---|
 | LDA | Gaussianas por classe com a mesma covariância, gerando fronteira linear | Correlação, distribuição e covariância precisam ser consideradas |
@@ -897,7 +901,7 @@ Random Forest agrega árvores com amostragem e aleatoriedade de atributos. LDA e
     display(pd.DataFrame([{&#x27;frente&#x27;:task,&#x27;modelo&#x27;:name,&#x27;grade&#x27;:str(grid)}
                          for name,(_,grid) in specs(task).items()]))
 
-# Síntese das 15 aplicações, incluindo configuração, resultado, vantagem e limite.
+# Comparação dos métodos: configuração, resultado, vantagem e limite.
 display(read(&#x27;techniques_summary.csv&#x27;))</pre></details><div class="tablewrap"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3552,7 +3556,7 @@ A semente controla amostragem e aleatoriedade. Versões e bibliotecas numéricas
 
 **Critério de domínio:** cada integrante deve conseguir localizar a evidência, explicar a conta e reconhecer a principal limitação de qualquer número apresentado. A divisão de falas não deve dividir o conhecimento.
 
-**Fechamento oral sugerido:** “Comparamos quinze técnicas e separamos rigorosamente os períodos de desenvolvimento e teste. A contribuição principal foi transformar risco em uma fila monetária com a mesma capacidade da referência. O benefício é simulado com hipóteses explícitas, e os resultados apoiam a relevância acadêmica da abordagem.”</pre><pre>## 24. Laboratório guiado: refaça os cálculos essenciais
+**Fechamento oral sugerido:** “Comparamos hipóteses diferentes para verificar se a complexidade acrescenta valor e separamos rigorosamente os períodos de desenvolvimento e teste. A contribuição principal foi transformar risco em uma fila monetária com a mesma capacidade da referência. O benefício é simulado com hipóteses explícitas, e os resultados apoiam a relevância acadêmica da abordagem.”</pre><pre>## 24. Laboratório guiado: refaça os cálculos essenciais
 As próximas células são independentes do treinamento. Elas ensinam a lógica com exemplos pequenos e depois verificam os valores do experimento salvo. Altere os exemplos para explorar; os arquivos de resultados permanecem intactos.</pre><pre>### 24.1 Probabilidade e montante
 
 Uma transação com maior probabilidade não precisa ter maior exposição esperada. Preveja qual será priorizada antes de executar.</pre><details open><summary>Código executado</summary><pre class="code">import pandas as pd

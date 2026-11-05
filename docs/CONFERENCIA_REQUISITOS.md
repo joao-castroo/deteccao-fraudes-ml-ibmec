@@ -4,7 +4,7 @@
 
 O conjunto de materiais cobre os temas acadêmicos solicitados no template enviado, no relato do ex-aluno e nas orientações da dupla. A conferência cruzou o texto dos dez slides do template com slides, relatório, células do notebook, código e resultados. O relato do ex-aluno foi tratado como orientação de preparação, não como uma nova rubrica oficial.
 
-A apresentação tem dez slides e plano de 900 segundos, incluindo demonstração. O relatório tem nove páginas. O roteiro de estudo tem trinta páginas e é separado do relatório limitado a dez páginas. A fala precisa ser ensaiada pela dupla; o cronograma planejado não certifica o tempo real de apresentação.
+A apresentação tem dez slides e plano de 900 segundos, incluindo demonstração. O relatório tem nove páginas. O roteiro de estudo é aprofundado e separado do relatório limitado a dez páginas. A fala precisa ser ensaiada pela dupla; o cronograma planejado não certifica o tempo real de apresentação.
 
 ## Template do professor
 
@@ -17,7 +17,7 @@ A apresentação tem dez slides e plano de 900 segundos, incluindo demonstraçã
 | Faltantes, duplicatas, extremos, codificação, escala e engenharia | Slide 3 e notas; notebook 4–5; audit.json e missing_features.csv | Coberto. Medianas e indicadores, one-hot, escala, ciclo horário, presença de informação; zero duplicatas no critério auditado, sem apagar extremos automaticamente |
 | Treino/teste, proporções, semente e prevenção de vazamento | Slides 3–4; notebook 6; experiment.py | Coberto. Blocos temporais por dias inteiros, semente 42, transformações aprendidas dentro dos folds |
 | Validação cruzada e hiperparâmetros | Slide 4 e notas; notebook 6–7; classification_cv.csv e regression_cv.csv | Coberto e executado. Três folds temporais, busca pequena, AP na classificação e MSE na regressão |
-| Aproximadamente 15 técnicas nas três frentes | Slide 4; notebook 7; relatório 8; QUADRO_SINTESE.md | Coberto como 15 aplicações: seis regressões, cinco classificações, três agrupamentos e PCA. HistGB conta por tarefa; PCA é redução |
+| Diversidade de técnicas adequada às tarefas | Slide 4; notebook 7; relatório 8; QUADRO_SINTESE.md | Hipóteses lineares, não lineares, de distância e probabilísticas confrontadas com classe rara, atributos correlacionados e tempo. A referência aproximada do professor não é uma meta exata |
 | Regressão: alvo contínuo, modelos, referências, parâmetros e métricas | Slide 5; notebook 11; relatório 4; regression_metrics.csv e regression_baselines.csv | Coberto. Seis regressores; MAE, MSE, RMSE e R²; exposição derivada explicitamente identificada |
 | Regressão: ajuste versus teste, sobreajuste, importância e resíduos | Slide 5 e notas; notebook 11; training_diagnostics.json; regression_permutation_importance.csv e figuras | Coberto. Diagnóstico reproduz previsões congeladas. Importância por aumento de RMSE na calibração, com três repetições |
 | Classificação: classes, desbalanceamento, métricas, matriz, curva e limiar | Slide 6; notebook 8–10; relatório 3 | Coberto. Acurácia, precisão, recall, F1, ROC-AUC, AP e Brier; matriz e precisão–recall; limiar validado separado da fila financeira |
@@ -42,10 +42,10 @@ A apresentação tem dez slides e plano de 900 segundos, incluindo demonstraçã
 | Comparar modelos e métricas de performance | Tabelas por bloco e tarefa, referências simples, matriz, curvas e erros. Não comparamos índices de tarefas distintas como se fossem iguais |
 | Justificar o vencedor e por que os outros não foram escolhidos | Captura monetária na validação para classificação e MSE de validação na regressão; ranking completo, parâmetros e hipóteses dos concorrentes |
 | Fazer validação cruzada para escolher hiperparâmetros | Três folds temporais. KNN: k=15 com AP média 0,2355, k=45 com 0,2674; escolhemos 45. Justificamos por que KFold aleatório misturaria passado e futuro |
-| Limitações das técnicas | Quadro completo das 15 aplicações e explicações individuais no roteiro: linearidade, correlação, independência, distância, escala, complexidade e cobertura de ruído |
+| Limitações das técnicas | Quadro comparativo dos métodos e explicações individuais no roteiro: linearidade, correlação, independência, distância, escala, complexidade e cobertura de ruído |
 | Questões éticas e descrição dos dados | Anonimização, rótulo histórico, efeito sobre legítimos, privacidade, governança e ausência de comprovação de equidade |
 | Benefícios, custos e valor financeiro | Comparação com regras e logística, mesmo orçamento diário, cenários de custo/eficácia, benefício incremental e intervalo exploratório |
-| Dominar os termos e explicar treinamento | Roteiro de trinta páginas com 54 termos, explicações de cada método, perguntas e respostas, divisão de ensaio e notebook passo a passo |
+| Dominar os termos e explicar treinamento | Roteiro aprofundado com 54 termos, explicações de cada método, perguntas e respostas, divisão de ensaio e notebook passo a passo |
 
 ## Pedidos específicos da dupla
 
@@ -61,7 +61,7 @@ A apresentação tem dez slides e plano de 900 segundos, incluindo demonstraçã
 
 1. A tabela dos slides passou a mostrar os seis regressores, preservando a referência zero.
 2. Acurácia ficou explícita nas tabelas de classificação dos slides e do relatório.
-3. Incluímos quadro completo das quinze aplicações, com configuração, métrica, ponto forte e limitação, na página 8 do relatório e no notebook.
+3. Incluímos quadro comparativo dos métodos, com configuração, métrica, ponto forte e limitação, na página 8 do relatório e no notebook.
 4. Acrescentamos importância por permutação do regressor na calibração, gráfico observado–previsto, resíduos e diagnóstico ajuste–teste ao notebook.
 5. A demonstração didática passou a mostrar métricas de classificação além da fila e da conta econômica.
 6. Registramos literalmente a informação de licença do cadastro e o limite da discussão de equidade.

@@ -10,7 +10,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 1. [Fala por slide](#fala-por-slide)
 2. [Termos: significado, finalidade e uso](#termos-significado-finalidade-e-uso)
-3. [As 15 técnicas e os resultados](#as-15-técnicas-e-os-resultados)
+3. [As técnicas e seus resultados](#as-técnicas-e-seus-resultados)
 4. [A conta financeira e as comparações](#a-conta-financeira-e-as-comparações)
 5. [Explicações passo a passo](#explicações-passo-a-passo)
 6. [Perguntas do professor](#perguntas-do-professor)
@@ -23,7 +23,7 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 
 **Tempo: 00:00–00:35 (35 segundos).**
 
-**Fala sugerida:** Nossa pergunta é como gerar mais valor com a mesma capacidade de investigação. Estudamos transações reais IEEE-CIS/Vesta e conectamos modelos de risco à escolha de uma fila diária. Comparamos quinze técnicas. A apresentação e a entrega usam estes mesmos dez slides. O roteiro e o notebook concentram os detalhes de defesa.
+**Fala sugerida:** Nossa pergunta é como identificar mais valor de fraude com a mesma capacidade de investigação. Escolhemos técnicas com hipóteses diferentes para verificar se a complexidade traz ganho sobre referências simples. Usamos transações IEEE-CIS/Vesta e avaliamos a escolha de uma fila diária. Os resultados conectam previsão de risco e valor de negócio, sob custos e eficácia explícitos.
 
 **Pergunta e resposta:** O estudo mede dinheiro recuperado? Mede valor de fraude identificado e simula benefício com hipóteses explícitas.
 
@@ -52,15 +52,15 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 **Evidência para conferir:** `results/audit.json; results/provenance.json; results/missing_features.csv; data/processed/data_dictionary.csv; src/experiment.py`
 
 
-### Slide 04 — Síntese de 15 técnicas e critérios de seleção
+### Slide 04 — Modelos escolhidos pelas hipóteses e pelos dados
 
 **Tempo: 03:50–05:20 (90 segundos).**
 
-**Fala sugerida:** São cinco classificadores, seis regressores e quatro métodos não supervisionados. Logística oferece referência de risco simples. Árvores e ensembles capturam relações não lineares. Regularização compara estabilidade nos regressores. KNN e GaussianNB usam hipóteses diferentes. Três folds temporais escolhem pequenas grades por AP na classificação e MSE na regressão. Depois a validação escolhe HistGradientBoosting pelo valor capturado com score bruto vezes montante, e Random Forest regressor por MSE. O ajuste final recebe treino mais validação, até trinta mil linhas por ajuste, semente 42. Platt ajusta probabilidades num bloco separado. Mantemos o campeão mesmo se outro vencer alguma métrica no teste.
+**Fala sugerida:** Escolhemos técnicas com hipóteses diferentes para verificar se a complexidade traz ganho. Fraude é rara: 3,33% no teste. As 71 entradas incluem atributos anônimos e correlacionados. Logística e LDA verificam se uma fronteira linear basta; Ridge e Lasso comparam penalizações na regressão. Árvore, Random Forest e HistGradientBoosting testam não linearidades e interações. KNN compara vizinhança, mas distâncias podem perder qualidade em muitas dimensões. GaussianNB usa independência condicional, uma hipótese exigente: não fizemos teste formal para comprová-la ou rejeitá-la. O alvo monetário tem muitos zeros; por isso comparamos métricas e referências de regressão. Agrupamentos e PCA exploram estrutura sem rótulo. As grades usam três folds temporais. A validação escolheu HistGradientBoosting pela captura monetária e Random Forest regressor pelo MSE. Extra Trees e ElasticNet foram treinados antes e retirados por revisão curricular, sem alegar inferioridade demonstrada. Mantemos os vencedores, o teste e a política financeira.
 
-**Pergunta e resposta:** O que conta como técnica? Cada algoritmo ou método listado. Configurações, baselines e cenários não aumentam a contagem.
+**Pergunta e resposta:** Por que estes modelos? Para confrontar hipóteses lineares, interações, vizinhança e independência com os dados. A adequação é julgada pela validação temporal e pelo objetivo de negócio. O histórico documenta tentativas anteriores sem transformar a retirada curricular em derrota estatística.
 
-**Evidência para conferir:** `src/experiment.py: specs, train e unsupervised; results/classification_selection.json; results/regression_selection.json`
+**Evidência para conferir:** `src/experiment.py: specs e train; results/*_cv.csv; docs/REVISAO_CURRICULAR.md; histórico Git 1ca4a6b`
 
 
 ### Slide 05 — Regressão: exposição rotulada e erros no teste
@@ -188,12 +188,12 @@ Não leia todo o roteiro durante a fala. Use a sequência cronometrada para ensa
 | Drift / mudança temporal | Distribuições ou relações mudam com o tempo. | Explicar instabilidade e planejar monitoramento. | Prevalências variam entre blocos. Diferença de ajuste e teste não separa drift de sobreajuste. |
 | Causalidade e contrafactual | Efeito da ação e resultado alternativo que não observamos. | Distinguir avaliação de ranking de impacto real da investigação. | Não houve experimento de intervenção. Benefício depende da eficácia assumida. |
 
-## As 15 técnicas e os resultados
+## As técnicas e seus resultados
 
-Baselines, limiares e cenários não contam como técnicas adicionais. A tabela completa é material de defesa, não texto para ler durante os 15 minutos.
+A escolha compara pressupostos, adequação e desempenho. Baselines, limiares e cenários integram a avaliação. A tabela completa é material de defesa, não texto para ler durante os 15 minutos.
 
 
-### Classificação: cinco técnicas
+### Classificação
 
 #### Logistic
 
@@ -260,7 +260,7 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
 
-### Regressão: seis técnicas
+### Regressão
 
 #### Linear
 
@@ -340,7 +340,7 @@ Baselines, limiares e cenários não contam como técnicas adicionais. A tabela 
 **Como defender:** a configuração usa folds internos; o resultado do teste avalia a escolha, sem permitir trocá-la retrospectivamente.
 
 
-### Não supervisionado: quatro técnicas
+### Exploração não supervisionada
 
 | Técnica | Ideia e finalidade | Uso e achado | Limite de interpretação |
 |---|---|---|---|
@@ -420,7 +420,7 @@ Uma base pública de competição é adequada para testar métodos com rótulos 
 ### Etapa 3: Unidade de análise, amostra e limites
 Uma linha é uma transação, não um cliente. Selecionamos uma em cada cinco linhas do arquivo, sem olhar classe ou valor, e excluímos os dois dias extremos para evitar orçamentos em dias parciais. A amostra tem 116.533 transações e 4.046 fraudes.
 
-O orçamento operacional vale para essa amostra e não corresponde automaticamente à capacidade da empresa inteira. O sorteio de treino usa no máximo 30 mil linhas por ajuste, sem reequilibrar artificialmente as classes. Isso torna viável comparar quinze técnicas. Todos os algoritmos recebem a mesma amostra de cada bloco autorizado. A avaliação usa todas as linhas dos respectivos blocos da amostra sistemática.
+O orçamento operacional vale para essa amostra e não corresponde automaticamente à capacidade da empresa inteira. O sorteio de treino usa no máximo 30 mil linhas por ajuste, sem reequilibrar artificialmente as classes. Isso torna viável comparar hipóteses e níveis de complexidade. Todos os algoritmos recebem a mesma amostra de cada bloco autorizado. A avaliação usa todas as linhas dos respectivos blocos da amostra sistemática.
 
 Não há chave confiável de cliente para impedir que o mesmo indivíduo apareça em períodos diferentes. O teste temporal avalia um fluxo posterior, não generalização a clientes inéditos. Valores e taxas não podem ser extrapolados para todo o mercado.
 
@@ -496,17 +496,21 @@ O teste não escolhe o campeão. Se um concorrente ganha no teste, relatamos a i
 **Ponto crítico:** o classificador é escolhido com probabilidades brutas na validação e a política final utiliza probabilidades calibradas. Mantivemos o protocolo. Não afirmamos que essa sequência garante o melhor modelo monetário possível.
 
 ### Etapa 7: Técnicas e hipóteses
-São **15 técnicas**: cinco classificadores, seis regressores, K-means, hierárquico, DBSCAN e PCA. Baselines e ajustes de política não contam como novas técnicas.
+**Critério de escolha:** confrontamos hipóteses distintas para verificar se a complexidade traz ganho sobre referências simples. A fraude é rara (3,33% no teste), as 71 entradas incluem várias variáveis anônimas e correlacionadas, as transações têm ordem temporal e o alvo monetário tem muitos zeros.
 
-| Família | Técnicas | Por que testar |
+| Família | Hipótese confrontada com os dados | Adequação e limite |
 |---|---|---|
-| Classificação | Logística, LDA, HistGradientBoosting, KNN, GaussianNB | Relações lineares, regras, ensembles, vizinhança e Bayes |
-| Regressão | Linear, Ridge, Lasso, Árvore, Random Forest, HistGradientBoosting | Estimar exposição monetária média e comparar regularização com não linearidade |
-| Não supervisionado | K-means, Hierárquico, DBSCAN, PCA | Estrutura, perfis, pontos esparsos e projeção |
+| Logística e LDA | Uma fronteira linear pode separar o risco? | Referências para verificar se interações são necessárias; LDA usa covariância compartilhada com shrinkage |
+| Árvore, Random Forest e HistGradientBoosting | Não linearidades e interações acrescentam valor? | Testam maior flexibilidade, com controle de complexidade e risco de sobreajuste |
+| Linear, Ridge e Lasso | Uma relação linear basta para a exposição monetária? | Referências e penalização sob correlação; muitos zeros e cauda pesada exigem diferentes métricas |
+| KNN | Proximidade entre transações ajuda a prever fraude? | Escala e muitas dimensões podem reduzir a qualidade das distâncias |
+| GaussianNB | Uma aproximação bayesiana simples é competitiva? | Independência condicional é uma hipótese exigente; não fizemos teste formal para comprová-la ou rejeitá-la |
+| K-means, Hierárquico, DBSCAN e PCA | Há perfis, regiões densas e projeções úteis? | Exploração sem rótulo; estrutura e variância não demonstram retorno financeiro |
 
-Random Forest agrega árvores com amostragem e aleatoriedade de atributos. LDA estima distribuições por classe com covariância compartilhada e regularização. Boosting constrói árvores em sequência. GaussianNB assume independência condicional, improvável em atributos correlacionados. KNN depende da definição de distância e escala. Nenhuma técnica é superior por princípio.
+**Como decidimos:** as pequenas grades usam folds temporais. O critério de validação escolhe o algoritmo; o teste descreve o desempenho posterior. AP e captura monetária respondem a objetivos distintos. A quantidade de métodos não é evidência de adequação.
 
-**Contagem:** 6 aplicações de regressão + 5 de classificação + 3 agrupamentos + PCA = 15. HistGradientBoosting aparece uma vez em cada tarefa supervisionada. PCA é redução de dimensionalidade, e não um quarto algoritmo de clustering. São 15 aplicações por tarefa, não 15 famílias distintas.
+**Tentativas anteriores:** Extra Trees e ElasticNet foram efetivamente treinados e têm resultados preservados no histórico do repositório. A retirada ocorreu pela revisão do escopo curricular. Não afirmamos que perderam por desempenho, nem que todos os algoritmos estudados foram testados. Árvore e Random Forest continuaram na regressão. LDA foi incluído como outra hipótese linear de classificação.
+
 
 #### Passo a passo: diferenciar as técnicas sem decorar nomes
 | Técnica | Ideia para explicar | Principal cuidado |

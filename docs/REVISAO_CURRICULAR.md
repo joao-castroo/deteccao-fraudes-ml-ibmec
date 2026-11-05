@@ -1,6 +1,6 @@
-# Revisão curricular: 15 aplicações de técnicas
+# Escolha dos modelos e histórico de experimentação
 
-Ridge, Lasso e HistGradientBoosting foram mantidos conforme o conteúdo estudado. São seis regressões, cinco classificações, três agrupamentos e PCA. HistGradientBoosting aparece nas duas tarefas supervisionadas; PCA é redução de dimensionalidade. A contagem é por aplicação e tarefa, e não por família distinta.
+Escolhemos técnicas com hipóteses diferentes para verificar se a complexidade acrescenta valor. Ridge, Lasso e HistGradientBoosting foram mantidos conforme o conteúdo estudado. As tarefas de classificação, regressão e exploração recebem métodos com pressupostos diferentes. HistGradientBoosting aparece nas duas tarefas supervisionadas; PCA é redução de dimensionalidade. A comparação distingue as tarefas e não usa quantidade como argumento de adequação.
 
 Regressão: Linear, Ridge, Lasso, Árvore, Random Forest e HistGradientBoosting.
 
@@ -40,3 +40,22 @@ O HistGradientBoosting já era um candidato na versão anterior. Reduzir a lista
 - Entrega: mesmo PPT de dez slides para apresentação e entrega, relatório de nove páginas, roteiro de estudo separado em Word e HTML.
 
 O ambiente emitiu avisos numéricos preservados nos logs. As previsões aceitas são finitas; os avisos não foram tratados como resultados válidos por si mesmos.
+
+## Motivação e rastreabilidade
+
+**Critério de escolha:** confrontamos hipóteses distintas para verificar se a complexidade traz ganho sobre referências simples. A fraude é rara (3,33% no teste), as 71 entradas incluem várias variáveis anônimas e correlacionadas, as transações têm ordem temporal e o alvo monetário tem muitos zeros.
+
+| Família | Hipótese confrontada com os dados | Adequação e limite |
+|---|---|---|
+| Logística e LDA | Uma fronteira linear pode separar o risco? | Referências para verificar se interações são necessárias; LDA usa covariância compartilhada com shrinkage |
+| Árvore, Random Forest e HistGradientBoosting | Não linearidades e interações acrescentam valor? | Testam maior flexibilidade, com controle de complexidade e risco de sobreajuste |
+| Linear, Ridge e Lasso | Uma relação linear basta para a exposição monetária? | Referências e penalização sob correlação; muitos zeros e cauda pesada exigem diferentes métricas |
+| KNN | Proximidade entre transações ajuda a prever fraude? | Escala e muitas dimensões podem reduzir a qualidade das distâncias |
+| GaussianNB | Uma aproximação bayesiana simples é competitiva? | Independência condicional é uma hipótese exigente; não fizemos teste formal para comprová-la ou rejeitá-la |
+| K-means, Hierárquico, DBSCAN e PCA | Há perfis, regiões densas e projeções úteis? | Exploração sem rótulo; estrutura e variância não demonstram retorno financeiro |
+
+**Como decidimos:** as pequenas grades usam folds temporais. O critério de validação escolhe o algoritmo; o teste descreve o desempenho posterior. AP e captura monetária respondem a objetivos distintos. A quantidade de métodos não é evidência de adequação.
+
+**Tentativas anteriores:** Extra Trees e ElasticNet foram efetivamente treinados e têm resultados preservados no histórico do repositório. A retirada ocorreu pela revisão do escopo curricular. Não afirmamos que perderam por desempenho, nem que todos os algoritmos estudados foram testados. Árvore e Random Forest continuaram na regressão. LDA foi incluído como outra hipótese linear de classificação.
+
+A indicação docente de algo em torno de 15 técnicas foi uma referência aproximada de diversidade, sem impor uma meta. A justificativa do trabalho é a adequação dos métodos aos dados e à decisão. Os resultados da versão inicial podem ser conferidos em [classification_metrics.csv](https://github.com/joao-castroo/deteccao-fraudes-ml-ibmec/blob/1ca4a6b/results/classification_metrics.csv), [regression_metrics.csv](https://github.com/joao-castroo/deteccao-fraudes-ml-ibmec/blob/1ca4a6b/results/regression_metrics.csv) e nos respectivos arquivos de seleção do mesmo commit. Nenhum novo treinamento foi necessário para esta correção de narrativa.
