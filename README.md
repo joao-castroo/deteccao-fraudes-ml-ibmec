@@ -102,3 +102,8 @@ Veja [a justificativa da revisão e o ranking de validação](docs/REVISAO_CURRI
 Veja [a matriz de cobertura](docs/CONFERENCIA_REQUISITOS.md) e [o quadro comparação dos métodos](docs/QUADRO_SINTESE.md). O relatório tem nove páginas e os slides permanecem dez. `python src/diagnosticos_apresentacao.py` reproduz os vencedores e gera importância da regressão, resíduos e diagnóstico de ajuste–teste; o fluxo completo também chama esse diagnóstico. Os arquivos identificados para submissão ficam em `entrega_sala/`, preparados pelo script `src/prepare_submission.py`.
 
 A seleção parte da fraude rara, das entradas anônimas e correlacionadas, da ordem temporal e da exposição com muitos zeros. Comparamos fronteiras lineares, interações, distância e aproximações probabilísticas. Extra Trees e ElasticNet foram treinados na versão anterior e retirados por revisão curricular, sem alegação de inferioridade demonstrada. Veja o histórico e as justificativas em docs/REVISAO_CURRICULAR.md.
+
+
+## Consulta rápida para a defesa
+
+Veja [perguntas, respostas e evidências](docs/APOIO_DEFESA.md): notebook compacto, slides de apoio separados e versão HTML. Os resultados e a apresentação principal foram preservados.
